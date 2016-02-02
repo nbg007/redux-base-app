@@ -1,5 +1,8 @@
 // Architecture file
 //TODO: Not finished (post requests)
+//
+//polyfills fetch for non-compatible browser (issue #6)
+import fetch from 'isomorphic-fetch'
 import config from '../config'
 import { applyToken, applyHeaders }from './helpers'
 import * as actions from '../modules/auth'
@@ -19,10 +22,12 @@ function callApi(endpoint, authenticated, config={}) {
   return fetch(BASE_URL + endpoint, config)
   .then(response =>
     response.json().then(json=> ({ json, response }))
-  ).then(({ json, response }) => {
+  )
+  .then(({ json, response }) => {
     if (!response.ok) {
       throw json.errors[0]
-    } else {
+    }
+    else {
       return json.data
     }
   }).catch(error => {
