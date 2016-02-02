@@ -4,11 +4,11 @@ import { Link } from 'react-router'
 
 class Header extends Component {
   onClick(e) {
-    e.preventDefault()
-    this.props.logout()
+    e.preventDefault();
+    this.props.logout();
   }
   render() {
-    const {title, username, t } = this.props  
+    const {title, username, t } = this.props
     return (
       <div>
         <header>
@@ -20,15 +20,15 @@ class Header extends Component {
           <a href onClick={this.onClick.bind(this)}>{t('logout')}</a>
         </header>
       </div>
-    );  
+    );
   }
 }
 
 Header.propTypes = {
-  title: PropTypes.string, 
+  title: PropTypes.string,
   username: PropTypes.string,
   logout: PropTypes.func.isRequired
 }
 
-// All given namespaces will be loaded. 
+// All given namespaces will be loaded.
 export default translate(['common', 'header'])(Header);

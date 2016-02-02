@@ -13,7 +13,7 @@ import { checkLogged, validateToken } from './modules/auth'
 export default (
   <Route>
     <Route component={Landing} onEnter={(dispatch, cb) => dispatch(checkLogged(cb))}>
-      <Route path="/login" component={Login}/>
+      <Route path="/login" onEnter={() => { console.log('HEY');} } component={Login}/>
       <Route path="/register" component={Register}/>
     </Route>
     <Route component={App} onEnter={(dispatch, cb) => dispatch(validateToken(cb))}>
