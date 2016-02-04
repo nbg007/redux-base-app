@@ -5,8 +5,8 @@ import {createValidator, required, maxLength, minLength, email} from '../utils/v
 import { translate, Interpolate } from 'react-i18next/lib';
 
 const validate = createValidator({
-  username: [required, minLength(2), maxLength(10)],
-  password: [required, minLength(2), maxLength(10)]
+  username: [required, minLength(3), maxLength(60)],
+  password: [required, minLength(6), maxLength(60)]
 });
 
 class RegisterForm extends Component {

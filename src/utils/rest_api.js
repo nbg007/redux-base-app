@@ -32,6 +32,7 @@ function applyHeaders(request, shouldUseToken) {
     };
 }
 
+
 const defaultOptions = {
   parse: defaultParse,
   prepare: defaultPrepare,
@@ -46,7 +47,7 @@ export function fetch(url, types, options = {}){
 
   return {
     [CALL_API]: {
-      endpoint: url,
+      endpoint:  BASE_API_URL + url,
       config,
       types,
       options: opts
@@ -63,7 +64,7 @@ export function create(url, data, types, options = {}){
   }, options.secure);
   return {
     [CALL_API]: {
-      endpoint: url,
+      endpoint:  BASE_API_URL + url,
       config,
       types,
       options: opts
@@ -81,7 +82,7 @@ export function update(url, data, types, options = {}){
   }, options.secure);
   return {
     [CALL_API]: {
-      endpoint: url,
+      endpoint:  BASE_API_URL + url,
       config,
       types,
       options: opts
@@ -98,7 +99,7 @@ export function del(url, types, options = {}){
 
   return {
     [CALL_API]: {
-      endpoint: url,
+      endpoint:  BASE_API_URL + url,
       config,
       types,
       options: opts
