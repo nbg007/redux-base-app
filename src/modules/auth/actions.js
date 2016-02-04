@@ -38,7 +38,11 @@ export function login({username, password}) {
       dispatch(push('/'));
     })
     .catch((e) => {
-      return Promise.reject({ _error: e._error})
+      let error = e.errors[0];
+      if(error.message.match(/not found/))
+        return Promise.reject({ _error: { username: 'Invalid username '}});
+      else
+        return Promise.reject({ _error: { password: 'Invalid password '}});
     })
   }
 }
