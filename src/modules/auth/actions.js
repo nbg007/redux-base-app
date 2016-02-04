@@ -1,7 +1,9 @@
-import { push, replace, routeActions } from 'react-router-redux';
-import AuthAPI from './api';
 import { LOCALSTORAGE_TOKEN_KEY } from '../../config';
+import AuthAPI from './api';
+import { push, replace } from 'react-router-redux';
 
+// TODO
+// Transform server API errors into valid redux-form errors
 
 //UTILS
 function clearToken(){
@@ -20,18 +22,32 @@ function goToLogin(){
   return push('/login');
 }
 
-//Action creators
-export function checkLogged(callback) {
+/** Auth module Action Creators */
+
+/**
+ * Async action creator that performs login
+ * @param  {String} options.username Username
+ * @param  {String} options.password Password
+ * @return {Function}                Thunk
+ */
+export function login({username, password}) {
   return (dispatch, getState) => {
-    if (getState().auth.logged) {
-      dispatch(replace('/'))
-    } else {
-      callback()
-    }
+    dispatch(AuthAPI.login(username, password))
+    .then(response =>  {
+      saveToken(response.token);
+      dispatch(push('/'));
+    })
+    .catch((e) => {
+      return Promise.reject({ _error: e._error})
+    })
   }
 }
 
-//getSession
+/**
+ * Async action that fetches the current user session
+ * if a JSON Web Token is present
+ * @return {Function} Async action (thunk)
+ */
 export function getSession() {
   return (dispatch, getState) => {
     //bail out early, if no token avoid calling the API
@@ -40,9 +56,6 @@ export function getSession() {
     }
     if (!getState().auth.logged) {
       return dispatch(AuthAPI.getSession())
-      .then(data => {
-        console.log('getSession OK', data);
-      })
       .catch((e) => {
         //throw e;
         console.log('getSession failed', e);
@@ -53,8 +66,10 @@ export function getSession() {
   }
 }
 
-
-//LOGOUT
+/**
+ * Async action that performs logout
+ * @return {Function} Thunk
+ */
 export function logout() {
   return (dispatch, getState) => {
     dispatch(AuthAPI.logout())
@@ -68,29 +83,15 @@ export function logout() {
   }
 }
 
-
-// LOGIN
-export function login({username, password}) {
-  return (dispatch, getState) => {
-    dispatch(AuthAPI.login(username, password))
-    .then(response =>  {
-      console.log('Login OK', response);
-      saveToken(response.token);
-      dispatch(push('/'));
-    })
-    .catch((e) => {
-      return Promise.reject({ _error: e._error})
-    })
-  }
-}
-
-
-//REGISTER
+/**
+ * Async action creator that register a user against the API
+ * @param  {Object} credentials Object with username, password fields
+ * @return {Function}           Thunk
+ */
 export function register(credentials) {
   return (dispatch, getState) => {
     return dispatch(AuthAPI.register(credentials))
     .then((payload) =>  {
-      console.log('Register OK', payload);
       localStorage.setItem('token', payload.token)
       dispatch(push('/'))
     })

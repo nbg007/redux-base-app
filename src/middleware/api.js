@@ -9,7 +9,7 @@ function makeRequest(endpoint, config={}) {
   return fetch(endpoint, config)
     .then(response => {
         return response.json()
-          .then(json=> ({ json, response }))
+          .then(json => ({ json, response }))
           .catch(() => ({ response }))
       }
     )
