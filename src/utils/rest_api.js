@@ -18,7 +18,7 @@ function defaultPrepare(jsonData){
 
 function applyHeaders(request, shouldUseToken) {
   const token = getToken();
-  if (token) {
+  if (token && shouldUseToken) {
     request.headers = request.headers || {}
     request.headers['Authorization'] = 'Bearer ' + token
   }
@@ -43,7 +43,7 @@ const defaultOptions = {
 //HTTP GET
 export function fetch(url, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
-  var config = applyHeaders({}, options.secure);
+  var config = applyHeaders({}, opts.secure);
 
   return {
     [CALL_API]: {
@@ -61,7 +61,7 @@ export function create(url, data, types, options = {}){
   var config = applyHeaders({
     method: 'POST',
     body: opts.prepare(JSON.stringify(data))
-  }, options.secure);
+  }, opts.secure);
   return {
     [CALL_API]: {
       endpoint:  BASE_API_URL + url,
@@ -79,7 +79,7 @@ export function update(url, data, types, options = {}){
   var config = applyHeaders({
     method: options.patch ? 'PATCH': 'PUT',
     body: opts.prepare(JSON.stringify(data))
-  }, options.secure);
+  }, opts.secure);
   return {
     [CALL_API]: {
       endpoint:  BASE_API_URL + url,
@@ -95,7 +95,7 @@ export function del(url, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({
     method: 'DELETE'
-  }, options.secure);
+  }, opts.secure);
 
   return {
     [CALL_API]: {

@@ -1,4 +1,3 @@
-//TODO: Cambiar validate token por session (get) y llamarlo desde el login
 import * as actions from './action_types'
 export * from './actions'
 

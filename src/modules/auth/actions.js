@@ -1,19 +1,20 @@
 import { CALL_API } from '../../middleware/api'
 import { push, replace, routeActions } from 'react-router-redux';
 import AuthAPI from './api';
+import { LOCALSTORAGE_TOKEN_KEY } from '../../config';
 
 
 //UTILS
 function clearToken(){
-  localStorage.removeItem('token');
+  localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
 }
 
 function getToken(){
-  return localStorage.getItem('token');
+  return localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 }
 
 function saveToken(token){
-  localStorage.setItem('token', token)
+  localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, token)
 }
 
 function goToLogin(){
