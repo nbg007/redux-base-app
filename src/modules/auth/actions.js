@@ -1,110 +1,102 @@
 import { CALL_API } from '../../middleware/api'
 import { push, replace, routeActions } from 'react-router-redux';
+import AuthAPI from './api';
 
-const APP_NAME = "base-app/"
 
-// Paste tense for actions
-export const TOKEN_VALIDATION_FAILED = APP_NAME.concat("AUTH:VALIDATE_TOKEN_FAIL")
-export const TOKEN_VALIDATION_SUCCESS = APP_NAME.concat("AUTH:VALIDATE_TOKEN")
-export const TOKEN_VALIDATION_ATTEMPTED = APP_NAME.concat("AUTH:VALIDATE_TOKEN_ATTEMPT")
-
-export const LOGIN_ATTEMPTED = APP_NAME.concat("AUTH:LOGIN_ATTEMPT")
-export const LOGIN_FAILED = APP_NAME.concat("AUTH:LOGIN_FAIL")
-export const LOGIN_SUCCESS = APP_NAME.concat("AUTH:LOGIN")
-export const LOGOUT_SUCCESS = APP_NAME.concat("AUTH:LOGOUT")
-
-export const REGISTER_SUCCESS = APP_NAME.concat("AUTH:REGISTER")
-export const REGISTER_ATTEMPTED = APP_NAME.concat("AUTH:REGISTER_ATTEMPT")
-export const REGISTER_FAILED = APP_NAME.concat("AUTH:REGISTER_FAIL")
-
-function loadInitialData(store) {
-  return (dispatch, getState) => {
-  }
+//UTILS
+function clearToken(){
+  localStorage.removeItem('token');
 }
 
+function getToken(){
+  return localStorage.getItem('token');
+}
+
+function saveToken(token){
+  localStorage.setItem('token', token)
+}
+
+function goToLogin(){
+  return push('/login');
+}
+
+//Action creators
 export function checkLogged(callback) {
   return (dispatch, getState) => {
     if (getState().auth.logged) {
-      dispatch(replacePath('/'))
+      dispatch(replace('/'))
     } else {
       callback()
     }
   }
 }
 
-export function validateToken() {
+//getSession
+export function getSession() {
   return (dispatch, getState) => {
+    //bail out early, if no token avoid calling the API
+    if(!getToken()){
+      return dispatch(goToLogin());
+    }
     if (!getState().auth.logged) {
-      return dispatch({
-        [CALL_API]: {
-          endpoint: 'session',
-          authenticated: true,
-          types: [TOKEN_VALIDATION_ATTEMPTED, TOKEN_VALIDATION_SUCCESS, TOKEN_VALIDATION_FAILED],
-        }
-      }).then(({ payload }) =>  {
-        dispatch(loadInitialData())
-      }).catch((e) => {
-        dispatch(logout())
+      return dispatch(AuthAPI.getSession())
+      .then(data => {
+        console.log('getSession OK', data);
+      })
+      .catch((e) => {
+        //throw e;
+        console.log('getSession failed', e);
+        clearToken();
+        dispatch(goToLogin());
       })
     }
   }
 }
 
+
+//LOGOUT
 export function logout() {
   return (dispatch, getState) => {
-    localStorage.removeItem('token');
-    dispatch({ type: LOGOUT_SUCCESS });
-    dispatch(routeActions.push("/login"))
+    dispatch(AuthAPI.logout())
+      .then(() => {
+        clearToken();
+        dispatch(goToLogin());
+      })
+      .catch(errors => {
+        console.log('Logout failed!', errors);
+      })
   }
 }
 
+
+// LOGIN
 export function login({username, password}) {
   return (dispatch, getState) => {
-    return dispatch({
-      [CALL_API]: {
-        endpoint: 'session',
-        config: {
-          method: 'POST',
-          body: JSON.stringify({
-            username: username,
-            password: password
-          })
-        },
-        types: [LOGIN_ATTEMPTED, LOGIN_SUCCESS, LOGIN_FAILED],
-        //parseResponse:
-      }
-    }).then(({ payload }) =>  {
-      localStorage.setItem('token', payload.token)
-      dispatch(loadInitialData())
-      dispatch(routeActions.push('/'))
-    }).catch((e) => {
+    dispatch(AuthAPI.login(username, password))
+    .then(response =>  {
+      console.log('Login OK', response);
+      saveToken(response.token);
+      dispatch(push('/'));
+    })
+    .catch((e) => {
       return Promise.reject({ _error: e._error})
     })
   }
 }
 
+
+//REGISTER
 export function register(credentials) {
   return (dispatch, getState) => {
-    return dispatch({
-      [CALL_API]: {
-        endpoint: 'register',
-        config: {
-          method: 'POST',
-          body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password
-          })
-        },
-        types: [REGISTER_ATTEMPTED, REGISTER_SUCCESS, REGISTER_FAILED],
-        //parseResponse:
-      }
-    }).then(({ payload, error}) =>  {
-      debugger
+    return dispatch(AuthAPI.register(credentials))
+    .then((payload) =>  {
+      console.log('Register OK', payload);
       localStorage.setItem('token', payload.token)
-      dispatch(loadInitialData())
-      dispatch(routeActions.push('/'))
-    }).catch((e) => {
-      return Promise.reject({_error: e._error })
+      dispatch(push('/'))
+    })
+    .catch((e) => {
+      console.log('Register failed', e);
+      return Promise.reject({_error: e.errors[0] })
     })
   }
 }

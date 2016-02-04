@@ -6,7 +6,6 @@ import { translate, Interpolate } from 'react-i18next/lib';
 
 const validate = createValidator({
   username: [required, minLength(2), maxLength(10)],
-  email: [required, email],
   password: [required, minLength(2), maxLength(10)]
 });
 
@@ -23,16 +22,11 @@ class RegisterForm extends Component {
     return (
       <div>
         <p>{t('register.title')}</p>
-        <form onSubmit={handleSubmit}> 
+        <form onSubmit={handleSubmit}>
           <div>
             <label>{t('username')}</label>
             <input type="text" placeholder={t('username')} {...username}/>
             {username.touched && username.error && <div>{username.error}</div>}
-          </div>
-          <div>
-            <label>{t('email')}</label>
-            <input type="email" placeholder={t('email')} {...email}/>
-            {email.touched && email.error && <div>{email.error}</div>}
           </div>
           <div>
             <label>{t('password')}</label>
@@ -47,7 +41,7 @@ class RegisterForm extends Component {
         <Interpolate parent='p' i18nKey='register.goLogin' component={GoLoginComponent} />
       </div>
     )
-  }  
+  }
 }
 
 RegisterForm.propTypes = {
@@ -60,7 +54,7 @@ RegisterForm.propTypes = {
 RegisterForm = reduxForm({
   form: 'register',
   validate,
-  fields: ['username', 'email', 'password']
+  fields: ['username', 'password']
 })(RegisterForm)
 
 export default translate(['common'])(RegisterForm);

@@ -8,31 +8,40 @@ import { applyToken, applyHeaders }from './helpers'
 import * as actions from '../modules/auth'
 import { routeActions } from 'react-router-redux';
 
-const BASE_URL = config.api
+const BASE_URL = config.BASE_API_URL
 
 
-function callApi(endpoint, authenticated, config={}) {
-  let token = localStorage.getItem('token') || null
-  config = applyHeaders(config, token)
+function callApi(endpoint, config={}) {
+  //let token = localStorage.getItem('token') || null
+  // config = applyHeaders(config, token)
 
-  if (authenticated && !token) {
-    return Promise.reject("Unauthorized")
-  }
+  // if (shouldAuthenticate && !token) {
+  //   //console.warn('Called an authorized API (' + endpoint + ') without a valid token');
+  //   return Promise.reject(new Error("Token not found"));
+  // }
 
   return fetch(BASE_URL + endpoint, config)
-  .then(response =>
-    response.json().then(json=> ({ json, response }))
-  )
-  .then(({ json, response }) => {
-    if (!response.ok) {
-      throw json.errors[0]
-    }
-    else {
-      return json.data
-    }
-  }).catch(error => {
-    throw error.message
-  })
+    .then(response => {
+        return response.json()
+          .then(json=> ({ json, response }))
+          .catch(() => ({ response }))
+      }
+    )
+    .then(({ json, response }) => {
+      //console.log('Fetch then', json, response);
+      if (!response.ok) {
+        //NOTE: this "errors" props is app-specific
+        //throw json.errors
+        console.warn('callAPI response not OK', response.statusText, json);
+        throw json ? json : new Error(response.statusText);
+      }
+      else {
+        //NOTE: this json.data is app-specific!!!
+        //return json.data;
+        return json;
+
+      }
+    })
 }
 
 export const CALL_API = Symbol('Call API')
@@ -46,34 +55,29 @@ export default store => next => action => {
     return next(action)
   }
 
-  let { endpoint, types, authenticated, config  } = callAPI
+  let { endpoint, types, config, options  } = callAPI
 
   const [ requestType, successType, errorType] = types
 
-  next({type: requestType, authenticated})
+  next({type: requestType })
   // Passing the authenticated boolean back in our data will let us distinguish
-  return callApi(endpoint, authenticated, config).then(
-    payload =>
+  return callApi(endpoint, config)
+  .then(
+    payload => {
+      //console.log('callAPI then', payload);
       next({
-        payload,
-        authenticated,
+        payload: options.parse(payload),
         type: successType
-      }),
+      });
+      return options.parse(payload);
+    },
     error => {
-      // Switch con todos los casos de excepcion comunes
-      if (error == 'Unauthorized') {
-        //next({ type: actions.LOGOUT_SUCCESS })
-        //next(routeActions.push('login'))
-        return Promise.reject(error)
-      } else {
-        next({
-          error: error || 'There was an error.',
-          type: errorType
-        })
-        return Promise.reject({
-          _error: error || 'There was an error.',
-        })
-      }
+      console.log('callAPI error', error);
+      next({
+        error,
+        type: errorType
+      });
+      throw error;
     }
   )
 }

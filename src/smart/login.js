@@ -7,14 +7,14 @@ import { login } from '../modules/auth'
 import LoginForm from '../components/login'
 
 class Login extends Component {
-  onSubmit(credentials) {
-    return this.props.login(credentials)  
+  handleSubmit(credentials) {
+    return this.props.login(credentials)
   }
   render() {
     return (
-      <LoginForm onSubmit={this.onSubmit.bind(this)} />
-    )  
-  }  
+      <LoginForm onSubmit={this.handleSubmit.bind(this)} />
+    )
+  }
 }
 
 function mapDispatchToProps(dispatch) {
