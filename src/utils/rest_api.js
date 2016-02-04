@@ -16,6 +16,14 @@ function defaultPrepare(jsonData){
   return jsonData;
 }
 
+/**
+ * This function defines what means than an API call is 'secure'
+ * In this case, it reads the JSON Web Token from localStorage
+ * and appends it as a header
+ *
+ * Different projects may need to change this behaviour
+ */
+
 function applyHeaders(request, shouldUseToken) {
   const token = getToken();
   if (token && shouldUseToken) {
@@ -32,15 +40,44 @@ function applyHeaders(request, shouldUseToken) {
     };
 }
 
-
+/**
+ * Default options for every REST API call
+ * @type {Object}
+ */
 const defaultOptions = {
+  /**
+   * parse is a function used to transform the API response
+   * Its argument is the JSON.parsed response
+   * @type {Function}
+   */
   parse: defaultParse,
+  /**
+   * prepare is a function used to transform the API request body
+   * prior to the request
+   * @type {Function}
+   */
   prepare: defaultPrepare,
+  /**
+   * For `update` method, use PATCH instead of PUT as HTTP verb
+   * @type {Boolean}
+   */
   patch: false,
+  /**
+   * Flag indicating if the API call should be secure
+   * See `applyHeaders` function above
+   * Default implementation is to send Authorization header with JSON Web Token
+   * @type {Boolean}
+   */
   secure: true
 }
 
-//HTTP GET
+/**
+ * Makes a GET request to fetch one or many resources
+ * @param  {String} url     Endpoint URL
+ * @param  {Array}  types   Array of ACTION_TYPES (attempt, success, fail)
+ * @param  {Object} options Overriden options
+ * @return {Object}         CALL_API action, ready to dispatch
+ */
 export function fetch(url, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({}, opts.secure);
@@ -55,7 +92,14 @@ export function fetch(url, types, options = {}){
   }
 }
 
-//HTTP POST
+/**
+ * Makes a POST request to create a new resource
+ * @param  {String} url     Endpoint URL
+ * @param  {Object} data    Javascript object containing the JSON body to send
+ * @param  {Array}  types   Array of ACTION_TYPES
+ * @param  {Object} options Overriden options
+ * @return {Object}         CALL_API action, ready to dispatch
+ */
 export function create(url, data, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({
@@ -72,8 +116,14 @@ export function create(url, data, types, options = {}){
   }
 }
 
-//HTTP PUT/PATCH
-//Send { patch: true } in options to change VERB. PUT is default
+/**
+ * Makes a PUT/PATCH request to update a resources
+ * @param  {String} url     Endpoint URL
+ * @param  {object} data    Javascript object that will be JSON.stringified
+ * @param  {Array}  types   Array of ACTION_TYPES (attempt, succes, fail)
+ * @param  {Object} options Overriden options
+ * @return {Object}         CALL_API action
+ */
 export function update(url, data, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({
@@ -90,7 +140,13 @@ export function update(url, data, types, options = {}){
   }
 }
 
-//HTTP DELETE
+/**
+ * Makes a DELETE request to remove a resource
+ * @param  {String} url     Endpoint URL
+ * @param  {Array} types    Array of ACTION_TYPES (attempt, success, fail)
+ * @param  {Object} options Overriden options
+ * @return {Object}         CALL_API action
+ */
 export function del(url, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({

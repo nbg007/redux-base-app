@@ -1,4 +1,3 @@
-import { CALL_API } from '../../middleware/api'
 import { push, replace, routeActions } from 'react-router-redux';
 import AuthAPI from './api';
 import { LOCALSTORAGE_TOKEN_KEY } from '../../config';
