@@ -32,17 +32,18 @@ function goToLogin(){
  */
 export function login({username, password}) {
   return (dispatch, getState) => {
-    dispatch(AuthAPI.login(username, password))
+    return dispatch(AuthAPI.login(username, password))
     .then(response =>  {
+      console.log('Login ok!', response);
       saveToken(response.token);
       dispatch(push('/'));
     })
     .catch((e) => {
       let error = e.errors[0];
       if(error.message.match(/not found/))
-        return Promise.reject({ _error: { username: 'Invalid username '}});
+        return Promise.reject({ _error: 'Login failed', username: 'Invalid username' });
       else
-        return Promise.reject({ _error: { password: 'Invalid password '}});
+        return Promise.reject({ _error: 'Login failed', password: 'Invalid password' });
     })
   }
 }
@@ -101,7 +102,7 @@ export function register(credentials) {
     })
     .catch((e) => {
       console.log('Register failed', e);
-      return Promise.reject({_error: e.errors[0] })
+      return Promise.reject({_error: 'Register failed', username: 'Username already in use' })
     })
   }
 }

@@ -19,11 +19,12 @@ class LoginForm extends Component {
           error,
           t
         } = this.props
+
     const registerComponent = <Link to='/register'>{t('login.registerActionCall')}</Link>
     return (
       <div>
         <p>{t('login.title')}</p>
-        <form onSubmit={handleSubmit}> 
+        <form onSubmit={handleSubmit}>
           <div>
             <label>{t('username')}</label>
             <input type="text" placeholder="username" {...username}/>
@@ -42,7 +43,7 @@ class LoginForm extends Component {
         <Interpolate parent='p' i18nKey='login.goRegister' component={registerComponent} />
       </div>
     )
-  }  
+  }
 }
 
 LoginForm.propTypes = {

@@ -8,7 +8,7 @@ import LoginForm from '../components/login'
 
 class Login extends Component {
   handleSubmit(credentials) {
-    return this.props.login(credentials)
+    return this.props.login(credentials);
   }
   render() {
     return (

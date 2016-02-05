@@ -5,6 +5,7 @@ import { Route, IndexRoute } from 'react-router'
 import App from './containers/app'
 import Landing from './containers/landing'
 import Home from './components/home'
+import Ingredients from './smart/ingredients';
 import Login from './smart/login'
 import Register from './smart/register'
 
@@ -17,7 +18,7 @@ export default (
       <Route path="/register" component={Register}/>
     </Route>
     <Route component={App}>
-      <Route  path= "/" component={Home} />
+      <Route  path= "/" component={Ingredients} />
     </Route>
   </Route>
 )

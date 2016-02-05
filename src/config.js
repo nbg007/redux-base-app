@@ -1,4 +1,5 @@
 export default {
-  BASE_API_URL: "http://localhost:8001/api/",
-  LOCALSTORAGE_TOKEN_KEY: 'token'
+  BASE_API_URL: 'http://localhost:8001/api/',
+  LOCALSTORAGE_TOKEN_KEY: 'token',
+  APP_NAME: 'base_app/'
 }

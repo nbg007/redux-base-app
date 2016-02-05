@@ -51,7 +51,7 @@ function login(username, password){
  * @return {Object} Action
  */
 function logout(){
-  return del('session', [LOGOUT_ATTEMPTED, LOGOUT_SUCCEEDED, LOGOUT_FAILED], { authenticated: true });
+  return del('session', [LOGOUT_ATTEMPTED, LOGOUT_SUCCEEDED, LOGOUT_FAILED]);
 }
 
 /**
