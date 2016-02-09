@@ -9,7 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { totalSelector } from '../modules/dishes/selectors'
 
 /* Actions */
-import { addDish, editDish} from '../modules/dishes'
+import { addDish, editDish, fetchDish } from '../modules/dishes'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 
 /* Components */
@@ -17,6 +17,9 @@ import CreateDishForm from '../components/create-dish'
 
 
 class CreateDish extends Component {
+  componentDidMount() {
+    this.props.fetchDish(this.props.params.id)   
+  }
   onSubmit(dish) {
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editDish(dish)
@@ -44,7 +47,7 @@ function mapDispatchToProps(dispatch) {
   const data = {form: "create-dish", key: ""}
   const bindedAddArrayValue = bindActionData(addArrayValue, data)
   const bindedRemoveArrayValue = bindActionData(removeArrayValue, data)
-  return bindActionCreators({ addDish, editDish, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue }, dispatch)
+  return bindActionCreators({ fetchDish, addDish, editDish, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue }, dispatch)
 }
 
 export default connect(

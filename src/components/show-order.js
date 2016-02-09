@@ -4,6 +4,9 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 class ShowOrder extends Component {
+  componentDidMount() {
+    this.props.fetchOrder(this.props.params.id)  
+  }
   render() {
     const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t } = this.props
     return (

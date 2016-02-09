@@ -63,7 +63,6 @@ class CreateOrderForm extends Component {
             <input ref="amount" type="integer" placeholder={t('createOrder.amountPlaceholder')} />
             <input type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
           </div>
-          <ElementsAdded elements={dishes} totalElements={totalDishes} remove={this.removeDishFromOrder.bind(this)} subject={'dish'}/>
           <div>
             <p>{t('createOrder.pvp')}: {pvp || 0}</p>
           </div>

@@ -41,14 +41,13 @@ export default (
       <Route path="dishes" component={Dishes}>
         <IndexRoute component={ListDishes}/>
         <Route path="create" component={CreateDish}/>
-        <Route path=":id/edit" component={CreateDish} onEnter={(dispatch, cb, props) => dispatch(fetchDish(props.params.id))}/>
-        <Route path=":id/show" component={ShowDish} onEnter={(dispatch, cb, props) => dispatch(fetchDish(props.params.id))}/>
+        <Route path=":id/edit" component={CreateDish} />
+        <Route path=":id/show" component={ShowDish} />
       </Route>
       <Route path="orders" component={Orders}>
         <IndexRoute component={ListOrders}/>
-        <Route path="create" component={CreateOrder}/>
-        <Route path=":id/edit" component={CreateOrder} onEnter={(dispatch, cb, props) => dispatch(fetchOrder(props.params.id))}/>
-        <Route path=":id/show" component={ShowOrder} onEnter={(dispatch, cb, props) => dispatch(fetchOrder(props.params.id))}/>
+        <Route path=":id/edit" component={CreateOrder} />
+        <Route path=":id/show" component={ShowOrder} />
       </Route>
     </Route>
   </Route>

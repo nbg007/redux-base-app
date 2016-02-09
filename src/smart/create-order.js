@@ -9,7 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { totalSelector } from '../modules/orders/selectors'
 
 /* Actions */
-import { addOrder, editOrder} from '../modules/orders'
+import { addOrder, editOrder, fetchOrder } from '../modules/orders'
 import { checkAvailability } from '../modules/ingredients'
 import { selectItemOnAutocomplete} from '../modules/ui'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
@@ -18,6 +18,9 @@ import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 import CreateOrderForm from '../components/create-order'
 
 class CreateOrder extends Component {
+  componentDidMount() {
+    //this.props.fetchOrder(this.props.params.id)  
+  }
   onSubmit(order) {
     return this.props.checkAvailability(order)
     .then(() => {
@@ -49,7 +52,7 @@ function mapDispatchToProps(dispatch) {
   const data = {form: "create-order", key: ""}
   const bindedAddArrayValue = bindActionData(addArrayValue, data)
   const bindedRemoveArrayValue = bindActionData(removeArrayValue, data)
-  return bindActionCreators({ selectItemOnAutocomplete, addOrder, editOrder, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue, checkAvailability }, dispatch)
+  return bindActionCreators({ fetchOrder, selectItemOnAutocomplete, addOrder, editOrder, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue, checkAvailability }, dispatch)
 }
 
 export default connect(

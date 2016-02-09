@@ -11,6 +11,10 @@ function session(state={
       return Object.assign({}, action.payload)
     case actions.LOGOUT:
       return {}
+    case actions.VALIDATE_TOKEN:
+      return Object.assign({}, state, {
+        username: action.payload.username  
+      })
     default:
       return state
   }
@@ -37,7 +41,8 @@ export default function reducer(state={
       })
     case actions.VALIDATE_TOKEN:
       return Object.assign({}, state, {
-        logged: true
+        logged: true,
+        session: session(state.session, action)
       })
     case actions.LOGIN:
       return Object.assign({}, state, {

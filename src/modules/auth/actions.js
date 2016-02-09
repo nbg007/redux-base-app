@@ -26,15 +26,6 @@ export const REGISTER = MODULE_NAME.concat("REGISTER")
 export const REGISTER_ATTEMPT = MODULE_NAME.concat("REGISTER_ATTEMPT")
 export const REGISTER_FAIL = MODULE_NAME.concat("REGISTER_FAIL")
 
-function loadInitialData(store) {
-  return (dispatch, getState) => {
-    dispatch(fetchIngredients())
-    dispatch(fetchDishes())
-    dispatch(fetchOrders())
-    //dispatch(initNotifications())
-  }
-}
-
 export function checkLogged(callback) {
   return (dispatch, getState) => {
     if (getState().auth.logged) {
@@ -54,8 +45,6 @@ export function validateToken() {
           authenticated: true,
           types: [VALIDATE_TOKEN_ATTEMPT, VALIDATE_TOKEN, VALIDATE_TOKEN_FAIL],
         }
-      }).then(({ payload }) =>  {
-        dispatch(loadInitialData())
       }).catch((e) => {
         dispatch(logout())
       })
@@ -88,7 +77,6 @@ export function login({username, password}) {
       }
     }).then(({ payload }) =>  {
       localStorage.setItem('token', payload.token)
-      dispatch(loadInitialData())
       dispatch(routeActions.push('/'))
     }).catch((e) => {
       return Promise.reject({ _error: e._error})
@@ -113,7 +101,6 @@ export function register(credentials) {
       }
     }).then(({ payload, error}) =>  {
       webStorage.save('token', json.data.token)
-      dispatch(loadInitialData())
       dispatch(routeActions.push('/'))
     }).catch((e) => {
       return Promise.reject({_error: e._error })
