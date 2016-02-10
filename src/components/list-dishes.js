@@ -30,6 +30,7 @@ class ListDishes extends Component {
 
 ListDishes.propTypes = {
   isFetching: PropTypes.bool.isRequired,
+  removeDish: PropTypes.func.isRequired,
   list: PropTypes.array.isRequired
 }
 

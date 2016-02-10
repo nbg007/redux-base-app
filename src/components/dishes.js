@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 
-const Dishes = React.createClass({
+class Dishes extends Component {
   render() {
     return (
       <div>
@@ -8,6 +8,6 @@ const Dishes = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Dishes

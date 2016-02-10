@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import { capitalize } from "../utils/utils"
+import { capitalize } from "../utils/common"
 import { translate } from 'react-i18next/lib'
 import { ItemTypes } from '../constants';
 import { DropTarget } from 'react-dnd';

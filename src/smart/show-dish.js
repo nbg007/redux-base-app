@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { removeDish, fetchDish } from '../modules/dishes'
-import { totalSelector, escandalloSelector } from '../modules/dishes/selectors'
+import { totalSelector } from '../modules/dishes/selectors'
 import ShowDish from '../components/show-dish'
 
 function mapDispatchToProps(dispatch) {

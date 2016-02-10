@@ -1,6 +1,8 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { removeOrder, fetchOrders } from '../modules/orders'
+import { removeOrder } from '../modules/orders'
+
+//Components
 import ListOrders from '../components/list-orders'
 
 function mapStateToProps(state) {
@@ -11,7 +13,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeOrder, fetchOrders }, dispatch)
+  return bindActionCreators({ removeOrder }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListOrders)

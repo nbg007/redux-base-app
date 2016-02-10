@@ -46,6 +46,7 @@ export default (
       </Route>
       <Route path="orders" component={Orders}>
         <IndexRoute component={ListOrders}/>
+        <Route path="create" component={CreateOrder}/>
         <Route path=":id/edit" component={CreateOrder} />
         <Route path=":id/show" component={ShowOrder} />
       </Route>

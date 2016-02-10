@@ -1,8 +1,5 @@
-//Take a look at redux-actions
 import { routeActions} from 'react-router-redux'
-import { applyToken } from '../helpers';
-import { findById } from "../../utils/utils"
-import config from '../../config'
+import { findById } from "../../utils/common"
 import { CALL_API } from '../../middleware/api'
 
 const MODULE_NAME = "base-app/ingredients/"

@@ -19,7 +19,10 @@ import CreateOrderForm from '../components/create-order'
 
 class CreateOrder extends Component {
   componentDidMount() {
-    //this.props.fetchOrder(this.props.params.id)  
+    const orderId = this.props.params.id
+    if (orderId) {
+      this.props.fetchOrder(this.props.params.id)  
+    }
   }
   onSubmit(order) {
     return this.props.checkAvailability(order)
