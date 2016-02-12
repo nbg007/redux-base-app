@@ -28,9 +28,9 @@ class CreateDish extends Component {
     }
   }
   render() {
-    const { dish, ingredients, escandallo,  addArrayValue, removeArrayValue } = this.props
+    const { dish, ingredients, escandallo,  addArrayValue, removeArrayValue, style } = this.props
     return (
-      <CreateDishForm onSubmit={this.onSubmit.bind(this)} initialValues={ dish } totalIngredients={ingredients}  removeIngredient={removeArrayValue} escandallo={escandallo} addIngredient={addArrayValue}/>
+      <CreateDishForm onSubmit={this.onSubmit.bind(this)} initialValues={ dish } totalIngredients={ingredients}  removeIngredient={removeArrayValue} escandallo={escandallo} addIngredient={addArrayValue} style={style}/>
     )
   }
 }

@@ -20,7 +20,7 @@ class CreateIngredientForm extends Component {
           t
           } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <p>{t('createIngredient.description')}</p>
         <form onSubmit={handleSubmit}>
           <div>

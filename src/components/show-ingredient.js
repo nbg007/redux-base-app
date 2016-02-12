@@ -6,7 +6,7 @@ class ShowIngredient extends Component {
   render() {
     const { ingredient, ingredient: {id, name, cost, stock }, removeIngredient, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('showIngredient.title')}</h1>
         </span>

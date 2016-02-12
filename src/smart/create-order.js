@@ -35,9 +35,9 @@ class CreateOrder extends Component {
     })
   }
   render() {
-    const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete } = this.props
+    const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete, style } = this.props
     return (
-      <CreateOrderForm onSubmit={this.onSubmit.bind(this)} initialValues={ order } totalDishes={dishes}  removeDish={removeArrayValue} pvp={pvp} addDish={addArrayValue} selectedAutocompleteItem={selectedAutocompleteItem} selectItemOnAutocomplete={selectItemOnAutocomplete}
+      <CreateOrderForm onSubmit={this.onSubmit.bind(this)} initialValues={ order } totalDishes={dishes}  removeDish={removeArrayValue} pvp={pvp} addDish={addArrayValue} selectedAutocompleteItem={selectedAutocompleteItem} selectItemOnAutocomplete={selectItemOnAutocomplete} style={style}
       />
     )
   }

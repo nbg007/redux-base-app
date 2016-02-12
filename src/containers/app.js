@@ -24,7 +24,6 @@ class App extends Component {
   }
   render() {
     const {children, username, logout, notifications, isFetching} = this.props
-    debugger
     return (
       <div>
         {isFetching && <Loading/>}
@@ -48,7 +47,6 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   const {ingredients: {isFetching: ingredientsAreFetching}, dishes: {isFetching: dishesAreFetching}, orders: {isFetching: ordersAreFetching}} = state
-    debugger
   //Loading: Here on isFetching  we group all the possible cases where we should show the loading screen
   return {
     isFetching: ingredientsAreFetching || dishesAreFetching || ordersAreFetching,

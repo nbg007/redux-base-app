@@ -6,7 +6,7 @@ class ListIngredients extends Component {
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('listIngredients.title')}</h1>
         </span>

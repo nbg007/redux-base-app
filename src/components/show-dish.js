@@ -9,7 +9,7 @@ class ShowDish extends Component {
   render() {
     const { dish, dish: {id, name, price }, removeDish, escandallo, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('showDish.title')}</h1>
         </span>

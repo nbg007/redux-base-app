@@ -17,11 +17,12 @@ class LoginForm extends Component {
           handleSubmit,
           submitting,
           error,
+          style,
           t
         } = this.props
     const registerComponent = <Link to='/register'>{t('login.registerActionCall')}</Link>
     return (
-      <div>
+      <div className='component' style={style}>
         <p>{t('login.title')}</p>
         <form onSubmit={handleSubmit}> 
           <div>

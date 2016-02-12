@@ -6,7 +6,7 @@ class ListDishes extends Component {
   render() {
     const { isFetching, list, removeDish, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('listDishes.title')}</h1>
         </span>
