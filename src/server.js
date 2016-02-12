@@ -45,7 +45,7 @@ if (__DEV__) {
   });
 } else {
   app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname, '../public/index.html'))
+    res.sendFile(path.resolve(__dirname, '../public/main.html'))
   });
 }
 

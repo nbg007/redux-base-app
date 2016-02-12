@@ -2,6 +2,7 @@
 node_modules
 public/js
 public/index.html
+public/main.html
 npm-debug.log
 
 # OS-specific files
