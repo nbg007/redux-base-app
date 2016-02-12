@@ -1,6 +1,18 @@
 import React from 'react'
-import { presets } from 'react-router-transition'
-import Transition from './route-transition'
+import { RouteTransition } from 'react-router-transition'
+import presets from './presets'
+
+const Transition = (props) => (
+  <div>
+    <RouteTransition
+      className="transition-wrapper"
+      pathname={props.location.pathname}
+      {...props.preset}
+    >
+      {props.children}
+    </RouteTransition>
+  </div>
+);
 
 export const FadeTransition = props => (
   <Transition preset={presets.fade} {...props} />
@@ -17,3 +29,4 @@ export const SlideLeftTransition = props => (
 export const SlideRightTransition = props => (
   <Transition preset={presets.slideRight} {...props} />
 );
+

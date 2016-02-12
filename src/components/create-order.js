@@ -37,7 +37,7 @@ class CreateOrderForm extends Component {
           t
           } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <p>{t('createOrder.description')}</p>
         <p></p>
         <form onSubmit={handleSubmit}>

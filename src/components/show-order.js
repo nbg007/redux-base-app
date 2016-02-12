@@ -10,7 +10,7 @@ class ShowOrder extends Component {
   render() {
     const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('showOrder.title')}</h1>
         </span>
