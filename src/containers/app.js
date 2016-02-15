@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import DevTools from '../containers/dev-tools'
 import { logout } from '../modules/auth'
 import Header from '../components/header'
 /* Actions */
@@ -14,6 +13,8 @@ function Loading() {
     <span>Loading...</span>
   )  
 }
+
+const devTools = __DEV__ ? React.createFactory(require('../containers/dev-tools').default) : () => null
 
 // Loading: Example of a general loading for the whole app. Not quite sure about it. Probably each app will have a different way to show the loading
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
           </Header>
           <div style={{marginTop: '1.5em'}}>{children}</div>
         </div>
-        {(__DEV__) && <DevTools/>}
+        {<devTools/>}
       </div>
     )
   }

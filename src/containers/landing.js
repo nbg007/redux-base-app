@@ -1,15 +1,15 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import DevTools from '../containers/dev-tools'
 
+const devTools = __DEV__ ? React.createFactory(require('../containers/dev-tools').default) : () => null
 
 class Landing extends Component {
   render() {
     return (
       <div>
         <div style={{marginTop: '1.5em'}}>{this.props.children}</div>
-        {__DEV__ && <DevTools/>}
+        {<devTools/>}
       </div>
     )
   }
