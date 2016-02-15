@@ -14,7 +14,7 @@ function Loading() {
   )  
 }
 
-const devTools = __DEV__ ? React.createFactory(require('../containers/dev-tools').default) : () => null
+const devTools = __DEV__ ? React.createFactory(require('./dev-tools').default) : () => null
 
 // Loading: Example of a general loading for the whole app. Not quite sure about it. Probably each app will have a different way to show the loading
 class App extends Component {
