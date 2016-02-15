@@ -32,7 +32,7 @@ class App extends Component {
           </Header>
           <div style={{marginTop: '1.5em'}}>{children}</div>
         </div>
-        <DevTools/>
+        {(__DEV__) && <DevTools/>}
       </div>
     )
   }
