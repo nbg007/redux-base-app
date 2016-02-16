@@ -21,6 +21,7 @@ class CreateDish extends Component {
     this.props.fetchDish(this.props.params.id)   
   }
   onSubmit(dish) {
+    debugger
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editDish(dish)
     } else {
