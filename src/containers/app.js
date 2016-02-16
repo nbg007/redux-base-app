@@ -33,7 +33,7 @@ class App extends Component {
           </Header>
           <div style={{marginTop: '1.5em'}}>{children}</div>
         </div>
-        {<devTools/>}
+        {devTools()}
       </div>
     )
   }
