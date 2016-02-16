@@ -60,7 +60,7 @@ class CreateOrderForm extends Component {
                 >{item.name}</div>
               )}
             />
-            <input ref="amount" type="integer" placeholder={t('createOrder.amountPlaceholder')} />
+            <input ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
             <input type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
           </div>
           <div>

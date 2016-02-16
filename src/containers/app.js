@@ -10,7 +10,7 @@ import { fetchOrders } from '../modules/orders'
 
 function Loading() {
   return (
-    <span>Loading...</span>
+    <span className="loading-message">Loading...</span>
   )  
 }
 

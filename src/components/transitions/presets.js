@@ -72,10 +72,12 @@ const slideRight = {
     offset: spring(0, slideConfig)
   },
   mapStyles(styles) {
-    return {
-      opacity: styles.opacity,
-      transform: `translateX(${styles.offset}%)`
-    };
+    if (styles.offset) {
+      return {
+        opacity: styles.opacity,
+        transform: `translateX(${styles.offset}%)`
+      };
+    }
   }
 };
 

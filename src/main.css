@@ -19,7 +19,12 @@ html, body {
 	}
 	.transition-wrapper {
 		position: relative;
+
 	}
 	.component{
 		position: absolute;
 	}
+
+  .loading-message {
+    position: absolute;
+  }
