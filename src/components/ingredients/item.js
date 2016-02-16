@@ -1,10 +1,13 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router'
 
 class Item extends Component {
   render(){
     const { id, name, cost, stock } = this.props.item;
     return (
-      <li onClick={() => this.props.onClick(this.props.item) }>{ name }. Cost: { cost }. Stock: { stock }</li>
+      <li>
+        <Link to={`/ingredients/${id}`}>{ name }</Link>. Cost: { cost }. Stock: { stock }
+      </li>
     )
   }
 }

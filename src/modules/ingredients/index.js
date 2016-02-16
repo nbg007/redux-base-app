@@ -7,6 +7,17 @@ export default function reducer(state = [], action){
   case actionTypes.LOAD_INGREDIENTS_SUCCEEDED:
     return [...action.payload];
 
+  case actionTypes.CREATE_INGREDIENT_SUCCEEDED:
+    return [action.payload, ...state]
+
+  case actionTypes.UPDATE_INGREDIENT_SUCCEEDED:
+    return state.map(ing => {
+      if(ing.id === action.payload.id){
+        return action.payload
+      }
+      return ing
+    })
+
   default:
     return state;
   }

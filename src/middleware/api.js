@@ -18,12 +18,12 @@ function makeRequest(endpoint, config={}) {
       if (!response.ok) {
         //NOTE: this "errors" props is app-specific
         //throw json.errors
-        throw json ? json : new Error(response.statusText);
+        throw json ? json : new Error(response.statusText)
       }
       else {
         //NOTE: this json.data is app-specific!!!
         //return json.data;
-        return json;
+        return json
 
       }
     })
@@ -42,29 +42,31 @@ export default store => next => action => {
 
   let { endpoint, types, config, options  } = callAPI
   if(!options.parse){
-    options.parse = (x) => x;
+    options.parse = (x) => x
   }
-  const [ requestType, successType, errorType] = types
-
+  if(!options.onError){
+    options.onError = (x) => x
+  }
+  const [requestType, successType, errorType] = types
   next({type: requestType })
   // Passing the authenticated boolean back in our data will let us distinguish
   return makeRequest(endpoint, config)
   .then(
     payload => {
-      //console.log('callAPI then', payload);
       next({
         payload: options.parse(payload),
         type: successType
       });
-      return options.parse(payload);
+      return options.parse(payload)
     },
     error => {
-      console.log('fetch error', error);
+      let processedError = options.onError(error)
+      console.log('fetch error', processedError)
       next({
-        error,
+        error: options.onError(error),
         type: errorType
       });
-      throw error;
+      throw processedError
     }
   )
 }

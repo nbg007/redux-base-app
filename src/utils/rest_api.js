@@ -16,6 +16,10 @@ function defaultPrepare(jsonData){
   return jsonData;
 }
 
+function defaultOnError(response){
+  return response;
+}
+
 /**
  * This function defines what means than an API call is 'secure'
  * In this case, it reads the JSON Web Token from localStorage
@@ -51,6 +55,12 @@ const defaultOptions = {
    * @type {Function}
    */
   parse: defaultParse,
+  /**
+   * onError is a function used to parse the API response
+   * in case on error. Its return value will be the reject
+   * value from the Promise
+   */
+  onError: defaultOnError,
   /**
    * prepare is a function used to transform the API request body
    * prior to the request
@@ -101,10 +111,10 @@ export function fetch(url, types, options = {}){
  * @return {Object}         CALL_API action, ready to dispatch
  */
 export function create(url, data, types, options = {}){
-  var opts = Object.assign({}, defaultOptions, options);
+  var opts = Object.assign({}, defaultOptions, options)
   var config = applyHeaders({
     method: 'POST',
-    body: opts.prepare(JSON.stringify(data))
+    body: JSON.stringify(opts.prepare(data))
   }, opts.secure);
   return {
     [CALL_API]: {
@@ -128,7 +138,7 @@ export function update(url, data, types, options = {}){
   var opts = Object.assign({}, defaultOptions, options);
   var config = applyHeaders({
     method: options.patch ? 'PATCH': 'PUT',
-    body: opts.prepare(JSON.stringify(data))
+    body: JSON.stringify(opts.prepare(data))
   }, opts.secure);
   return {
     [CALL_API]: {
