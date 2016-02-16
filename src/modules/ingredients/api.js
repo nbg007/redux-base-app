@@ -11,6 +11,7 @@ function parse(json){
 /**
  * Converts API JSON Schema errors
  * into the _weird_ format expected by redux-form
+ * with a default _error message and individual field errors
  */
 function createFormError(message){
   return (response) => {

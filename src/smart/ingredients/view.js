@@ -6,7 +6,6 @@ import { push } from 'react-router-redux'
 
 class ViewIngredient extends Component {
   handleEdit(id){
-    console.log('Editing ingredient', id)
     this.props.push(`/ingredients/${id}/edit`)
   }
 
