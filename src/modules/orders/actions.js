@@ -109,15 +109,15 @@ export function removeOrder(order) {
 
 export function calendarSetCurrentDate( date ) {
   return ( dispatch ) => {
-    return dispatch( { type: CALENDAR_SET_CURRENT_DATE, date } );
+    return dispatch( { type: CALENDAR_SET_CURRENT_DATE, payload: { date } } );
   }
 }
 
 
 export function calendarAddSelectedDay( date ) {
-  return ( dispatch ) => dispatch({ type: CALENDAR_ADD_SELECTED_DAY, date })
+  return ( dispatch ) => dispatch({ type: CALENDAR_ADD_SELECTED_DAY, payload: { date } })
 }
 
 export function calendarRemoveSelectedDay( date ) {
-  return ( dispatch ) => dispatch({ type: CALENDAR_REMOVE_SELECTED_DAY, date })
+  return ( dispatch ) => dispatch({ type: CALENDAR_REMOVE_SELECTED_DAY, payload: { date } })
 }

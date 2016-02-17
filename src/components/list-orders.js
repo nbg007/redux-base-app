@@ -25,7 +25,7 @@ class ListOrders extends Component {
             </li>)
           }
         </ul>
-        {!isFetching && <CalendarOrder />}
+        <CalendarOrder />
       </div>
     )
   }  

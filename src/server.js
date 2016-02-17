@@ -40,6 +40,6 @@ app.listen(port, function(error) {
     console.error(error)
   } else {
     console.info("==> 🌎  Listening on port %s. Open up http://%s:%s/ in your browser.", port, clientConfig.clientHost, port);
-    console.info("==> 🌎  Server is at port http://%s:%s", clientConfig.serverHost, clientConfig.serverPort )
+    console.info("==> 🌎  Server is at http://%s:%s", clientConfig.serverHost, clientConfig.serverPort )
   }
 })

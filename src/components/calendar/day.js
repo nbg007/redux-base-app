@@ -1,5 +1,4 @@
 // day.js
-
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 
@@ -37,7 +36,7 @@ class Day extends Component {
     const valueStyle = this._getDateValueStyle();
 
     return(
-      <td data-date={dateValue} style={tdStyle} className={states.join(' ')} onClick={(event) => this.handleClick(event)} key={key}>
+      <td data-date={dateValue} style={tdStyle} className={states.join(' ')} onClick={this.handleClick.bind(this)} key={key}>
         <span style={valueStyle}>{value}</span>
       </td>
     );

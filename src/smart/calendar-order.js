@@ -14,7 +14,7 @@ moment.locale(i18n.language);
 
 class CalendarOrder extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { currentDate } = this.props;
     if ( !currentDate ) this.props.calendarSetCurrentDate( moment().valueOf() ); 
   }
