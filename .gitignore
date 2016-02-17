@@ -1,9 +1,13 @@
 # npm files
 node_modules
+public/js
+public/index.html
+public/main.html
 npm-debug.log
 
 # OS-specific files
 .DS_Store
+*.swp
 
 # config file
 src/config.js

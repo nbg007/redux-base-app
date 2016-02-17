@@ -6,7 +6,7 @@ function orderList(state=[], action) {
     case actions.RECEIVE_ORDER:
       return state.map(order=>
         order.id == action.payload.id ?
-          Object.assign({}, action.payload) :
+          Object.assign({}, order, action.payload) :
           order
       )
     case actions.RECEIVE_ORDERS:

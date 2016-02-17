@@ -1,23 +1,18 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import { register } from '../modules/auth'
 
 /* Components */
 import RegisterForm from '../components/register'
 
 class Register extends Component {
-  onSubmit(credentials) {
+  handleSubmit(credentials) {
     return this.props.register(credentials)
   }
   render() {
     return (
-      <div>
-        <p>Introduce tus datos para registrarte en DAH</p>
-        <RegisterForm onSubmit={this.onSubmit.bind(this)} />
-        Si ya estas registrado, <Link to='/Login'>haz login</Link>
-      </div>
+      <RegisterForm onSubmit={this.handleSubmit.bind(this)} style={this.props.style}/>
     )
   }
 }

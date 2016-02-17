@@ -1,5 +1,4 @@
 import { routeActions } from 'react-router-redux'
-import applyToken from '../helpers';
 import { CALL_API } from '../../middleware/api'
 
 const MODULE_NAME = "base-app/dishes/"

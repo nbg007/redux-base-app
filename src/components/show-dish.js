@@ -3,10 +3,13 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 class ShowDish extends Component {
+  componentDidMount() {
+    this.props.fetchDish(this.props.params.id)  
+  }
   render() {
     const { dish, dish: {id, name, price }, removeDish, escandallo, t } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <span>
           <h1>{t('showDish.title')}</h1>
         </span>

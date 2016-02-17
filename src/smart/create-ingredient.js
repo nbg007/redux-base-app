@@ -20,9 +20,9 @@ class CreateIngredient extends Component {
     }
   }
   render() {
-    const { ingredient } = this.props
+    const { ingredient, style } = this.props
     return (
-      <CreateIngredientForm onSubmit={this.onSubmit.bind(this)} initialValues={ ingredient }/>
+      <CreateIngredientForm onSubmit={this.onSubmit.bind(this)} initialValues={ ingredient } style={style}/>
     )
   }
 }

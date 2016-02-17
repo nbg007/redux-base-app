@@ -3,14 +3,14 @@ export * from './actions'
 
 function dishList(state=[], action) {
   switch (action.type) {
-    case actions.RECEIVE_DISHES:
-      return action.payload
     case actions.RECEIVE_DISH:
       return state.map(dish =>
         dish.id == action.payload.id ?
           Object.assign({}, action.payload) :
           dish
       )
+    case actions.RECEIVE_DISHES:
+      return action.payload
     case actions.EDIT_DISH:
       return state.map(dish =>
         dish.id == action.payload.id ?

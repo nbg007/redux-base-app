@@ -11,7 +11,7 @@ const validate = createValidator({
 });
 
 class CreateDishForm extends Component {
-  addIngredientToDish(id, amount, name) {
+  addIngredientToDish(id, name, amount) {
     const dishIngredient = {id, amount, name}
     const index = this.props.values.ingredients.reduce((acc, i, index) => {
       return i.id == id ? index : acc
@@ -38,7 +38,7 @@ class CreateDishForm extends Component {
           t
           } = this.props
     return (
-      <div>
+      <div className='component' style={this.props.style}>
         <p>{t('createDish.description')}</p>
         <form onSubmit={handleSubmit}>
           <div>
@@ -48,7 +48,7 @@ class CreateDishForm extends Component {
           </div>
           <div>
             <label>{t('createDish.priceLabel')}</label>
-            <input type="integer" placeholder={t('createDish.pricePlaceholder')} {...price}/>
+            <input type="number" placeholder={t('createDish.pricePlaceholder')} {...price}/>
             {price.touched && price.error && <div>{price.error}</div>}
           </div>
           <ElementsToAdd subject='ingredient' elements={totalIngredients} remove={this.removeIngredientFromDish.bind(this)}/>

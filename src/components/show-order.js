@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react'
-import { formatDate } from "../utils/utils"
+import { formatDate } from "../utils/common"
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 
 class ShowOrder extends Component {
+  componentDidMount() {
+    this.props.fetchOrder(this.props.params.id)  
+  }
   render() {
-    const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t } = this.props
+    const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t, style } = this.props
     return (
-      <div>
+      <div className='component' style={style}>
         <span>
           <h1>{t('showOrder.title')}</h1>
         </span>

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 
-const Orders  = React.createClass({
+class Orders extends Component {
   render() {
     return (
       <div>
@@ -8,6 +8,6 @@ const Orders  = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Orders

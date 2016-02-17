@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
+import { FadeTransition, SlideRightTransition } from './components/transitions'
 
 /* Route handlers/smart */
 import App from './containers/app'
@@ -27,28 +28,36 @@ import { fetchOrder} from './modules/orders'
 export default (
   <Route>
     <Route component={Landing} onEnter={(dispatch, cb) => dispatch(checkLogged(cb))}>
-      <Route path="/login" component={Login}/>
-      <Route path="/register" component={Register}/>
+      <Route component={FadeTransition}>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+      </Route>
     </Route>
     <Route component={App} onEnter={(dispatch, cb) => dispatch(validateToken(cb))}>
       <Route  path= "/" component={Home} />
       <Route path="ingredients" component={Ingredients}>
-        <IndexRoute component={ListIngredients}/>
-        <Route path="create" component={CreateIngredient}/>
-        <Route path=":id/show" component={ShowIngredient}/>
-        <Route path=":id/edit" component={CreateIngredient}/>
+        <Route component={SlideRightTransition}>
+          <IndexRoute component={ListIngredients}/>
+          <Route path="create" component={CreateIngredient}/>
+          <Route path=":id/show" component={ShowIngredient}/>
+          <Route path=":id/edit" component={CreateIngredient}/>
+        </Route>
       </Route>
       <Route path="dishes" component={Dishes}>
-        <IndexRoute component={ListDishes}/>
-        <Route path="create" component={CreateDish}/>
-        <Route path=":id/edit" component={CreateDish} onEnter={(dispatch, cb, props) => dispatch(fetchDish(props.params.id))}/>
-        <Route path=":id/show" component={ShowDish} onEnter={(dispatch, cb, props) => dispatch(fetchDish(props.params.id))}/>
+        <Route component={SlideRightTransition}>
+          <IndexRoute component={ListDishes}/>
+          <Route path="create" component={CreateDish}/>
+          <Route path=":id/edit" component={CreateDish} />
+          <Route path=":id/show" component={ShowDish} />
+        </Route>
       </Route>
       <Route path="orders" component={Orders}>
-        <IndexRoute component={ListOrders}/>
-        <Route path="create" component={CreateOrder}/>
-        <Route path=":id/edit" component={CreateOrder} onEnter={(dispatch, cb, props) => dispatch(fetchOrder(props.params.id))}/>
-        <Route path=":id/show" component={ShowOrder} onEnter={(dispatch, cb, props) => dispatch(fetchOrder(props.params.id))}/>
+        <Route component={SlideRightTransition}>
+          <IndexRoute component={ListOrders}/>
+          <Route path="create" component={CreateOrder}/>
+          <Route path=":id/edit" component={CreateOrder} />
+          <Route path=":id/show" component={ShowOrder} />
+        </Route>
       </Route>
     </Route>
   </Route>

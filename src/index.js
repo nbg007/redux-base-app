@@ -1,9 +1,10 @@
+import './main.css'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import {browserHistory} from 'react-router'
 import { Router, createRoutes } from 'react-router'
-import configureStore from './configureStore'
+import configureStore from './store/configureStore'
 import { I18nextProvider } from 'react-i18next/lib'
 import i18n from './utils/i18n'
 import rawRoutes from './routes';

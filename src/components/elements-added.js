@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import { capitalize } from "../utils/utils"
+import { capitalize } from "../utils/common"
 import { translate } from 'react-i18next/lib'
 import { ItemTypes } from '../constants';
 import { DropTarget } from 'react-dnd';
@@ -24,7 +24,6 @@ function collect(connect, monitor) {
 class ElementsAdded extends Component {
   render() {
     const {totalElements, elements, remove, subject, t, connectDropTarget, isOver } = this.props
-    console.log(elements)
     const hasElements = elements.length > 0
     const list = !hasElements ?
       <em>{t('elementsAdded.add', {item: t('elementsAdded.' + subject)})} </em> :

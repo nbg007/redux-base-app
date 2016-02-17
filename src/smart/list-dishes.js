@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { removeDish, fetchDishes } from '../modules/dishes'
-import { Link } from 'react-router'
+import { removeDish } from '../modules/dishes'
 
 // Components
 import ListDishes from '../components/list-dishes'
@@ -16,7 +14,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeDish, fetchDishes }, dispatch)
+  return bindActionCreators({ removeDish }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListDishes)

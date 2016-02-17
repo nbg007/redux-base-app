@@ -9,7 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { totalSelector } from '../modules/orders/selectors'
 
 /* Actions */
-import { addOrder, editOrder} from '../modules/orders'
+import { addOrder, editOrder, fetchOrder } from '../modules/orders'
 import { checkAvailability } from '../modules/ingredients'
 import { selectItemOnAutocomplete} from '../modules/ui'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
@@ -18,6 +18,12 @@ import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 import CreateOrderForm from '../components/create-order'
 
 class CreateOrder extends Component {
+  componentDidMount() {
+    const orderId = this.props.params.id
+    if (orderId) {
+      this.props.fetchOrder(this.props.params.id)  
+    }
+  }
   onSubmit(order) {
     return this.props.checkAvailability(order)
     .then(() => {
@@ -29,9 +35,9 @@ class CreateOrder extends Component {
     })
   }
   render() {
-    const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete } = this.props
+    const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete, style } = this.props
     return (
-      <CreateOrderForm onSubmit={this.onSubmit.bind(this)} initialValues={ order } totalDishes={dishes}  removeDish={removeArrayValue} pvp={pvp} addDish={addArrayValue} selectedAutocompleteItem={selectedAutocompleteItem} selectItemOnAutocomplete={selectItemOnAutocomplete}
+      <CreateOrderForm onSubmit={this.onSubmit.bind(this)} initialValues={ order } totalDishes={dishes}  removeDish={removeArrayValue} pvp={pvp} addDish={addArrayValue} selectedAutocompleteItem={selectedAutocompleteItem} selectItemOnAutocomplete={selectItemOnAutocomplete} style={style}
       />
     )
   }
@@ -49,7 +55,7 @@ function mapDispatchToProps(dispatch) {
   const data = {form: "create-order", key: ""}
   const bindedAddArrayValue = bindActionData(addArrayValue, data)
   const bindedRemoveArrayValue = bindActionData(removeArrayValue, data)
-  return bindActionCreators({ selectItemOnAutocomplete, addOrder, editOrder, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue, checkAvailability }, dispatch)
+  return bindActionCreators({ fetchOrder, selectItemOnAutocomplete, addOrder, editOrder, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue, checkAvailability }, dispatch)
 }
 
 export default connect(

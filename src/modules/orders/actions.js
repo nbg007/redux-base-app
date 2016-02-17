@@ -1,8 +1,5 @@
 import { routeActions } from 'react-router-redux'
 import { CALL_API } from '../../middleware/api'
-import { applyHeaders } from '../helpers'
-import config from '../../config'
-import { fetchIngredients } from '../ingredients'
 
 const MODULE_NAME = "base-app/orders/"
 
@@ -26,6 +23,7 @@ export const CALENDAR_REMOVE_SELECTED_DAY = MODULE_NAME.concat('CALENDAR:REMOVE_
 //Async
 
 export function fetchOrder(id) {
+  console.log('call api fetch order')
   return {
     [CALL_API]: {
       endpoint: ['orders', '/',  id].join(''),
