@@ -13,18 +13,18 @@ import { routeActions } from 'react-router-redux'
 
 const MODULE_NAME = "base-app/auth/"
 
-export const VALIDATE_TOKEN_FAIL = MODULE_NAME.concat("VALIDATE_TOKEN_FAIL")
-export const VALIDATE_TOKEN = MODULE_NAME.concat("VALIDATE_TOKEN")
-export const VALIDATE_TOKEN_ATTEMPT = MODULE_NAME.concat("VALIDATE_TOKEN_ATTEMPT")
+export const VALIDATE_TOKEN_FAILED = MODULE_NAME.concat("VALIDATE_TOKEN_FAILED")
+export const VALIDATE_TOKEN_SUCCEEDED = MODULE_NAME.concat("VALIDATE_TOKEN_SUCCEEDED")
+export const VALIDATE_TOKEN_ATTEMPTED = MODULE_NAME.concat("VALIDATE_TOKEN_ATTEMPTED")
 
-export const LOGIN_ATTEMPT = MODULE_NAME.concat("LOGIN_ATTEMPT")
-export const LOGIN_FAIL = MODULE_NAME.concat("LOGIN_FAIL")
-export const LOGIN = MODULE_NAME.concat("LOGIN")
-export const LOGOUT = MODULE_NAME.concat("LOGOUT")
+export const LOGIN_ATTEMPTED = MODULE_NAME.concat("LOGIN_ATTEMPTED")
+export const LOGIN_FAILED = MODULE_NAME.concat("LOGIN_FAILED")
+export const LOGIN_SUCCEEDED = MODULE_NAME.concat("LOGIN_SUCCEEDED")
+export const LOGOUT_SUCCEEDED = MODULE_NAME.concat("LOGOUT_SUCCEEDED")
 
-export const REGISTER = MODULE_NAME.concat("REGISTER")
-export const REGISTER_ATTEMPT = MODULE_NAME.concat("REGISTER_ATTEMPT")
-export const REGISTER_FAIL = MODULE_NAME.concat("REGISTER_FAIL")
+export const REGISTER_SUCCEEDED = MODULE_NAME.concat("REGISTER_SUCCEEDED")
+export const REGISTER_ATTEMPTED = MODULE_NAME.concat("REGISTER_ATTEMPTED")
+export const REGISTER_FAILED = MODULE_NAME.concat("REGISTER_FAILED")
 
 export function checkLogged(callback) {
   return (dispatch, getState) => {
@@ -43,7 +43,7 @@ export function validateToken() {
         [CALL_API]: {
           endpoint: 'session',
           authenticated: true,
-          types: [VALIDATE_TOKEN_ATTEMPT, VALIDATE_TOKEN, VALIDATE_TOKEN_FAIL],
+          types: [VALIDATE_TOKEN_ATTEMPTED, VALIDATE_TOKEN_SUCCEEDED, VALIDATE_TOKEN_FAILED],
         }
       }).catch((e) => {
         dispatch(logout())
@@ -55,7 +55,7 @@ export function validateToken() {
 export function logout() {
   return (dispatch, getState) => {
     localStorage.removeItem('token')
-    dispatch({type: LOGOUT})
+    dispatch({type: LOGOUT_SUCCEEDED})
     dispatch(routeActions.replace("/login"))
   }
 }
@@ -72,7 +72,7 @@ export function login({username, password}) {
             password: password
           })
         },
-        types: [LOGIN_ATTEMPT, LOGIN, LOGIN_FAIL],
+        types: [LOGIN_ATTEMPTED, LOGIN_SUCCEEDED, LOGIN_FAILED],
         //parseResponse:
       }
     }).then(({ payload }) =>  {
@@ -96,7 +96,7 @@ export function register(credentials) {
             password: credentials.password
           })
         },
-        types: [REGISTER_ATTEMPT, REGISTER, REGISTER_FAIL],
+        types: [REGISTER_ATTEMPTED, REGISTER_SUCCEDDED, REGISTER_FAILED],
         //parseResponse:
       }
     }).then(({ payload, error}) =>  {

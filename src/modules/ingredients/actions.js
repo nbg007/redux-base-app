@@ -4,24 +4,24 @@ import { CALL_API } from '../../middleware/api'
 
 const MODULE_NAME = "base-app/ingredients/"
 
-export const REQUEST_INGREDIENTS = MODULE_NAME.concat("REQUEST:INGREDIENTS")
-export const RECEIVE_INGREDIENTS = MODULE_NAME.concat("RECEIVE:INGREDIENTS")
-export const ADD_INGREDIENT = MODULE_NAME.concat("ADD:INGREDIENT")
-export const ADD_INGREDIENT_ATTEMPT = MODULE_NAME.concat("ADD:INGREDIENT_ATTEMPT")
-export const ADD_INGREDIENT_FAIL = MODULE_NAME.concat("ADD:INGREDIENT_FAIL")
-export const EDIT_INGREDIENT = MODULE_NAME.concat("EDIT:INGREDIENT")
-export const EDIT_INGREDIENT_FAIL = MODULE_NAME.concat("EDIT:INGREDIENT_FAIL")
-export const EDIT_INGREDIENT_ATTEMPT = MODULE_NAME.concat("EDIT:INGREDIENT_ATTEMPT")
-export const REMOVE_INGREDIENT = MODULE_NAME.concat("REMOVE:INGREDIENT")
-export const REMOVE_INGREDIENT_ATTEMPT = MODULE_NAME.concat("REMOVE:INGREDIENT_ATTEMPT")
-export const REMOVE_INGREDIENT_FAIL = MODULE_NAME.concat("REMOVE:INGREDIENT_FAIL")
+export const REQUEST_INGREDIENTS_ATTEMPTED = MODULE_NAME.concat("REQUEST:INGREDIENTS")
+export const REQUEST_INGREDIENTS_SUCCEEDED = MODULE_NAME.concat("RECEIVE:INGREDIENTS")
+export const ADD_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("ADD:INGREDIENT")
+export const ADD_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("ADD:INGREDIENT_ATTEMPT")
+export const ADD_INGREDIENT_FAILED = MODULE_NAME.concat("ADD:INGREDIENT_FAIL")
+export const EDIT_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("EDIT:INGREDIENT")
+export const EDIT_INGREDIENT_FAILED = MODULE_NAME.concat("EDIT:INGREDIENT_FAIL")
+export const EDIT_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("EDIT:INGREDIENT_ATTEMPT")
+export const REMOVE_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("REMOVE:INGREDIENT")
+export const REMOVE_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("REMOVE:INGREDIENT_ATTEMPT")
+export const REMOVE_INGREDIENT_FAILED = MODULE_NAME.concat("REMOVE:INGREDIENT_FAIL")
 
 export function fetchIngredients() {
   return {
     [CALL_API]: {
       endpoint: 'ingredients',
       authenticated: true,
-      types: [REQUEST_INGREDIENTS, RECEIVE_INGREDIENTS]
+      types: [REQUEST_INGREDIENTS_ATTEMPTED, REQUEST_INGREDIENTS_SUCCEEDED]
     }
   }
 }
@@ -36,7 +36,7 @@ export function addIngredient(ingredient) {
           method: 'POST',
           body: JSON.stringify(ingredient)
         },
-        types: [ADD_INGREDIENT_ATTEMPT, ADD_INGREDIENT, ADD_INGREDIENT_FAIL]
+        types: [ADD_INGREDIENT_ATTEMPTED, ADD_INGREDIENT_SUCCEEDED, ADD_INGREDIENT_FAILED]
       }
     }).then( ({ payload }) => {
       dispatch(routeActions.push('/ingredients/'))
@@ -56,7 +56,7 @@ export function editIngredient(ingredient) {
           method: 'PUT',
           body: JSON.stringify(ingredient)
         },
-        types: [EDIT_INGREDIENT_ATTEMPT, EDIT_INGREDIENT, EDIT_INGREDIENT_FAIL]
+        types: [EDIT_INGREDIENT_ATTEMPTED, EDIT_INGREDIENT_SUCCEEDED, EDIT_INGREDIENT_FAILED]
       }
     }).then( ({ payload }) => {
       dispatch(routeActions.push('/ingredients/'))
@@ -75,7 +75,7 @@ export function removeIngredient(ingredient) {
         config: {
           method: 'DELETE'
         },
-        types: [REMOVE_INGREDIENT_ATTEMPT, REMOVE_INGREDIENT, REMOVE_INGREDIENT_FAIL]
+        types: [REMOVE_INGREDIENT_ATTEMPTED, REMOVE_INGREDIENT_SUCCEEDED, REMOVE_INGREDIENT_FAILED]
       }
     }).then( ({ payload }) => {
       // TODO: Carlos. Control when the ingredient can not be removed due to referencial integrity
