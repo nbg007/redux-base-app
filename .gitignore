@@ -8,3 +8,6 @@ npm-debug.log
 # OS-specific files
 .DS_Store
 *.swp
+
+# config file
+src/config.js

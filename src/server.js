@@ -2,6 +2,7 @@ var path = require('path');
 var express = require('express')
 var app = new (express)()
 var port = 3000
+var clientConfig = require('./config')
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
@@ -24,6 +25,8 @@ if (__DEV__) {
     }
   }));
   app.use(webpackHotMiddleware(compiler))
+
+  port = clientConfig.clientPort;
 }
 
 app.use(express.static('public'));
@@ -53,6 +56,7 @@ app.listen(port, function(error) {
   if (error) {
     console.error(error)
   } else {
-    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+    console.info("==> 🌎  Listening on port %s. Open up http://%s:%s/ in your browser.", port, clientConfig.clientHost, port);
+    console.info("==> 🌎  Server is at http://%s:%s", clientConfig.serverHost, clientConfig.serverPort )
   }
 })

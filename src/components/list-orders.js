@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
+import CalendarOrder from '../smart/calendar-order';
 import { formatDate } from '../utils/common'
 import { translate } from 'react-i18next/lib'
 
@@ -25,6 +26,7 @@ class ListOrders extends Component {
             </li>)
           }
         </ul>
+        <CalendarOrder />
       </div>
     )
   }  

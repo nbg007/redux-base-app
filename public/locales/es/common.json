@@ -61,7 +61,7 @@
     "empty": "No hay comandas",
     "loading": "Cargando ...",
     "date": "en {{date}}",
-    "order": "Comanda "
+    "order": "Comanda"
   },
   "listIngredients": {
     "title": "Listado de ingredientes",
@@ -118,5 +118,8 @@
     "ingredient_plural": "ingredientes",
     "dish": "plato",
     "dish_plural": "platos"
+  },
+  "calendarOrders":{
+    "title": "Calendario de comandas"
   }
 }

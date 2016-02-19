@@ -16,6 +16,9 @@ export const REMOVE_ORDER_ATTEMPT = MODULE_NAME.concat("REMOVE:ORDER_ATTEMPT")
 export const REMOVE_ORDER_FAIL = MODULE_NAME.concat("REMOVE:ORDER_FAIL")
 export const REQUEST_ORDER = MODULE_NAME.concat("REQUEST:ORDER")
 export const RECEIVE_ORDER = MODULE_NAME.concat("RECEIVE:ORDER")
+export const CALENDAR_SET_CURRENT_DATE = MODULE_NAME.concat('CALENDAR:SET_CURRENT_DATE');
+export const CALENDAR_ADD_SELECTED_DAY = MODULE_NAME.concat('CALENDAR:ADD_SELECTED_DAY');
+export const CALENDAR_REMOVE_SELECTED_DAY = MODULE_NAME.concat('CALENDAR:REMOVE_SELECTED_DAY');
 
 //Async
 
@@ -100,4 +103,19 @@ export function removeOrder(order) {
       dispatch(routeActions.push('/orders/'))
     })
   }
+}
+
+export function calendarSetCurrentDate( date ) {
+  return ( dispatch ) => {
+    return dispatch( { type: CALENDAR_SET_CURRENT_DATE, payload: { date } } );
+  }
+}
+
+
+export function calendarAddSelectedDay( date ) {
+  return ( dispatch ) => dispatch({ type: CALENDAR_ADD_SELECTED_DAY, payload: { date } })
+}
+
+export function calendarRemoveSelectedDay( date ) {
+  return ( dispatch ) => dispatch({ type: CALENDAR_REMOVE_SELECTED_DAY, payload: { date } })
 }

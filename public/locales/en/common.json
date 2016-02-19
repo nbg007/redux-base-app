@@ -118,5 +118,8 @@
     "ingredient_plural": "ingredients",
     "dish": "dish",
     "dish_plural": "dishes"
+  },
+  "calendarOrders":{
+    "title": "Orders calendar"
   }
 }

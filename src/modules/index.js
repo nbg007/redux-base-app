@@ -5,6 +5,7 @@ import orders from './orders'
 import auth from './auth'
 import ui from './ui'
 import notifications from './notifications'
+import calendar from './orders/calendar'
 import {reducer as formReducer} from 'redux-form';
 import { routeReducer } from 'react-router-redux';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   ingredients,
   dishes,
   orders,
+  calendar,
   notifications,
   auth,
   ui,
