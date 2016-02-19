@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import {reduxForm} from 'redux-form'
-import {createValidator, required, maxLength, minLength, integer} from '../utils/validation'
+import {createValidator, required, maxLength, minLength, integer} from '../../utils/validation'
 import { translate } from 'react-i18next/lib'
 
 const validate = createValidator({

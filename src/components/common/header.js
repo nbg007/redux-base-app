@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
-import Notifications from './notifications'
+import Notifications from '../notifications/notifications'
 import { translate, Interpolate } from 'react-i18next/lib'
 
 export class Header extends Component {

@@ -1,10 +1,15 @@
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { removeOrder, fetchOrder } from '../modules/orders'
+// Example with reselect
+import { totalSelector } from '../modules/orders/selectors'
 import React, { Component, PropTypes } from 'react'
 import { formatDate } from "../utils/common"
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 
-class ShowOrder extends Component {
+export class ShowOrder extends Component {
   componentDidMount() {
     this.props.fetchOrder(this.props.params.id)  
   }
@@ -27,7 +32,7 @@ class ShowOrder extends Component {
         </ul>
         <Link to={`/orders/${id}/edit/`}>{t('showOrder.editButton')}</Link>
         {' '}
-        <button onClick={removeOrder.bind(this, order)}>{t('showOrder.removeButton')}</button>
+        <button onClick={(order) => removeOrder(order)}>{t('showOrder.removeButton')}</button>
         
       </div>
     )
@@ -40,4 +45,8 @@ ShowOrder.propTypes = {
   removeOrder: PropTypes.func.isRequired
 }
 
-export default translate(['common'])(ShowOrder) 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeOrder, fetchOrder }, dispatch)
+}
+
+export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowOrder))

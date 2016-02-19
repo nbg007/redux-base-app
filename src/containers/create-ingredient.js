@@ -8,11 +8,11 @@ import { connect } from 'react-redux'
 import { addIngredient, editIngredient } from '../modules/ingredients'
 
 /* Components */
-import CreateIngredientForm from '../components/create-ingredient'
+import CreateIngredientForm from '../components/ingredients/create-ingredient'
 
 
 class CreateIngredient extends Component {
-  onSubmit(ingredient) {
+  handleSubmit(ingredient) {
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editIngredient(ingredient)
     } else {
@@ -22,7 +22,7 @@ class CreateIngredient extends Component {
   render() {
     const { ingredient, style } = this.props
     return (
-      <CreateIngredientForm onSubmit={this.onSubmit.bind(this)} initialValues={ ingredient } style={style}/>
+      <CreateIngredientForm onSubmit={(ingredient) => this.handleSubmit(ingredient)} initialValues={ ingredient } style={style}/>
     )
   }
 }

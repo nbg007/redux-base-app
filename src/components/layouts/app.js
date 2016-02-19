@@ -1,20 +1,21 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { logout } from '../modules/auth'
-import Header from '../components/header'
+import { logout } from '../../modules/auth'
+import Header from '../common/header'
 /* Actions */
-import { fetchIngredients } from '../modules/ingredients'
-import { fetchDishes } from '../modules/dishes'
-import { fetchOrders } from '../modules/orders'
+import { fetchIngredients } from '../../modules/ingredients'
+import { fetchDishes } from '../../modules/dishes'
+import { fetchOrders } from '../../modules/orders'
 
+// TODO: Move to common and rething about loading
 function Loading() {
   return (
     <span className="loading-message">Loading...</span>
   )  
 }
 
-const devTools = __DEV__ ? React.createFactory(require('./dev-tools').default) : () => null
+const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').default) : () => null
 
 // Loading: Example of a general loading for the whole app. Not quite sure about it. Probably each app will have a different way to show the loading
 class App extends Component {

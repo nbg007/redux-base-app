@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
-import {createValidator, required, maxLength, minLength, integer} from '../utils/validation'
-import ElementsToAdd from '../components/elements-to-add'
-import ElementsAdded from '../components/elements-added'
+import {createValidator, required, maxLength, minLength, integer} from '../../utils/validation'
+import ElementsToAdd from '../common/elements-to-add'
+import ElementsAdded from '../common/elements-added'
 import {reduxForm} from 'redux-form'
 import { translate } from 'react-i18next/lib'
 

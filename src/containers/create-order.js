@@ -15,7 +15,7 @@ import { selectItemOnAutocomplete} from '../modules/ui'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 
 /* Components */
-import CreateOrderForm from '../components/create-order'
+import CreateOrderForm from '../components/orders/create-order'
 
 class CreateOrder extends Component {
   componentDidMount() {

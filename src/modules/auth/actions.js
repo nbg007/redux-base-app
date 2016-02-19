@@ -99,7 +99,8 @@ export function register(credentials) {
         types: [REGISTER_ATTEMPTED, REGISTER_SUCCEEDED, REGISTER_FAILED],
       }
     }).then(({ payload, error}) =>  {
-      webStorage.save('token', json.data.token)
+      console.log('llegoooooooooooooo')
+      localStorage.setItem('token', payload.token)
       dispatch(routeActions.push('/'))
     }).catch((e) => {
       return Promise.reject({_error: e._error })

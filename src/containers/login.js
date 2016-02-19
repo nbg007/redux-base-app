@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import { login } from '../modules/auth'
 
 /* Components */
-import LoginForm from '../components/login'
+import LoginForm from '../components/auth/login'
 
 class Login extends Component {
   handleSubmit(credentials) {

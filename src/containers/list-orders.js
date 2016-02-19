@@ -1,10 +1,13 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { removeOrder } from '../modules/orders'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import CalendarOrder from '../smart/calendar-order';
+import CalendarOrder from './calendar-order';
 import { formatDate } from '../utils/common'
 import { translate } from 'react-i18next/lib'
 
-class ListOrders extends Component {
+export class ListOrders extends Component {
   render() {
     const { isFetching, list, removeOrder, t } = this.props
     return (
@@ -38,4 +41,15 @@ ListOrders.propTypes = {
   list: PropTypes.array.isRequired
 }
 
-export default translate(['common'])(ListOrders) 
+function mapStateToProps(state) {
+  return {
+    isFetching: state.orders.isFetching,
+    list: state.orders.list
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeOrder }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ListOrders))

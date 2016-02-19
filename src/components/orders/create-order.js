@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import {reduxForm} from 'redux-form'
-import ElementsToAdd from '../components/elements-to-add'
-import ElementsAdded from '../components/elements-added'
-import { getIndice } from '../utils/common'
+import ElementsToAdd from '../common/elements-to-add'
+import ElementsAdded from '../common/elements-added'
+import { getIndice } from '../../utils/common'
 import { translate } from 'react-i18next/lib'
 import Autocomplete from 'react-autocomplete'
-import { matchStateToTerm, sortItems, styles } from '../utils/components/autocomplete'
+import { matchStateToTerm, sortItems, styles } from '../../utils/components/autocomplete'
 
 
 class CreateOrderForm extends Component {

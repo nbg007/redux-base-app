@@ -1,8 +1,11 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { removeDish } from '../modules/dishes'
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
-class ListDishes extends Component {
+export class ListDishes extends Component {
   render() {
     const { isFetching, list, removeDish, t } = this.props
     return (
@@ -34,4 +37,15 @@ ListDishes.propTypes = {
   list: PropTypes.array.isRequired
 }
 
-export default translate(['common'])(ListDishes) 
+function mapStateToProps(state) {
+  return {
+    isFetching: state.dishes.isFetching,
+    list: state.dishes.list
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeDish }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ListDishes))

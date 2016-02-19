@@ -13,26 +13,22 @@ import i18n from 'i18next/lib';
 moment.locale(i18n.language);
 
 class CalendarOrder extends Component {
-
   componentDidMount() {
     const { currentDate } = this.props;
     if ( !currentDate ) this.props.calendarSetCurrentDate( moment().valueOf() ); 
   }
-
   _onPrevMonthClick() {
     const { currentDate } = this.props;
 
     this.props.calendarSetCurrentDate( moment(currentDate).add(-1, 'month').valueOf() );
     console.log('Vacation Calendar : Prev Month Clicked! - ' + moment(currentDate).format('L'));
   }
-
   _onNextMonthClick() {
     const { currentDate } = this.props;
 
     this.props.calendarSetCurrentDate( moment(currentDate).add(1, 'month').valueOf() );
     console.log('Vacation Calendar : Next Month Clicked! - ' + moment(currentDate).format('L'));
   }
-
   _onDayClick( date ) {
     const {  selected, calendarAddSelectedDay, calendarRemoveSelectedDay } = this.props;
     
@@ -40,7 +36,6 @@ class CalendarOrder extends Component {
       calendarRemoveSelectedDay( parseInt( date ) ) : 
       calendarAddSelectedDay( parseInt(date) );
   }
-
   _showDayOrders() {
     const { orders, selected, t } = this.props;
 
@@ -78,15 +73,14 @@ class CalendarOrder extends Component {
         initialRangeDate  = { initialRangeDate } /> 
       : null;
     
-    return(
+    return (
         <div>
           <h1>{t('calendarOrders.title')}</h1> 
           {content}
           {this._showDayOrders()}
         </div>
-      );
+    );
   }
-
 }
 
 const styles = {

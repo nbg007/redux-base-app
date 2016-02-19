@@ -1,8 +1,13 @@
+/* Example with selectors */
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { removeDish, fetchDish } from '../modules/dishes'
+import { totalSelector } from '../modules/dishes/selectors'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
-class ShowDish extends Component {
+export class ShowDish extends Component {
   componentDidMount() {
     this.props.fetchDish(this.props.params.id)  
   }
@@ -31,4 +36,8 @@ ShowDish.propTypes = {
   removeDish: PropTypes.func.isRequired
 }
 
-export default translate(['common'])(ShowDish) 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeDish, fetchDish }, dispatch)
+}
+
+export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowDish))

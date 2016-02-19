@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import {reduxForm} from 'redux-form'
 import { Link } from 'react-router'
-import {createValidator, required, maxLength, minLength, email} from '../utils/validation'
+import {createValidator, required, maxLength, minLength, email} from '../../utils/validation'
 
 const validate = createValidator({
   username: [required, minLength(2), maxLength(10)],

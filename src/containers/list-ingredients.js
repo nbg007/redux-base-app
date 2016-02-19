@@ -1,8 +1,11 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { removeIngredient, fetchIngredients } from '../modules/ingredients'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
-class ListIngredients extends Component {
+export class ListIngredients extends Component {
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
@@ -33,4 +36,15 @@ ListIngredients.propTypes = {
   list: PropTypes.array.isRequired
 }
 
-export default translate(['common'])(ListIngredients) 
+function mapStateToProps(state) {
+  return {
+    isFetching: state.ingredients.isFetching,
+    list: state.ingredients.list
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeIngredient, fetchIngredients }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ListIngredients))

@@ -41,15 +41,15 @@ describe('Auth - reducers', () => {
     expect(reducer(state, {type: actions.LOGOUT_SUCCEEDED}).session).toEqual({});
   })
 
-  it('should handle TOKEN_VALIDATION_FAILED', () => {
+  it('should handle VALIDATE_TOKEN_FAILED', () => {
     const state = Object.assign({}, initialState, {logged: true});
-    expect(reducer(state, {type: actions.TOKEN_VALIDATION_FAILED}).logged).toEqual(false);
+    expect(reducer(state, {type: actions.VALIDATE_TOKEN_FAILED}).logged).toEqual(false);
   })
 
-  it('should handle TOKEN_VALIDATION_SUCCEEDED', () => {
-    const state = Object.assign({}, initialState, {logged: true});
-    expect(reducer(state, {type: actions.TOKEN_VALIDATION_SUCCEEDED}).logged).toEqual(true);
-    expect(reducer(state, {type: actions.TOKEN_VALIDATION_SUCCEEDED, payload:{user: 'user'}}).session)
+  it('should handle VALIDATE_TOKEN_SUCCEEDED', () => {
+    const state = Object.assign({}, initialState, {logged: true, session: {}});
+    expect(reducer(state, {type: actions.VALIDATE_TOKEN_SUCCEEDED, payload: {id: '1', username: 'user'}}).logged).toEqual(true);
+    expect(reducer(state, {type: actions.VALIDATE_TOKEN_SUCCEEDED, payload: {id: '1', username: 'user'}}).session)
       .toNotEqual({});
   })
 

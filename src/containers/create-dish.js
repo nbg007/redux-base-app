@@ -13,7 +13,7 @@ import { addDish, editDish, fetchDish } from '../modules/dishes'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 
 /* Components */
-import CreateDishForm from '../components/create-dish'
+import CreateDishForm from '../components/dishes/create-dish'
 
 
 class CreateDish extends Component {
@@ -21,7 +21,6 @@ class CreateDish extends Component {
     this.props.fetchDish(this.props.params.id)   
   }
   onSubmit(dish) {
-    debugger
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editDish(dish)
     } else {

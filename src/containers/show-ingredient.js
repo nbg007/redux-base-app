@@ -1,8 +1,11 @@
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { removeIngredient } from '../modules/ingredients'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
-class ShowIngredient extends Component {
+export class ShowIngredient extends Component {
   render() {
     const { ingredient, ingredient: {id, name, cost, stock }, removeIngredient, t } = this.props
     return (
@@ -28,4 +31,14 @@ ShowIngredient.propTypes = {
   removeIngredient: PropTypes.func.isRequired
 }
 
-export default translate(['common'])(ShowIngredient) 
+function mapStateToProps(state, ownProps) {
+  return {
+    ingredient: state.ingredients.list.find((e) => {return e.id == ownProps.params.id})
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeIngredient }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ShowIngredient))
