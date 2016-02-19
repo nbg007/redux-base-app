@@ -1,12 +1,14 @@
 import expect from 'expect'
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
-import Home from '../../components/home'
+import { Home } from '../../components/home'
 
 function setup() {
-
+  let props = {
+    t: expect.createSpy(),
+  }
   let renderer = TestUtils.createRenderer()
-  renderer.render(<Home />)
+  renderer.render(<Home {...props} />)
   let output = renderer.getRenderOutput()
 
   return {

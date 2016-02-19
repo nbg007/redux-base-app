@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
-function Home({t}) {
+export function Home({t}) {
   return (
     <div>
       <h3>{t('home.title')}</h3>

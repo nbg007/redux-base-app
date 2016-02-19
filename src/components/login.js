@@ -2,7 +2,7 @@ import {createValidator, required} from '../utils/validation'
 import { Link } from 'react-router'
 import {reduxForm} from 'redux-form'
 import React, { PropTypes, Component } from 'react'
-import { translate, Interpolate } from 'react-i18next/lib'
+import { translate } from 'react-i18next/lib'
 
 
 const validate = createValidator({
@@ -10,7 +10,7 @@ const validate = createValidator({
   password: [required]
 })
 
-class LoginForm extends Component {
+export class LoginFormComponent extends Component {
   render() {
     const {
           fields: {username, password},
@@ -20,7 +20,6 @@ class LoginForm extends Component {
           style,
           t
         } = this.props
-    const registerComponent = <Link to='/register'>{t('login.registerActionCall')}</Link>
     return (
       <div className='component' style={style}>
         <p>{t('login.title')}</p>
@@ -40,23 +39,23 @@ class LoginForm extends Component {
             {submitting ? <i/> : <i/>} {t('submit')}
           </button>
         </form>
-        <Interpolate parent='p' i18nKey='login.goRegister' component={registerComponent} />
+        {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
       </div>
     )
   }  
 }
 
-LoginForm.propTypes = {
+LoginFormComponent.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.string,
   submitting: PropTypes.bool.isRequired
 }
 
-LoginForm = reduxForm({
+const LoginForm = reduxForm({
   form: 'login',
   validate,
   fields: ['username', 'password']
-})(LoginForm)
+})(LoginFormComponent)
 
 export default translate(['common'])(LoginForm)

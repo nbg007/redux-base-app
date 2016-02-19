@@ -3,32 +3,30 @@ import { Link } from 'react-router'
 import Notifications from './notifications'
 import { translate, Interpolate } from 'react-i18next/lib'
 
-class Header extends Component {
-  onClick(e) {
+export class Header extends Component {
+  handleClick(e) {
     e.preventDefault()
     this.props.logout()
   }
   render() {
     const {title, username, modalIsOpen, notifications, t} = this.props
     return (
-      <div>
-        <header>
-          <h1>{t('appName')}:{title}</h1>
-          {' '}
-          <Interpolate parent='p' i18nKey='content.welcome' value={username} />
-          <Link to="/">{t('home')}</Link>
-          {' '}
-          <Link to="/ingredients">{t('ingredients')}</Link>
-          {' '}
-          <Link to="/dishes">{t('dishes')}</Link>
-          {' '}
-          <Link to="/orders">{t('orders')}</Link>
-          {' '}
-          <Notifications notifications={notifications}/>
-          {' '}
-          <a href onClick={this.onClick.bind(this)}>{t('logout')}</a>
-        </header>
-      </div>
+      <header>
+        <h1>{t('appName')}:{title}</h1>
+        {' '}
+        <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+        <Link to="/">{t('home')}</Link>
+        {' '}
+        <Link to="/ingredients">{t('ingredients')}</Link>
+        {' '}
+        <Link to="/dishes">{t('dishes')}</Link>
+        {' '}
+        <Link to="/orders">{t('orders')}</Link>
+        {' '}
+        <Notifications notifications={notifications}/>
+        {' '}
+        <a href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
+      </header>
     );
   }
 }
