@@ -3,9 +3,6 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 class ShowIngredient extends Component {
-  shouldComponentUpdate(props) {
-    return !!props.ingredient 
-  }
   render() {
     const { ingredient, ingredient: {id, name, cost, stock }, removeIngredient, t } = this.props
     return (

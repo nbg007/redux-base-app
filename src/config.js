@@ -1,6 +1,6 @@
-var serverHost = 'dev.redux.calendar';
+var serverHost = 'localhost';
 var serverPort = 8001;
-var clientHost = 'dev.redux.calendar';
+var clientHost = 'localhost';
 var clientPort = 3000;
 
 module.exports = {

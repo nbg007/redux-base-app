@@ -3,10 +3,9 @@ import { bindActionCreators } from 'redux'
 import { removeIngredient } from '../modules/ingredients'
 import ShowIngredient from '../components/show-ingredient'
 
-function mapStateToProps(state) {
-  const id = state.routing.location.pathname.split("/")[2]
+function mapStateToProps(state, ownProps) {
   return {
-    ingredient: state.ingredients.list.find((e) => {return e.id == id})
+    ingredient: state.ingredients.list.find((e) => {return e.id == ownProps.params.id})
   }
 }
 

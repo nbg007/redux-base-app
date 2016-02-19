@@ -96,8 +96,7 @@ export function register(credentials) {
             password: credentials.password
           })
         },
-        types: [REGISTER_ATTEMPTED, REGISTER_SUCCEDDED, REGISTER_FAILED],
-        //parseResponse:
+        types: [REGISTER_ATTEMPTED, REGISTER_SUCCEEDED, REGISTER_FAILED],
       }
     }).then(({ payload, error}) =>  {
       webStorage.save('token', json.data.token)

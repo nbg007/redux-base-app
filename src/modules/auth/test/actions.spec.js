@@ -58,7 +58,7 @@ function mockStore(getState, expectedActions, onLastAction) {
 // -------- TESTS
 
 describe('Auth - actions', () => {
-  it('checkLogged should create a replace path action if it is', (done) => {
+  it('checkLogged should create a push path action if it is', (done) => {
     const expectedActions = [
       { payload: { args: ['/'], method: 'replace' }, type: '@@router/TRANSITION' }
     ];
@@ -66,9 +66,9 @@ describe('Auth - actions', () => {
     store.dispatch(actions.checkLogged())
   })
 
-  it('checkLogged should not create any replace path action if it isnt', (done) => {
+  it('checkLogged should not create any push path action if it isnt', (done) => {
     const expectedActions = [ ];
-    const store = mockStore({auth: {logged: false}}, expectedActions, done)
+    const store = mockStore({auth: {logged: false, session: {}}}, expectedActions, done)
     store.dispatch(actions.checkLogged((x) => x))
     done();
   })
@@ -83,17 +83,17 @@ describe('Auth - actions', () => {
         }
       });
     const expectedActions = [
-      {type: actions.TOKEN_VALIDATION_ATTEMPTED, authenticated: true},
-      {type: actions.TOKEN_VALIDATION_SUCCEEDED, payload: {token: 'madeUpToken'}, authenticated: true}
+      {type: actions.VALIDATE_TOKEN_ATTEMPTED, authenticated: true},
+      {type: actions.VALIDATE_TOKEN_SUCCEEDED, payload: {token: 'madeUpToken'}, authenticated: true}
     ];
-    const store = mockStore({auth: {logged: false}}, expectedActions, done)
+    const store = mockStore({auth: {logged: false, session: {}}}, expectedActions, done)
     store.dispatch(actions.validateToken())
   })
 
   it('logout should create a logout action and a router transition', (done) => {
     const expectedActions = [
       {type: actions.LOGOUT_SUCCEEDED},
-      { payload: { args: ['/login'], method: 'push' }, type: '@@router/TRANSITION' }
+      { payload: { args: ['/login'], method: 'replace' }, type: '@@router/TRANSITION' }
     ];
     const store = mockStore({auth: {logged: false}}, expectedActions, done)
     store.dispatch(actions.logout())
@@ -111,7 +111,7 @@ describe('Auth - actions', () => {
     const expectedActions = [
       {type: actions.LOGIN_ATTEMPTED, authenticated: undefined},
       {type: actions.LOGIN_SUCCEEDED, payload: {token: 'madeUpToken'}, authenticated: undefined},
-      { payload: { arg: '/', method: 'push' }, type: '@@router/TRANSITION' }
+      { payload: { args: ['/'], method: 'push' }, type: '@@router/TRANSITION' }
     ];
     const store = mockStore({auth: {logged: false}}, expectedActions, done)
     store.dispatch(actions.login({username: 'admin', password: 'admin'}))
@@ -141,7 +141,7 @@ describe('Auth - actions', () => {
     const expectedActions = [
       {type: actions.REGISTER_ATTEMPTED, authenticated: undefined},
       {type: actions.REGISTER_SUCCEEDED, payload: {token: 'madeUpToken'}, authenticated: undefined},
-      { payload: { arg: '/', method: 'push' }, type: '@@router/TRANSITION' }
+      { payload: { args: ['/'], method: 'push' }, type: '@@router/TRANSITION' }
     ];
     const store = mockStore({auth: {logged: false}}, expectedActions, done)
     store.dispatch(actions.register({username: 'admin2', password: 'admin'}))
