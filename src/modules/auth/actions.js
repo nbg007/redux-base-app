@@ -2,8 +2,6 @@ import { LOCALSTORAGE_TOKEN_KEY } from '../../config'
 import AuthAPI from './api'
 import { push, replace } from 'react-router-redux'
 export * from './action_types'
-// TODO
-// Transform server API errors into valid redux-form errors
 
 //UTILS
 function clearToken(){
@@ -94,7 +92,6 @@ export function logout() {
  */
 export function register(credentials) {
   return (dispatch, getState) => {
-<<<<<<< HEAD
     return dispatch(AuthAPI.register(credentials))
     .then((payload) =>  {
       saveToken(payload.token)
@@ -103,25 +100,6 @@ export function register(credentials) {
     .catch((e) => {
       console.log('Register failed', e);
       return Promise.reject({_error: 'Register failed', username: 'Username already in use' })
-=======
-    return dispatch({
-      [CALL_API]: {
-        endpoint: 'register',
-        config: {
-          method: 'POST',
-          body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password
-          })
-        },
-        types: [REGISTER_ATTEMPTED, REGISTER_SUCCEEDED, REGISTER_FAILED],
-      }
-    }).then(({ payload, error}) =>  {
-      localStorage.setItem('token', payload.token)
-      dispatch(routeActions.push('/'))
-    }).catch((e) => {
-      return Promise.reject({_error: e._error })
->>>>>>> 676d7fda8b18069e2a06b6b8714ec7055b6d2a57
     })
   }
 }

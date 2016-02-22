@@ -1,5 +1,4 @@
 import { routeActions} from 'react-router-redux'
-<<<<<<< HEAD
 import { findById } from '../../utils/common'
 import { fetch, create, update, del } from '../../utils/rest_api'
 
@@ -81,12 +80,11 @@ export function removeIngredient(ingredient) {
     return dispatch(
       del(['ingredients', '/',  ingredient.id].join(''), types, { parse: delParse })
     ).then(() => {
-      // TODO: Carlos. Control when the ingredient can not be removed due to referencial integrity
-      // TODO: Carlos. Los errores deberian devolver un formato comun. Este podria ser {nameOfTheFieldIfExist: specificError, _error: genericError}
       dispatch(routeActions.push('/ingredients/'))
     })
     .catch(err => {
-
+      // TODO: Carlos. Control when the ingredient can not be removed due to referencial integrity
+      // TODO: Carlos. Los errores deberian devolver un formato comun. Este podria ser {nameOfTheFieldIfExist: specificError, _error: genericError}
     })
   }
 }
