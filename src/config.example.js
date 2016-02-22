@@ -1,12 +1,17 @@
-var serverHost = 'dev.redux.calendar';
-var serverPort = 8001;
-var clientHost = 'dev.redux.calendar';
-var clientPort = 3000;
+const serverHost = 'localhost'
+const serverPort = 8001
+const clientHost = 'localhost'
+const clientPort = 3000
+const BASE_API_URL = `http://${serverHost}:${serverPort}/api/`
+const LOCALSTORAGE_KEY = 'token'
+const APP_NAME = 'baseapp/'
 
 module.exports = {
   serverHost,
   serverPort,
   clientHost,
   clientPort,
-  api: `http://${serverHost}:${serverPort}/api/`
+  BASE_API_URL,
+  LOCALSTORAGE_KEY,
+  APP_NAME
 }
