@@ -60,12 +60,21 @@ export function editIngredient(ingredient) {
 export function removeIngredient(ingredient) {
   return (dispatch, getState) => {
     const types = [REMOVE_INGREDIENT_ATTEMPTED, REMOVE_INGREDIENT_SUCCEEDED, REMOVE_INGREDIENT_FAILED]
+
+    //REMOVING IS NOT CLEAR, in this case we're forcing that
+    //the server answer is the ingredient id we just deleted
+    //because the the reducer expects that
+    const delParse = (x) => { return { id: ingredient.id } }
+
     return dispatch(
-      del(['ingredients', '/',  ingredient.id].join(''), types, opts)
-    ).then( ({ payload }) => {
+      del(['ingredients', '/',  ingredient.id].join(''), types, { parse: delParse })
+    ).then(() => {
       // TODO: Carlos. Control when the ingredient can not be removed due to referencial integrity
       // TODO: Carlos. Los errores deberian devolver un formato comun. Este podria ser {nameOfTheFieldIfExist: specificError, _error: genericError}
       dispatch(routeActions.push('/ingredients/'))
+    })
+    .catch(err => {
+
     })
   }
 }

@@ -49,13 +49,14 @@ export default store => next => action => {
   console.log('call api', endpoint, config)
   // Passing the authenticated boolean back in our data will let us distinguish
   return makeRequest(endpoint, config)
-  .then(
-    payload => {
+  .then(payload => {
+      let parsedPayload = options.parse(payload)
+      console.log('call api then', parsedPayload)
       next({
-        payload: options.parse(payload),
+        payload: parsedPayload,
         type: successType
       });
-      return options.parse(payload)
+      return parsedPayload
     },
     error => {
       let processedError = options.onError(error)

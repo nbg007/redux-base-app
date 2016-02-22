@@ -36,6 +36,13 @@ export function integer(value) {
   }
 }
 
+export function float(value){
+  const floatValue = parseFloat(value)
+  if(Number.isNan(floatValue)){
+    return 'Must be an integer or decimal number'
+  }
+}
+
 export function oneOf(enumeration) {
   return value => {
     if (!~enumeration.indexOf(value)) {
