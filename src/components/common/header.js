@@ -6,7 +6,7 @@ import { translate, Interpolate } from 'react-i18next/lib'
 export class Header extends Component {
   handleClick(e) {
     e.preventDefault()
-    this.props.logout()
+    this.props.onLogout()
   }
   render() {
     const {title, username, modalIsOpen, notifications, t} = this.props
@@ -35,7 +35,7 @@ Header.propTypes = {
   title: PropTypes.string,
   username: PropTypes.string,
   notifications: PropTypes.array,
-  logout: PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired
 }
 
 export default translate(['header', 'common'])(Header);

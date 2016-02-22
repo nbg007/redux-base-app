@@ -6,6 +6,9 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 export class ListIngredients extends Component {
+  componentDidMount(){
+    this.props.fetchIngredients()
+  }
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
@@ -28,7 +31,7 @@ export class ListIngredients extends Component {
         </ul>
       </div>
     )
-  }  
+  }
 }
 
 ListIngredients.propTypes = {

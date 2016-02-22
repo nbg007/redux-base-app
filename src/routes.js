@@ -21,20 +21,20 @@ import ShowDish from './containers/show-dish'
 import Login from './containers/login'
 import Register from './containers/register'
 
-import { checkLogged, validateToken } from './modules/auth'
+import { getSession } from './modules/auth'
 import { fetchDish } from './modules/dishes'
 import { fetchOrder} from './modules/orders'
 
 export default (
   <Route>
-    <Route component={Landing} onEnter={(dispatch, cb) => dispatch(checkLogged(cb))}>
+    <Route component={Landing}>
       <Route component={FadeTransition}>
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register}/>
       </Route>
     </Route>
-    <Route component={App} onEnter={(dispatch, cb) => dispatch(validateToken(cb))}>
-      <Route  path= "/" component={Home} />
+    <Route component={App} onEnter={(dispatch, cb) => dispatch(getSession(cb))}>
+      <Route path= "/" component={Home} />
       <Route path="ingredients" component={Ingredients}>
         <Route component={SlideRightTransition}>
           <IndexRoute component={ListIngredients}/>

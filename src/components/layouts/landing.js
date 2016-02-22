@@ -1,6 +1,4 @@
 import React, { PropTypes, Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').default) : () => null
 
@@ -19,13 +17,14 @@ Landing.propTypes = {
   children: PropTypes.element
 }
 
-function mapStateToProps(state) {
-  return {}
-}
+// function mapStateToProps(state) {
+//   return {}
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {}
-}
+// function mapDispatchToProps(dispatch) {
+//   return {}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing)
+// export default connect(mapStateToProps, mapDispatchToProps)(Landing)
 
+export default Landing
