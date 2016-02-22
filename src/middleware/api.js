@@ -48,7 +48,7 @@ export default store => next => action => {
 
   //add callAPI options as meta to *_REQUEST action for debugging
   next({type: requestType, meta: callAPI })
-  console.log('call api', endpoint, config)
+  //console.log('call api', endpoint, config)
   // Passing the authenticated boolean back in our data will let us distinguish
   return makeRequest(endpoint, config)
   .then(payload => {

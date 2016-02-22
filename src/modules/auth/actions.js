@@ -53,7 +53,6 @@ export function login({username, password}) {
  * @return {Function} Async action (thunk)
  */
 export function getSession() {
-  console.log('getSession')
   return (dispatch, getState) => {
     //bail out early, if no token avoid calling the API
     if(!getToken()){

@@ -21,10 +21,6 @@ import ShowDish from './containers/show-dish'
 import Login from './containers/login'
 import Register from './containers/register'
 
-import { getSession } from './modules/auth'
-import { fetchDish } from './modules/dishes'
-import { fetchOrder} from './modules/orders'
-
 export default (
   <Route>
     <Route component={Landing}>
@@ -33,7 +29,7 @@ export default (
         <Route path="/register" component={Register}/>
       </Route>
     </Route>
-    <Route component={App} onEnter={(dispatch, cb) => dispatch(getSession(cb))}>
+    <Route component={App}>
       <Route path= "/" component={Home} />
       <Route path="ingredients" component={Ingredients}>
         <Route component={SlideRightTransition}>
