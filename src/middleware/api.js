@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import config from '../config'
 import { applyToken, applyHeaders } from '../modules/helpers'
-import { LOGOUT } from '../modules/auth'
 
 const BASE_URL = config.api
 
@@ -13,10 +12,9 @@ function callApi(endpoint, authenticated, config={}) {
   if (authenticated && !token) {
     return Promise.reject("Unauthorized")
   }
-
   return fetch(BASE_URL + endpoint, config)
-  .then(response =>
-    response.json().then(json=> ({ json, response }))
+  .then(response => {
+    return response.json().then(json=> ({ json, response }))}
   ).then(({ json, response }) => {
     if (!response.ok) {
       throw json.errors[0]

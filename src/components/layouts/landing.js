@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').default) : () => null
 
-class Landing extends Component {
+export default class Landing extends Component {
   render() {
     return (
       <div>
@@ -19,13 +19,4 @@ Landing.propTypes = {
   children: PropTypes.element
 }
 
-function mapStateToProps(state) {
-  return {}
-}
-
-function mapDispatchToProps(dispatch) {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Landing)
 

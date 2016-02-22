@@ -3,19 +3,19 @@ import { CALL_API } from '../../middleware/api'
 
 const MODULE_NAME = "base-app/dishes/"
 
-export const REQUEST_DISHES = MODULE_NAME.concat("REQUEST:DISHES")
-export const RECEIVE_DISHES = MODULE_NAME.concat("RECEIVE:DISHES")
-export const REQUEST_DISH = MODULE_NAME.concat("REQUEST:DISH")
-export const RECEIVE_DISH = MODULE_NAME.concat("RECEIVE:DISH")
-export const ADD_DISH = MODULE_NAME.concat("ADD:DISH")
-export const ADD_DISH_ATTEMPT = MODULE_NAME.concat("ADD:DISH_ATTEMPT")
-export const ADD_DISH_FAIL = MODULE_NAME.concat("ADD:DISH_FAIL")
-export const EDIT_DISH = MODULE_NAME.concat("EDIT:DISH")
-export const EDIT_DISH_FAIL = MODULE_NAME.concat("EDIT:DISH_FAIL")
-export const EDIT_DISH_ATTEMPT = MODULE_NAME.concat("EDIT:DISH_ATTEMPT")
-export const REMOVE_DISH = MODULE_NAME.concat("REMOVE:DISH")
-export const REMOVE_DISH_ATTEMPT = MODULE_NAME.concat("REMOVE:DISH_ATTEMPT")
-export const REMOVE_DISH_FAIL = MODULE_NAME.concat("REMOVE:DISH_FAIL")
+export const REQUEST_DISHES_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISHES")
+export const REQUEST_DISHES_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISHES")
+export const REQUEST_DISH_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISH")
+export const REQUEST_DISH_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISH")
+export const ADD_DISH_SUCCEEDED = MODULE_NAME.concat("ADD:DISH")
+export const ADD_DISH_ATTEMPTED = MODULE_NAME.concat("ADD:DISH_ATTEMPT")
+export const ADD_DISH_FAILED = MODULE_NAME.concat("ADD:DISH_FAIL")
+export const EDIT_DISH_SUCCEEDED = MODULE_NAME.concat("EDIT:DISH")
+export const EDIT_DISH_FAILED = MODULE_NAME.concat("EDIT:DISH_FAIL")
+export const EDIT_DISH_ATTEMPTED = MODULE_NAME.concat("EDIT:DISH_ATTEMPT")
+export const REMOVE_DISH_SUCCEEDED = MODULE_NAME.concat("REMOVE:DISH")
+export const REMOVE_DISH_ATTEMPTED = MODULE_NAME.concat("REMOVE:DISH_ATTEMPT")
+export const REMOVE_DISH_FAILED = MODULE_NAME.concat("REMOVE:DISH_FAIL")
 
 
 export function fetchDishes() {
@@ -23,7 +23,7 @@ export function fetchDishes() {
     [CALL_API]: {
       endpoint: 'dishes',
       authenticated: true,
-      types: [REQUEST_DISHES, RECEIVE_DISHES]
+      types: [REQUEST_DISHES_ATTEMPTED, REQUEST_DISHES_SUCCEEDED]
     }
   }
 }
@@ -34,7 +34,7 @@ export function fetchDish(id) {
       [CALL_API]: {
         endpoint: ['dishes', '/',  id].join(''),
         authenticated: true,
-        types: [REQUEST_DISH, RECEIVE_DISH]
+        types: [REQUEST_DISH_ATTEMPTED, REQUEST_DISH_SUCCEEDED]
       }
     })
   }
@@ -50,7 +50,7 @@ export function addDish(dish) {
           method: 'POST',
           body: JSON.stringify(dish)
         },
-        types: [ADD_DISH_ATTEMPT, ADD_DISH, ADD_DISH_FAIL]
+        types: [ADD_DISH_ATTEMPTED, ADD_DISH_SUCCEEDED, ADD_DISH_FAILED]
       }
     }).then( ({ payload }) => {
       dispatch(routeActions.push('/dishes/'))
@@ -70,7 +70,7 @@ export function editDish(dish) {
           method: 'PUT',
           body: JSON.stringify(dish)
         },
-        types: [EDIT_DISH_ATTEMPT, EDIT_DISH, EDIT_DISH_FAIL]
+        types: [EDIT_DISH_ATTEMPTED, EDIT_DISH_SUCCEEDED, EDIT_DISH_FAILED]
       }
     }).then( ({ payload }) => {
       dispatch(routeActions.push('/dishes/'))
@@ -89,7 +89,7 @@ export function removeDish(dish) {
         config: {
           method: 'DELETE'
         },
-        types: [REMOVE_DISH_ATTEMPT, REMOVE_DISH, REMOVE_DISH_FAIL]
+        types: [REMOVE_DISH_ATTEMPTED, REMOVE_DISH_SUCCEEDED, REMOVE_DISH_FAILED]
       }
     }).then( ({ payload }) => {
       dispatch(routeActions.push('/dishes/'))

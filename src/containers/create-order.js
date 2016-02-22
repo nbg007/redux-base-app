@@ -25,14 +25,11 @@ class CreateOrder extends Component {
     }
   }
   onSubmit(order) {
-    return this.props.checkAvailability(order)
-    .then(() => {
-      if (this.props.location.pathname.includes("edit")) {
-        return this.props.editOrder(order)
-      } else {
-        return this.props.addOrder(order)
-      }
-    })
+    if (this.props.location.pathname.includes("edit")) {
+      return this.props.editOrder(order)
+    } else {
+      return this.props.addOrder(order)
+    }
   }
   render() {
     const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete, style } = this.props
