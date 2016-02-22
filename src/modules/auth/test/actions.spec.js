@@ -39,7 +39,7 @@ function mockStore(getState, expectedActions, onLastAction) {
 
       dispatch(action) {
         const expectedAction = expectedActions.shift()
-        expect(action).toEqual(expectedAction)
+        expect(action).toHaveKeysWithExpectedValue(expectedAction)
         if (onLastAction && !expectedActions.length) {
           onLastAction()
         }

@@ -1,4 +1,18 @@
 import { jsdom } from 'jsdom'
+import expect from 'expect'
+
+expect.extend({
+  toHaveKeysWithExpectedValue(object) {
+    expect.assert(
+      Object.keys(object).every((key) => {
+        return this.actual.hasOwnProperty(key) && expect(this.actual[key]).toEqual(object[key])
+      }),
+      "expected %s to include all properties in %s" ,
+      this.actual,
+      object
+    )
+  }
+})
 
 var document = jsdom('<!doctype html><html><body></body></html>')
 

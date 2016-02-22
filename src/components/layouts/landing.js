@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react'
 
 const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').default) : () => null
 
-class Landing extends Component {
+export default class Landing extends Component {
   render() {
     return (
       <div>
@@ -16,15 +16,5 @@ class Landing extends Component {
 Landing.propTypes = {
   children: PropTypes.element
 }
-
-// function mapStateToProps(state) {
-//   return {}
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {}
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Landing)
 
 export default Landing
