@@ -6,8 +6,21 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 export class ListIngredients extends Component {
+  constructor(props){
+    super(props)
+    this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this)
+  }
   componentDidMount(){
     this.props.fetchIngredients()
+  }
+  handleRemoveIngredient(){
+    /** NASTY !!!!!
+
+    Create a IngredientItem view and handle deleting from there, passing the ingredient
+    to this parent view
+
+    */
+    this.props.removeIngredient(this.props.ingredient)
   }
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
@@ -25,7 +38,7 @@ export class ListIngredients extends Component {
               {' '}
               <Link to={`/ingredients/${i.id}/edit`}>{t('listIngredients.editButton')}</Link>
               {' '}
-              <button onClick={removeIngredient.bind(this, i)}>{t('listIngredients.removeButton')}</button>
+              <button onClick={ this.handleRemoveIngredient }>{t('listIngredients.removeButton')}</button>
             </li>)
           }
         </ul>

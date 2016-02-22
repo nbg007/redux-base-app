@@ -5,17 +5,20 @@ import { fetch, create, update, del } from '../../utils/rest_api'
 
 const MODULE_NAME = "base-app/ingredients/"
 
-export const REQUEST_INGREDIENTS_ATTEMPTED = MODULE_NAME.concat("REQUEST:INGREDIENTS")
-export const REQUEST_INGREDIENTS_SUCCEEDED = MODULE_NAME.concat("RECEIVE:INGREDIENTS")
-export const ADD_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("ADD:INGREDIENT")
-export const ADD_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("ADD:INGREDIENT_ATTEMPT")
-export const ADD_INGREDIENT_FAILED = MODULE_NAME.concat("ADD:INGREDIENT_FAIL")
-export const EDIT_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("EDIT:INGREDIENT")
-export const EDIT_INGREDIENT_FAILED = MODULE_NAME.concat("EDIT:INGREDIENT_FAIL")
-export const EDIT_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("EDIT:INGREDIENT_ATTEMPT")
-export const REMOVE_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("REMOVE:INGREDIENT")
-export const REMOVE_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("REMOVE:INGREDIENT_ATTEMPT")
-export const REMOVE_INGREDIENT_FAILED = MODULE_NAME.concat("REMOVE:INGREDIENT_FAIL")
+export const REQUEST_INGREDIENTS_ATTEMPTED = MODULE_NAME.concat("REQUEST:INGREDIENTS:ATTEMPTED")
+export const REQUEST_INGREDIENTS_SUCCEEDED = MODULE_NAME.concat("REQUEST:INGREDIENTS:SUCCEEDED")
+
+export const ADD_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("ADD:INGREDIENT:SUCCEEDED")
+export const ADD_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("ADD:INGREDIENT:ATTEMPTED")
+export const ADD_INGREDIENT_FAILED = MODULE_NAME.concat("ADD:INGREDIENT:FAILED")
+
+export const EDIT_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("EDIT:INGREDIENT:SUCCEEDED")
+export const EDIT_INGREDIENT_FAILED = MODULE_NAME.concat("EDIT:INGREDIENT:FAILED")
+export const EDIT_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("EDIT:INGREDIENT:ATTEMPTED")
+
+export const REMOVE_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("REMOVE:INGREDIENT:SUCCEEDED")
+export const REMOVE_INGREDIENT_ATTEMPTED = MODULE_NAME.concat("REMOVE:INGREDIENT:ATTEMPTED")
+export const REMOVE_INGREDIENT_FAILED = MODULE_NAME.concat("REMOVE:INGREDIENT:FAILED")
 
 const parse = (x) => x.data
 
@@ -57,11 +60,19 @@ export function editIngredient(ingredient) {
   }
 }
 
+export function saveIngredient(ingredient){
+  if(ingredient.id)
+    return editIngredient(ingredient)
+  else
+    return addIngredient(ingredient)
+}
+
 export function removeIngredient(ingredient) {
   return (dispatch, getState) => {
     const types = [REMOVE_INGREDIENT_ATTEMPTED, REMOVE_INGREDIENT_SUCCEEDED, REMOVE_INGREDIENT_FAILED]
 
-    //REMOVING IS NOT CLEAR, in this case we're forcing that
+    //NOTE ******
+    //DELETING IS NOT CLEAR, in this case we're forcing that
     //the server answer is the ingredient id we just deleted
     //because the the reducer expects that
     const delParse = (x) => { return { id: ingredient.id } }

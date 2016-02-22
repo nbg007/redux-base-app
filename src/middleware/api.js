@@ -45,13 +45,15 @@ export default store => next => action => {
     options.onError = (x) => x
   }
   const [requestType, successType, errorType] = types
-  next({type: requestType })
+
+  //add callAPI options as meta to *_REQUEST action for debugging
+  next({type: requestType, meta: callAPI })
   console.log('call api', endpoint, config)
   // Passing the authenticated boolean back in our data will let us distinguish
   return makeRequest(endpoint, config)
   .then(payload => {
       let parsedPayload = options.parse(payload)
-      console.log('call api then', parsedPayload)
+      //console.log('call api then', parsedPayload)
       next({
         payload: parsedPayload,
         type: successType

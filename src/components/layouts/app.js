@@ -37,7 +37,7 @@ class App extends Component {
     const {children, username, logout, notifications, isFetching} = this.props
     return (
       <div>
-        {isFetching && <Loading/>}
+        {/*isFetching && <Loading/>*/}
         <div>
           <Header title={"DAH"} username={username} onLogout={this.handleLogout} notifications={notifications}>
           </Header>

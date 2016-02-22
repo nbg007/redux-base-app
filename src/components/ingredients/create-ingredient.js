@@ -63,7 +63,7 @@ CreateIngredientForm.propTypes = {
 //TODO: Parse params to manipulate them before sending (parseInt)
 CreateIngredientForm = reduxForm({
   form: 'create-ingredient',
-  fields: ['name', 'cost', 'stock']
+  fields: ['name', 'cost', 'stock', 'id']
 })(CreateIngredientForm)
 
 export default translate(['common'])(CreateIngredientForm)
