@@ -53,7 +53,7 @@ export default store => next => action => {
   return makeRequest(endpoint, config)
   .then(payload => {
       let parsedPayload = options.parse(payload)
-      console.log('call api then', parsedPayload)
+
       next({
         payload: parsedPayload,
         type: successType
@@ -62,7 +62,7 @@ export default store => next => action => {
     },
     error => {
       let processedError = options.onError(error)
-      console.log('fetch error', processedError)
+
       next({
         error: options.onError(error),
         type: errorType

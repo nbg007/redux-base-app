@@ -2,7 +2,6 @@ import * as actions from './actions'
 export * from './actions'
 
 function receiveSingleDish(list, dish){
-  console.log('Receiving single dish', dish)
   let existing = list.find(x => x.id === dish.id)
   if(existing){
     return list.map(d => d.id === dish.id ? Object.assign({}, dish) : d)

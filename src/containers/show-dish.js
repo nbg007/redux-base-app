@@ -16,7 +16,10 @@ export class ShowDish extends Component {
     const { isFetching } = this.props
     if(isFetching) return (<p>Loading...</p>)
     const { dish, removeDish, escandallo, t } = this.props
-
+    const ingredients = dish.ingredients || []
+    const totalCost = ingredients.reduce((acc,ingredient) => {
+      return acc + ingredient.cost
+    }, 0)
     return (
       <div className='component' style={this.props.style}>
         <span>
@@ -25,7 +28,7 @@ export class ShowDish extends Component {
         <ul>
           <li><p>Name: {dish.name}</p></li>
           <li><p>Price: {dish.price}</p></li>
-          <li><p>{dish.escandallo}</p></li>
+          <li><p>Total cost: {totalCost}</p></li>
         </ul>
         <Link to={`/dishes/${dish.id}/edit/`}>{t('showDish.editButton')}</Link>
         {' '}
@@ -48,11 +51,12 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps){
   //console.log('show dish isfetching', state.dishes.isFetching)
+  const emptyDish = { ingredients: [] }
   return {
-    dish: state.dishes.isFetching ? {} : state.dishes.list.find(d => d.id === ownProps.params.id) || {},
+    dish: state.dishes.isFetching ? emptyDish : state.dishes.list.find(d => d.id === ownProps.params.id) || emptyDish,
     isFetching: state.dishes.isFetching
   }
 }
 
-export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowDish))
-//export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ShowDish))
+//export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowDish))
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ShowDish))

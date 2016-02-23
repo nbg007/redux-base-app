@@ -32,7 +32,12 @@ export const REQUEST_INGREDIENT_FAILED = MODULE_NAME.concat('REQUEST:INGREDIENT:
 
 export function fetchSingleIngredient(id){
   let types = [REQUEST_INGREDIENT_ATTEMPTED, REQUEST_INGREDIENT_SUCCEEDED, REQUEST_INGREDIENT_FAILED]
-  return fetch(`ingredients/${id}`, types, opts)
+  return (dispatch, getState) => {
+    //fetch only if ingredient is not already in the cache
+    let existing = getState().ingredients.list.find(x => x.id === id)
+    if(!existing)
+      return dispatch(fetch(`ingredients/${id}`, types, opts))
+  }
 }
 
 
