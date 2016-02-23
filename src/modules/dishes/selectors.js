@@ -56,7 +56,6 @@ export const escandalloSelector = createSelector(
 export const totalSelector = createSelector(
   [dishSelector, escandalloSelector, ingredientsSelector],
   (dish, escandallo, ingredients) => {
-    console.log('totalselector', dish, escandallo, ingredients)
     return {
       dish: dish,
       ingredients: ingredients,

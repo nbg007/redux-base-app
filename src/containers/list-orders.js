@@ -1,13 +1,25 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { removeOrder } from '../modules/orders'
+import { fetchOrders, removeOrder } from '../modules/orders'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import CalendarOrder from './calendar-order';
 import { formatDate } from '../utils/common'
 import { translate } from 'react-i18next/lib'
 
+import OrderListItem from '../components/orders/item'
+
 export class ListOrders extends Component {
+  constructor(props){
+    super(props)
+    this.handleItemRemove = this.handleItemRemove.bind(this)
+  }
+  componentDidMount(){
+    this.props.fetchOrders()
+  }
+  handleItemRemove(order){
+    this.props.removeOrder(order)
+  }
   render() {
     const { isFetching, list, removeOrder, t } = this.props
     return (
@@ -18,26 +30,26 @@ export class ListOrders extends Component {
         <ul>
           {isFetching && <p>{t('listOrders.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listOrders.empty')}</p>}
-          {!isFetching && list.length > 0 && list.map((o, index) =>
-            <li key={index}>
-              <Link to={`/orders/${o.id}/show`}>{t('listOrders.order')}{o.id} </Link>
-              {t('listOrders.date', { date: formatDate(o.createdAt)})}
-              {' '}
-              <Link to={`/orders/${o.id}/edit`}>{t('listOrders.editButton')}</Link>
-              {' '}
-              <button onClick={removeOrder.bind(this, o)}>{t('listOrders.removeButton')}</button>
-            </li>)
+          {!isFetching && list.length > 0 && list.map((o) =>
+            <OrderListItem key={o.id}
+              order={o}
+              orderText={t('listOrders.order')}
+              dateText={t('listOrders.date', { date: formatDate(o.createdAt)})}
+              editText={t('listOrders.editButton')}
+              removeText={t('listOrders.removeButton')}
+              onRemoveClick={ this.handleItemRemove } />)
           }
         </ul>
         <CalendarOrder />
       </div>
     )
-  }  
+  }
 }
 
 ListOrders.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   removeOrder: PropTypes.func.isRequired,
+  fetchOrders: PropTypes.func.isRequired,
   list: PropTypes.array.isRequired
 }
 
@@ -49,7 +61,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeOrder }, dispatch)
+  return bindActionCreators({ removeOrder, fetchOrders }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ListOrders))

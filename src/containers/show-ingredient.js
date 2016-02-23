@@ -46,7 +46,6 @@ const loadingIngredient = {
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log('show ingredient', state.ingredients.isFetching)
   return {
     isFetching: state.ingredients.isFetching,
     ingredient: state.ingredients.list.find((e) => {return e.id == ownProps.params.id}) || loadingIngredient
