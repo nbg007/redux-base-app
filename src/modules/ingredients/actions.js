@@ -17,6 +17,15 @@ export function fetchIngredients() {
   return fetch('ingredients', [REQUEST_INGREDIENTS_ATTEMPTED, REQUEST_INGREDIENTS_SUCCEEDED], opts)
 }
 
+//to be used in create dish
+export function fetchIngredientsIfNeeded(){
+  return (dispatch, getState) => {
+    if(getState().ingredients.list.length === 0){
+      return dispatch(fetchIngredients())
+    }
+  }
+}
+
 
 
 export const ADD_INGREDIENT_SUCCEEDED = MODULE_NAME.concat("ADD:INGREDIENT:SUCCEEDED")
