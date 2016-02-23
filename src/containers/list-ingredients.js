@@ -5,7 +5,55 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
+//TODO: move this item component to separate file!
+class IngredientItem extends Component {
+  constructor(props){
+    super(props)
+    this.handleRemoveClick = this.handleRemoveClick.bind(this)
+  }
+  handleRemoveClick(){
+    this.props.onDelete(this.props.ingredient)
+  }
+  render(){
+    const i = this.props.ingredient,
+          t = this.props.t
+
+    return (
+      <li>
+        <Link to={`/ingredients/${i.id}/show`}>{i.name}</Link>
+        {' '}
+        <Link to={`/ingredients/${i.id}/edit`}>{t('listIngredients.editButton')}</Link>
+        {' '}
+        <button onClick={ this.handleRemoveClick }>{t('listIngredients.removeButton')}</button>
+      </li>
+    )
+  }
+}
+
+IngredientItem.propTypes = {
+  ingredient: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
+}
+
+
 export class ListIngredients extends Component {
+  constructor(props){
+    super(props)
+    this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this)
+  }
+  componentDidMount(){
+    this.props.fetchIngredients()
+  }
+  handleRemoveIngredient(ing){
+    /** NASTY !!!!!
+
+    Create a IngredientItem view and handle deleting from there, passing the ingredient
+    to this parent view
+
+    */
+    this.props.removeIngredient(ing)
+  }
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
@@ -17,18 +65,12 @@ export class ListIngredients extends Component {
           {isFetching && <p>{t('listIngredients.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listIngredients.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((i, index) =>
-            <li key={index}>
-              <Link to={`/ingredients/${i.id}/show`}>{i.name}</Link>
-              {' '}
-              <Link to={`/ingredients/${i.id}/edit`}>{t('listIngredients.editButton')}</Link>
-              {' '}
-              <button onClick={removeIngredient.bind(this, i)}>{t('listIngredients.removeButton')}</button>
-            </li>)
+            <IngredientItem key={i.id} t={t} ingredient={i} onDelete={this.handleRemoveIngredient } />)
           }
         </ul>
       </div>
     )
-  }  
+  }
 }
 
 ListIngredients.propTypes = {

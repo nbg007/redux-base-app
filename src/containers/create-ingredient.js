@@ -5,24 +5,24 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 /* Actions */
-import { addIngredient, editIngredient } from '../modules/ingredients'
+import { saveIngredient } from '../modules/ingredients'
 
 /* Components */
 import CreateIngredientForm from '../components/ingredients/create-ingredient'
 
 
 class CreateIngredient extends Component {
+  constructor(props){
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
   handleSubmit(ingredient) {
-    if (this.props.location.pathname.includes("edit")) {
-      return this.props.editIngredient(ingredient)
-    } else {
-      return this.props.addIngredient(ingredient)
-    }
+    this.props.saveIngredient(ingredient)
   }
   render() {
     const { ingredient, style } = this.props
     return (
-      <CreateIngredientForm onSubmit={(ingredient) => this.handleSubmit(ingredient)} initialValues={ ingredient } style={style}/>
+      <CreateIngredientForm onSubmit={ this.handleSubmit } initialValues={ ingredient } style={style}/>
     )
   }
 }
@@ -41,7 +41,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addIngredient, editIngredient }, dispatch)
+  return bindActionCreators({ saveIngredient }, dispatch)
 }
 
 export default connect(

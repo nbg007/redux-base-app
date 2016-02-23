@@ -5,7 +5,6 @@ import {createValidator, required, maxLength, minLength, email} from '../../util
 
 const validate = createValidator({
   username: [required, minLength(2), maxLength(10)],
-  email: [required, email],
   password: [required, minLength(2), maxLength(10)]
 });
 
@@ -26,11 +25,6 @@ export class RegisterFormComponent extends Component {
             <label>Username</label>
             <input type="text" placeholder="username" {...username}/>
             {username.touched && username.error && <div>{username.error}</div>}
-          </div>
-          <div>
-            <label>Email</label>
-            <input type="email" placeholder="email" {...email}/>
-            {email.touched && email.error && <div>{email.error}</div>}
           </div>
           <div>
             <label>Password</label>
@@ -58,7 +52,7 @@ RegisterFormComponent.propTypes = {
 const RegisterForm = reduxForm({
   form: 'register',
   validate,
-  fields: ['username', 'email', 'password']
+  fields: ['username', 'password']
 })(RegisterFormComponent)
 
 export default RegisterForm

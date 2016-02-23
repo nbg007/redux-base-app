@@ -6,6 +6,13 @@ import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
 
 export class ListDishes extends Component {
+  constructor(props){
+    super(props)
+    this.handleRemoveDish = this.handleRemoveDish.bind(this)
+  }
+  handleRemoveDish(dish){
+    this.props.removeDish(dish)
+  }
   render() {
     const { isFetching, list, removeDish, t } = this.props
     return (
@@ -22,13 +29,13 @@ export class ListDishes extends Component {
               {' '}
               <Link to={`/dishes/${d.id}/edit`}>{t('listDishes.editButton')}</Link>
               {' '}
-              <button onClick={removeDish.bind(this, d)}>{t('listDishes.removeButton')}</button>
+              <button onClick={ this.handleRemoveDish }>{t('listDishes.removeButton')}</button>
             </li>)
           }
         </ul>
       </div>
-    )  
-  }  
+    )
+  }
 }
 
 ListDishes.propTypes = {

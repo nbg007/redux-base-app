@@ -1,75 +1,71 @@
-import * as actions from './actions'
-export * from './actions'
+import * as actions from './actions';
+export * from './actions';
 
-function session(state={
-    username: undefined,
-    email: undefined
-  }, action) {
+function session(state = {}, action) {
   switch (action.type) {
-    case actions.REGISTER_SUCCEEDED:
-    case actions.LOGIN:
-      return Object.assign({}, action.payload)
-    case actions.LOGOUT_SUCCEEDED:
-      return {}
-    case actions.VALIDATE_TOKEN_SUCCEEDED:
-      return Object.assign({}, state, {
-        username: action.payload.username  
-      })
-    default:
-      return state
+  case actions.REGISTER_SUCCEEDED:
+  case actions.LOGIN_SUCCEEDED:
+  case actions.GET_SESSION_SUCCEEDED:
+    return Object.assign({}, action.payload);
+  case actions.LOGOUT_SUCCEEDED:
+    return {};
+  default:
+    return state;
   }
 }
 
-export default function reducer(state={
-  logged: false,
-  loging: false,
-  registering: false,
-  session: session(undefined, {type: 'none'})
-  }, action) {
+const initialState = {
+  isLogged: false,
+  isLogging: false,
+  isRegistering: false,
+  session: {}
+};
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actions.LOGIN_FAILED:
-      return Object.assign({}, state, {
-        loging: false
-      })
-    case actions.LOGIN_ATTEMPTED:
-      return Object.assign({}, state, {
-        loging: true
-      })
-    case actions.VALIDATE_TOKEN_FAILED:
-      return Object.assign({}, state, {
-        logged: false
-      })
-    case actions.VALIDATE_TOKEN_SUCCEEDED:
-      return Object.assign({}, state, {
-        logged: true,
-        session: session(state.session, action)
-      })
-    case actions.LOGIN_SUCCEEDED:
-      return Object.assign({}, state, {
-        logged: true,
-        loging: false
-      })
-    case actions.LOGOUT_SUCCEEDED:
-      return Object.assign({}, state, {
-        logged: false,
-        logging: false,
-        registering: false,
-        session: {} 
-      })
-    case actions.REGISTER_FAILED:
-      return Object.assign({}, state, {
-        registering: false
-      })
-    case actions.REGISTER_ATTEMPTED:
-      return Object.assign({}, state, {
-        registering: true
-      })
-    case actions.REGISTER_SUCCEEDED:
-      return Object.assign({}, state, {
-        registering: false,
-        logged: true
-      })
-    default:
-      return state
+  case actions.LOGIN_FAILED:
+    return Object.assign({}, state, {
+      isLogging: false
+    });
+  case actions.LOGIN_ATTEMPTED:
+    return Object.assign({}, state, {
+      isLogging: true
+    });
+  case actions.GET_SESSION_FAILED:
+    return Object.assign({}, state, {
+      isLogged: false
+    });
+  case actions.GET_SESSION_SUCCEEDED:
+    return Object.assign({}, state, {
+      isLogged: true,
+      session: session(state.session, action)
+    });
+  case actions.LOGIN_SUCCEEDED:
+    return Object.assign({}, state, {
+      isLogged: true,
+      isLogging: false
+    });
+  case actions.LOGOUT_SUCCEEDED:
+    return Object.assign({}, state, {
+      isLogged: false,
+      logging: false,
+      isRegistering: false,
+      session: {}
+    });
+  case actions.REGISTER_FAILED:
+    return Object.assign({}, state, {
+      isRegistering: false
+    });
+  case actions.REGISTER_ATTEMPTED:
+    return Object.assign({}, state, {
+      isRegistering: true
+    });
+  case actions.REGISTER_SUCCEEDED:
+    return Object.assign({}, state, {
+      isRegistering: false,
+      isLogged: true
+    });
+  default:
+    return state;
   }
 }

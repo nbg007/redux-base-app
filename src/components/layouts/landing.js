@@ -1,6 +1,4 @@
 import React, { PropTypes, Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').default) : () => null
 
@@ -19,4 +17,4 @@ Landing.propTypes = {
   children: PropTypes.element
 }
 
-
+export default Landing
