@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
+import { bindHandlers } from '../../utils/binder'
 
 class OrderItem extends Component {
   constructor(props){
     super(props)
-    this.handleRemoveClick = this.handleRemoveClick.bind(this)
+    bindHandlers(this)
   }
 
   handleRemoveClick(e){

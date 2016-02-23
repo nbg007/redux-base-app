@@ -7,11 +7,11 @@ import React, { Component, PropTypes } from 'react'
 import { formatDate } from "../utils/common"
 import { Link } from 'react-router'
 import { translate } from 'react-i18next/lib'
-
+import OrderDishes from '../components/orders/order_dishes'
 
 export class ShowOrder extends Component {
   componentDidMount() {
-    this.props.fetchOrder(this.props.params.id)  
+    this.props.fetchOrder(this.props.params.id)
   }
   render() {
     const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t, style } = this.props
@@ -33,7 +33,8 @@ export class ShowOrder extends Component {
         <Link to={`/orders/${id}/edit/`}>{t('showOrder.editButton')}</Link>
         {' '}
         <button onClick={(order) => removeOrder(order)}>{t('showOrder.removeButton')}</button>
-        
+        <hr />
+        <OrderDishes dishes={ order.dishes || []} title={t('dishes.title')} />
       </div>
     )
   }
