@@ -6,15 +6,15 @@ const URL = 'dishes'
 const parse = x => x.data
 const opts = { parse }
 
-export const REQUEST_DISHES_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISHES")
-export const REQUEST_DISHES_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISHES")
+export const REQUEST_DISHES_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISHES:ATTEMPTED")
+export const REQUEST_DISHES_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISHES:SUCCEEDED")
 export function fetchDishes() {
   let types = [REQUEST_DISHES_ATTEMPTED, REQUEST_DISHES_SUCCEEDED]
   return fetch(URL, types, opts)
 }
 
-export const REQUEST_DISH_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISH")
-export const REQUEST_DISH_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISH")
+export const REQUEST_DISH_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISH:ATTEMPTED")
+export const REQUEST_DISH_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISH:SUCCEEDED")
 export function fetchDish(id) {
   let types = [REQUEST_DISH_ATTEMPTED, REQUEST_DISH_SUCCEEDED]
   return (dispatch, getState) => {
