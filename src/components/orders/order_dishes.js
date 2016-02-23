@@ -8,7 +8,7 @@ class OrderDishes extends Component {
       <div>
         <h3>{this.props.title}</h3>
         <ul>
-          { dishes.map(d => <li key={d.id}><Link to={`/dishes/${d.id}/show`}>{d.name}</Link></li>) }
+          { dishes.map(d => <li key={d.id}>{d.amount} x <Link to={`/dishes/${d.id}/show`}>{d.name}</Link></li>) }
         </ul>
       </div>
     )

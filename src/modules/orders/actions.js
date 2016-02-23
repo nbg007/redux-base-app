@@ -48,7 +48,8 @@ export function addOrder(order) {
       return Promise.reject({name: 'Dishes not available', _error: dishesNotAvailableError })
     } else {
       let types = [ADD_ORDER_ATTEMPTED, ADD_ORDER_SUCCEEDED, ADD_ORDER_FAILED]
-      order.date = new Date()
+      //FIX - this breaks server. Why send date? Field doesn't exist in the API!!
+      //order.date = new Date()
       return dispatch(create('orders', order, types, opts))
       .then( ({ payload }) => {
         dispatch(routeActions.push('/orders/'))
