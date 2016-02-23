@@ -43,6 +43,7 @@ export default function reducer(state = {
     case actions.REMOVE_ORDER_SUCCEEDED:
     case actions.ADD_ORDER_SUCCEEDED:
       return Object.assign({}, state, {
+        isFetching: false,
         list: orderList(state.list, action)
       })
     case actions.REQUEST_ORDERS_ATTEMPTED:

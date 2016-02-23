@@ -38,6 +38,7 @@ export default function reducer(state = {
     case actions.REMOVE_INGREDIENT_SUCCEEDED:
     case actions.ADD_INGREDIENT_SUCCEEDED:
       return Object.assign({}, state, {
+        isFetching: false,
         list: ingredientList(state.list, action)
       })
     case actions.REQUEST_INGREDIENTS_ATTEMPTED:

@@ -42,8 +42,9 @@ export default function reducer(state = {
   switch (action.type) {
     case actions.EDIT_DISH_SUCCEEDED:
     case actions.REMOVE_DISH_SUCCEEDED:
-    case actions.ADD_DISH:
+    case actions.ADD_DISH_SUCCEEDED:
       return Object.assign({}, state, {
+        isFetching: false,
         list: dishList(state.list, action)
       })
     case actions.REQUEST_DISHES_ATTEMPTED:
