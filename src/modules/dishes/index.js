@@ -1,14 +1,18 @@
 import * as actions from './actions'
 export * from './actions'
 
+function receiveSingleDish(list, dish){
+  let existing = list.find(x => x.id === dish.id)
+  if(existing){
+    return list.map(d => d.id === dish.id ? Object.assign({}, dish) : d)
+  }
+  return [dish, ...list]
+}
+
 function dishList(state=[], action) {
   switch (action.type) {
-    case actions.REQUEST_DISH_ATTEMPTED:
-      return state.map(dish =>
-        dish.id == action.payload.id ?
-          Object.assign({}, action.payload) :
-          dish
-      )
+    case actions.REQUEST_DISH_SUCCEEDED:
+      return receiveSingleDish(state, action.payload)
     case actions.REQUEST_DISHES_SUCCEEDED:
       return action.payload
     case actions.EDIT_DISH:
@@ -20,8 +24,7 @@ function dishList(state=[], action) {
     case actions.ADD_DISH_SUCCEEDED:
       return [
         {
-          ...action.payload,
-          id: state.reduce((maxId, dish) => Math.max(dish.id, maxId), 0) + 1
+          ...action.payload
         },
         ...state
       ]
@@ -48,6 +51,7 @@ export default function reducer(state = {
         list: dishList(state.list, action)
       })
     case actions.REQUEST_DISHES_ATTEMPTED:
+    case actions.REQUEST_DISH_ATTEMPTED:
       return Object.assign({}, state, {
         isFetching: true
       })

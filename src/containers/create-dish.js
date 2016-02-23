@@ -10,6 +10,7 @@ import { totalSelector } from '../modules/dishes/selectors'
 
 /* Actions */
 import { addDish, editDish, fetchDish } from '../modules/dishes'
+import { fetchIngredientsIfNeeded } from '../modules/ingredients'
 import {addArrayValue, removeArrayValue } from 'redux-form/lib/actions'
 
 /* Components */
@@ -18,7 +19,8 @@ import CreateDishForm from '../components/dishes/create-dish'
 
 class CreateDish extends Component {
   componentDidMount() {
-    this.props.fetchDish(this.props.params.id)   
+    this.props.fetchIngredientsIfNeeded()
+    //this.props.fetchDish(this.props.params.id)
   }
   onSubmit(dish) {
     if (this.props.location.pathname.includes("edit")) {
@@ -47,7 +49,7 @@ function mapDispatchToProps(dispatch) {
   const data = {form: "create-dish", key: ""}
   const bindedAddArrayValue = bindActionData(addArrayValue, data)
   const bindedRemoveArrayValue = bindActionData(removeArrayValue, data)
-  return bindActionCreators({ fetchDish, addDish, editDish, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue }, dispatch)
+  return bindActionCreators({ fetchIngredientsIfNeeded, fetchDish, addDish, editDish, addArrayValue: bindedAddArrayValue, removeArrayValue: bindedRemoveArrayValue }, dispatch)
 }
 
 export default connect(

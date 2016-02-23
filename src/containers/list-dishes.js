@@ -1,8 +1,9 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { removeDish } from '../modules/dishes'
+import { fetchDishes, removeDish } from '../modules/dishes'
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
+import DishItem from '../components/dishes/item'
 import { translate } from 'react-i18next/lib'
 
 export class ListDishes extends Component {
@@ -10,6 +11,11 @@ export class ListDishes extends Component {
     super(props)
     this.handleRemoveDish = this.handleRemoveDish.bind(this)
   }
+
+  componentDidMount(){
+    this.props.fetchDishes()
+  }
+
   handleRemoveDish(dish){
     this.props.removeDish(dish)
   }
@@ -24,13 +30,12 @@ export class ListDishes extends Component {
           {isFetching && <p>{t('listDishes.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listDishes.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((d, index) =>
-            <li key={index}>
-              <Link to={`/dishes/${d.id}/show`}>{d.name}</Link>
-              {' '}
-              <Link to={`/dishes/${d.id}/edit`}>{t('listDishes.editButton')}</Link>
-              {' '}
-              <button onClick={ this.handleRemoveDish }>{t('listDishes.removeButton')}</button>
-            </li>)
+            <DishItem key={d.id}
+              dish={d}
+              onRemove={ this.handleRemoveDish }
+              editText={t('listDishes.editButton')}
+              removeText={t('listDishes.removeButton')} />
+            )
           }
         </ul>
       </div>
@@ -52,7 +57,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeDish }, dispatch)
+  return bindActionCreators({ removeDish, fetchDishes }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ListDishes))

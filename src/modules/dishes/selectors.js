@@ -13,7 +13,9 @@ function findIngredients(ingredients, dishIngredients) {
 
 function find(ingredients, dishes, dishId) {
   const dish = findById(dishId, dishes)
-  dish.ingredients = dish.ingredients ? findIngredients(ingredients, dish.ingredients) : []
+  //WHATS THIS???
+  dish.ingredients || (dish.ingredients = [])
+  //dish.ingredients = dish.ingredients ? findIngredients(ingredients, dish.ingredients) : []
   return dish
 }
 
@@ -54,6 +56,7 @@ export const escandalloSelector = createSelector(
 export const totalSelector = createSelector(
   [dishSelector, escandalloSelector, ingredientsSelector],
   (dish, escandallo, ingredients) => {
+    console.log('totalselector', dish, escandallo, ingredients)
     return {
       dish: dish,
       ingredients: ingredients,
