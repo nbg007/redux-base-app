@@ -16,7 +16,7 @@ DishIngredientItem.propTypes = {
 export default class DishIngredientList extends Component {
   render(){
     const { ingredients } = this.props
-    const items = ingredients.map(ing => <DishIngredientItem key={ing.id} ingredient={ing} />)
+    const items = ingredients ? ingredients.map(ing => <DishIngredientItem key={ing.id} ingredient={ing} />) : []
     return (
       <div>
         <h3>Ingredients</h3>

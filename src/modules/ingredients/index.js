@@ -5,6 +5,8 @@ function ingredientList(state=[], action) {
   switch (action.type) {
     case actions.REQUEST_INGREDIENTS_SUCCEEDED:
       return action.payload
+    case actions.REQUEST_INGREDIENT_SUCCEEDED:
+      return [action.payload, ...state]
     case actions.EDIT_INGREDIENT_SUCCEEDED:
       return state.map(ingredient =>
         ingredient.id == action.payload.id ?
@@ -41,10 +43,12 @@ export default function reducer(state = {
         list: ingredientList(state.list, action)
       })
     case actions.REQUEST_INGREDIENTS_ATTEMPTED:
+    case actions.REQUEST_INGREDIENT_ATTEMPTED:
       return Object.assign({}, state, {
         isFetching: true
       })
     case actions.REQUEST_INGREDIENTS_SUCCEEDED:
+    case actions.REQUEST_INGREDIENT_SUCCEEDED:
       return Object.assign({}, state, {
         isFetching: false,
         list: ingredientList(state.list, action)
