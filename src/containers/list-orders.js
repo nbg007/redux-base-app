@@ -46,6 +46,8 @@ export class ListOrders extends Component {
   }
 }
 
+
+
 ListOrders.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   removeOrder: PropTypes.func.isRequired,
