@@ -13,7 +13,7 @@ function findDishes(dishes, orderDishes) {
 
 function find(dishes, orders, orderId) {
   const order = findById(orderId, orders)
-  //WARNING: MUTATING order!!!!!
+  //WARNING: MUTATING state!!!!!
   //order.dishes = order.dishes ? findDishes(dishes, order.dishes) : []
   order.dishes || (order.dishes = [])
   return order

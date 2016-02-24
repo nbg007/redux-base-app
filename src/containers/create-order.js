@@ -27,7 +27,9 @@ class CreateOrder extends Component {
     this.props.fetchDishesIfNeeded()
   }
   onSubmit(order) {
-    //Miguel: UGLY!!!!!
+    //Miguel: UGLY!!!!! This should be a `mode` prop on the component itself
+    //or should be handled in the action creator (has id? update, otherwise create)
+    //this creates a coupling between the component behaviour and route definitions
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editOrder(order)
     } else {
@@ -35,7 +37,16 @@ class CreateOrder extends Component {
     }
   }
   render() {
-    const { order, dishes, pvp,  addArrayValue, removeArrayValue, selectedAutocompleteItem, selectItemOnAutocomplete, style } = this.props
+    const {
+      order,
+      dishes,
+      pvp,
+      addArrayValue,
+      removeArrayValue,
+      selectedAutocompleteItem,
+      selectItemOnAutocomplete,
+      style
+    } = this.props
     return (
       <CreateOrderForm
         onSubmit={this.onSubmit.bind(this)}
