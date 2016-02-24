@@ -27,6 +27,7 @@ class CreateOrder extends Component {
     this.props.fetchDishesIfNeeded()
   }
   onSubmit(order) {
+    //Miguel: UGLY!!!!!
     if (this.props.location.pathname.includes("edit")) {
       return this.props.editOrder(order)
     } else {

@@ -14,7 +14,7 @@ export class ShowOrder extends Component {
     this.props.fetchOrder(this.props.params.id)
   }
   render() {
-    const { order, order: { id, createdAt}, pvp, isFetching, removeOrder, t, style } = this.props
+    const { order, order: { id, createdAt}, isFetching, totalPrice, removeOrder, t, style } = this.props
     return (
       <div className='component' style={style}>
         <span>
@@ -26,7 +26,7 @@ export class ShowOrder extends Component {
             <div>
               <li><p>Order {id}</p></li>
               <li><p>{formatDate(createdAt)}</p></li>
-              <li><p>{pvp}</p></li>
+              <li><p>{totalPrice}</p></li>
             </div>
           }
         </ul>
@@ -41,13 +41,33 @@ export class ShowOrder extends Component {
 }
 
 ShowOrder.propTypes = {
-  order: PropTypes.object,
+  order: PropTypes.object.isRequired,
+  totalPrice: PropTypes.number.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  removeOrder: PropTypes.func.isRequired
+  removeOrder: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ removeOrder, fetchOrder }, dispatch)
 }
 
-export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowOrder))
+function mapStateToProps(state, ownProps){
+  const emptyOrder = {
+    id: '',
+    createdAt: null,
+    dishes: []
+  }
+
+  let order = state.orders.list.find(x => x.id === ownProps.params.id) || emptyOrder
+  let totalPrice = order.dishes ? order.dishes.reduce((acc, d) => acc + (d.amount*d.price), 0) : 0
+
+  return {
+    isFetching: state.orders.isFetching,
+    order,
+    totalPrice
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['common'])(ShowOrder))
+//export default connect(totalSelector, mapDispatchToProps)(translate(['common'])(ShowOrder))

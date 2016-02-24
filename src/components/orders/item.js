@@ -9,8 +9,7 @@ class OrderItem extends Component {
 
   handleRemoveClick(e){
     e.preventDefault()
-    console.log('Binded', this)
-    //this.props.onRemoveClick(this.props.order)
+    this.props.onRemoveClick(this.props.order)
   }
 
   render(){
