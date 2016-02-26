@@ -13,7 +13,9 @@ function findIngredients(ingredients, dishIngredients) {
 
 function find(ingredients, dishes, dishId) {
   const dish = findById(dishId, dishes)
-  dish.ingredients = dish.ingredients ? findIngredients(ingredients, dish.ingredients) : []
+  //WHATS THIS???
+  dish.ingredients || (dish.ingredients = [])
+  //dish.ingredients = dish.ingredients ? findIngredients(ingredients, dish.ingredients) : []
   return dish
 }
 

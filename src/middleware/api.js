@@ -1,69 +1,73 @@
+//polyfills fetch for non-compatible browser (issue #6)
 import fetch from 'isomorphic-fetch'
-import config from '../config'
-import { applyToken, applyHeaders } from '../modules/helpers'
-import { LOGOUT } from '../modules/auth'
 
-const BASE_URL = config.api
+// Makes an AJAX call using fetch API
+function makeRequest(endpoint, config={}) {
+  return fetch(endpoint, config)
+    .then(response => {
+        return response.json()
+          .then(json => ({ json, response }))
+          .catch(() => ({ response }))
+      }
+    )
+    .then(({ json, response }) => {
+      //console.log('Fetch then', json, response);
+      if (!response.ok) {
+        //NOTE: this "errors" props is app-specific
+        //throw json.errors
+        throw json ? json : new Error(response.statusText)
+      }
+      else {
+        //NOTE: this json.data is app-specific!!!
+        //return json.data;
+        return json
 
-
-function callApi(endpoint, authenticated, config={}) {
-  let token = localStorage.getItem('token') || null
-  config = applyHeaders(config, token)
-
-  if (authenticated && !token) {
-    return Promise.reject("Unauthorized")
-  }
-
-  return fetch(BASE_URL + endpoint, config)
-  .then(response =>
-    response.json().then(json=> ({ json, response }))
-  ).then(({ json, response }) => {
-    if (!response.ok) {
-      throw json.errors[0]
-    } else {
-      return json.data
-    }
-  }).catch(error => {
-    throw error.message
-  })
+      }
+    })
 }
 
 export const CALL_API = Symbol('Call API')
 
-export default store => dispatch => action => {
+export default store => next => action => {
 
   const callAPI = action[CALL_API]
 
   // So the middleware doesn't get applied to every single action
   if (typeof callAPI === 'undefined') {
-    return dispatch(action)
+    return next(action)
   }
 
-  let { endpoint, types, authenticated, config  } = callAPI
+  let { endpoint, types, config, options  } = callAPI
+  if(!options.parse){
+    options.parse = (x) => x
+  }
+  if(!options.onError){
+    options.onError = (x) => x
+  }
+  const [requestType, successType, errorType] = types
 
-  const [ requestType, successType, errorType] = types
-  dispatch({type: requestType, authenticated})
+  //add callAPI options as meta to *_REQUEST action for debugging
+  next({type: requestType, meta: callAPI })
+  //console.log('call api', endpoint, config)
   // Passing the authenticated boolean back in our data will let us distinguish
-  return callApi(endpoint, authenticated, config).then(
-    payload =>
-      dispatch({
-        payload,
-        authenticated,
+  return makeRequest(endpoint, config)
+  .then(payload => {
+      let parsedPayload = options.parse(payload)
+
+      next({
+        payload: parsedPayload,
         type: successType
-      }),
+      });
+      return parsedPayload
+    },
     error => {
-      // Switch con todos los casos de excepcion comunes
-      if (error == 'Unauthorized') {
-        return Promise.reject(error)
-      } else {
-        dispatch({
-          error: error || 'There was an error.',
-          type: errorType
-        })
-        return Promise.reject({
-          _error: error || 'There was an error.',
-        })
-      }
+      let processedError = options.onError(error)
+
+      next({
+        error: options.onError(error),
+        type: errorType
+      });
+      throw processedError
     }
   )
 }

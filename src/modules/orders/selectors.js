@@ -13,7 +13,9 @@ function findDishes(dishes, orderDishes) {
 
 function find(dishes, orders, orderId) {
   const order = findById(orderId, orders)
-  order.dishes = order.dishes ? findDishes(dishes, order.dishes) : []
+  //WARNING: MUTATING state!!!!!
+  //order.dishes = order.dishes ? findDishes(dishes, order.dishes) : []
+  order.dishes || (order.dishes = [])
   return order
 }
 
@@ -21,7 +23,7 @@ const routeSelector = (state, props) => props.params.id
 const listSelector = state => state.orders.list
 const fetchingSelector = state => state.orders.isFetching
 const dishesSelector = (state) => state.dishes.list
-const formSelector = (state) => state.form['create-order'] ? state.form['create-order'].dishes :undefined
+const formSelector = (state) => state.form['create-order'] ? state.form['create-order'].dishes : undefined
 const selectedAutocompleteItemSelector = (state) => state.ui.autocomplete['create-order']
 
 export const orderSelector = createSelector(
@@ -36,6 +38,7 @@ export const orderSelector = createSelector(
 
 // Be careful, orderDishes could be from the form or from the dishes of the order
 function pvp(dishes, orderDishes) {
+  /** WARNING - this doesn't work if dishes is empty */
   return orderDishes.reduce((acc, od) => {
     const d = dishes.find(d => {
       return d.id == od.id.value ? od.id.value : od.id

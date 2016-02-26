@@ -3,15 +3,17 @@ export * from './actions'
 
 function ingredientList(state=[], action) {
   switch (action.type) {
-    case actions.RECEIVE_INGREDIENTS:
+    case actions.REQUEST_INGREDIENTS_SUCCEEDED:
       return action.payload
-    case actions.EDIT_INGREDIENT:
+    case actions.REQUEST_INGREDIENT_SUCCEEDED:
+      return [action.payload, ...state]
+    case actions.EDIT_INGREDIENT_SUCCEEDED:
       return state.map(ingredient =>
         ingredient.id == action.payload.id ?
           Object.assign({}, ingredient, action.payload) :
           ingredient
       )
-    case actions.ADD_INGREDIENT:
+    case actions.ADD_INGREDIENT_SUCCEEDED:
       return [
         {
           ...action.payload,
@@ -19,7 +21,7 @@ function ingredientList(state=[], action) {
         },
         ...state
       ]
-    case actions.REMOVE_INGREDIENT:
+    case actions.REMOVE_INGREDIENT_SUCCEEDED:
       return state.filter(ingredient =>
         ingredient.id !== action.payload.id
       )
@@ -34,17 +36,20 @@ export default function reducer(state = {
     list: []
   }, action) {
   switch (action.type) {
-    case actions.EDIT_INGREDIENT:
-    case actions.REMOVE_INGREDIENT:
-    case actions.ADD_INGREDIENT:
+    case actions.EDIT_INGREDIENT_SUCCEEDED:
+    case actions.REMOVE_INGREDIENT_SUCCEEDED:
+    case actions.ADD_INGREDIENT_SUCCEEDED:
       return Object.assign({}, state, {
+        isFetching: false,
         list: ingredientList(state.list, action)
       })
-    case actions.REQUEST_INGREDIENTS:
+    case actions.REQUEST_INGREDIENTS_ATTEMPTED:
+    case actions.REQUEST_INGREDIENT_ATTEMPTED:
       return Object.assign({}, state, {
         isFetching: true
       })
-    case actions.RECEIVE_INGREDIENTS:
+    case actions.REQUEST_INGREDIENTS_SUCCEEDED:
+    case actions.REQUEST_INGREDIENT_SUCCEEDED:
       return Object.assign({}, state, {
         isFetching: false,
         list: ingredientList(state.list, action)

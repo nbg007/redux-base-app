@@ -1,109 +1,105 @@
-//TODO: Cambiar validate token por session (get) y llamarlo desde el login
-import fetch from 'isomorphic-fetch'
-import { applyToken, applyHeaders } from '../helpers';
-import config from "../../config"
-import { CALL_API } from '../../middleware/api'
+import { LOCALSTORAGE_TOKEN_KEY } from '../../config'
+import AuthAPI from './api'
+import { push, replace } from 'react-router-redux'
+export * from './action_types'
 
-/* Actions */
-import { fetchIngredients } from '../ingredients'
-import { fetchDishes } from '../dishes'
-import { fetchOrders } from '../orders'
-import { initNotifications } from '../notifications'
-import { routeActions } from 'react-router-redux'
+//UTILS
+function clearToken(){
+  localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
+}
 
-const MODULE_NAME = "base-app/auth/"
+function getToken(){
+  return localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+}
 
-export const VALIDATE_TOKEN_FAIL = MODULE_NAME.concat("VALIDATE_TOKEN_FAIL")
-export const VALIDATE_TOKEN = MODULE_NAME.concat("VALIDATE_TOKEN")
-export const VALIDATE_TOKEN_ATTEMPT = MODULE_NAME.concat("VALIDATE_TOKEN_ATTEMPT")
+function saveToken(token){
+  localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, token)
+}
 
-export const LOGIN_ATTEMPT = MODULE_NAME.concat("LOGIN_ATTEMPT")
-export const LOGIN_FAIL = MODULE_NAME.concat("LOGIN_FAIL")
-export const LOGIN = MODULE_NAME.concat("LOGIN")
-export const LOGOUT = MODULE_NAME.concat("LOGOUT")
+function goToLogin(){
+  return push('/login');
+}
 
-export const REGISTER = MODULE_NAME.concat("REGISTER")
-export const REGISTER_ATTEMPT = MODULE_NAME.concat("REGISTER_ATTEMPT")
-export const REGISTER_FAIL = MODULE_NAME.concat("REGISTER_FAIL")
+/** Auth module Action Creators */
 
-export function checkLogged(callback) {
+/**
+ * Async action creator that performs login
+ * @param  {String} options.username Username
+ * @param  {String} options.password Password
+ * @return {Function}                Thunk
+ */
+export function login({username, password}) {
   return (dispatch, getState) => {
-    if (getState().auth.logged) {
-      dispatch(routeActions.replace('/'))
-    } else {
-      callback()
-    }
+    return dispatch(AuthAPI.login(username, password))
+    .then(response =>  {
+      saveToken(response.token)
+      dispatch(push('/'))
+    })
+    .catch((e) => {
+      let error = e.errors[0];
+      if(error.message.match(/not found/))
+        return Promise.reject({ _error: 'Login failed', username: 'Invalid username' })
+      else
+        return Promise.reject({ _error: 'Login failed', password: 'Invalid password' })
+    })
   }
 }
 
-export function validateToken() {
+/**
+ * Async action that fetches the current user session
+ * if a JSON Web Token is present
+ * @return {Function} Async action (thunk)
+ */
+export function getSession() {
   return (dispatch, getState) => {
-    if (!getState().auth.session.name) {
-      return dispatch({
-        [CALL_API]: {
-          endpoint: 'session',
-          authenticated: true,
-          types: [VALIDATE_TOKEN_ATTEMPT, VALIDATE_TOKEN, VALIDATE_TOKEN_FAIL],
-        }
-      }).catch((e) => {
-        dispatch(logout())
+    //bail out early, if no token avoid calling the API
+    if(!getToken()){
+      return dispatch(goToLogin())
+    }
+    if (!getState().session) {
+      return dispatch(AuthAPI.getSession())
+      .catch((e) => {
+        //throw e;
+        console.log('getSession failed', e)
+        clearToken();
+        dispatch(goToLogin());
       })
     }
   }
 }
 
+/**
+ * Async action that performs logout
+ * @return {Function} Thunk
+ */
 export function logout() {
   return (dispatch, getState) => {
-    localStorage.removeItem('token')
-    dispatch({type: LOGOUT})
-    dispatch(routeActions.replace("/login"))
+    dispatch(AuthAPI.logout())
+      .then(() => {
+        clearToken();
+        dispatch(goToLogin())
+      })
+      .catch(errors => {
+        console.log('Logout failed!', errors)
+      })
   }
 }
 
-export function login({username, password}) {
-  return (dispatch, getState) => {
-    return dispatch({
-      [CALL_API]: {
-        endpoint: 'session',
-        config: {
-          method: 'POST',
-          body: JSON.stringify({
-            username: username,
-            password: password
-          })
-        },
-        types: [LOGIN_ATTEMPT, LOGIN, LOGIN_FAIL],
-        //parseResponse:
-      }
-    }).then(({ payload }) =>  {
-      localStorage.setItem('token', payload.token)
-      dispatch(routeActions.push('/'))
-    }).catch((e) => {
-      return Promise.reject({ _error: e._error})
-    })
-  }
-}
-
+/**
+ * Async action creator that register a user against the API
+ * @param  {Object} credentials Object with username, password fields
+ * @return {Function}           Thunk
+ */
 export function register(credentials) {
   return (dispatch, getState) => {
-    return dispatch({
-      [CALL_API]: {
-        endpoint: 'register',
-        config: {
-          method: 'POST',
-          body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password
-          })
-        },
-        types: [REGISTER_ATTEMPT, REGISTER, REGISTER_FAIL],
-        //parseResponse:
-      }
-    }).then(({ payload, error}) =>  {
-      webStorage.save('token', json.data.token)
-      dispatch(routeActions.push('/'))
-    }).catch((e) => {
-      return Promise.reject({_error: e._error })
+    return dispatch(AuthAPI.register(credentials))
+    .then((payload) =>  {
+      saveToken(payload.token)
+      dispatch(push('/'))
+    })
+    .catch((e) => {
+      console.log('Register failed', e);
+      return Promise.reject({_error: 'Register failed', username: 'Username already in use' })
     })
   }
 }
