@@ -1,3 +1,4 @@
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -52,6 +53,12 @@ a:hover {
 	height: 0;
 }
 
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
 /*FORMS*/
 
 form {
@@ -102,6 +109,7 @@ input[type="radio"] {
 	border-radius: 3px;
 	width: 400px;
 	margin: 0px auto;
+	position: relative;
 }
 
 .basic-form .field {
@@ -158,4 +166,23 @@ input[type="radio"] {
 .section-title {
 	font-size: 24px;
 	font-weight: bold;
+}
+
+.section-title.form-title {
+  max-width: 400px;
+}
+
+
+/*LOGIN*/
+
+.login-wrapper {
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.info-message {
+  margin: 20px 0px;
 }

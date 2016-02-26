@@ -18,25 +18,27 @@ export class RegisterFormComponent extends Component {
           style
         } = this.props
     return (
-      <div className='component' style={style}>
-        <p>Introduce tus datos para registrarte en DAH</p>
-        <form onSubmit={handleSubmit}>
-          <div>
+      <div className='component wrapper' style={style}>
+        <p className='section-title form-title'>Introduce tus datos para registrarte en DAH</p>
+        <form onSubmit={handleSubmit} className='basic-form clearfix'>
+          <div className='field'>
             <label>Username</label>
             <input type="text" placeholder="username" {...username}/>
             {username.touched && username.error && <div>{username.error}</div>}
           </div>
-          <div>
+          <div className='field'>
             <label>Password</label>
             <input type="password" placeholder="password" {...password}/>
             {password.touched && password.error && <div>{password.error}</div>}
           </div>
           {error && <div>{error}</div>}
-          <button disabled={submitting} type="submit" onClick={handleSubmit}>
+          <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
             {submitting ? <i/> : <i/>} Submit
           </button>
         </form>
+        <div className='info-message'>
         Si ya estas registrado, <Link to='/Login'>haz login</Link>
+        </div>
       </div>
     )
   }

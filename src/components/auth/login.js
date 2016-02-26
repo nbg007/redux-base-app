@@ -21,8 +21,8 @@ export class LoginFormComponent extends Component {
           t
         } = this.props
     return (
-      <div className='component' style={style}>
-        <p className='section-title'>{t('login.title')}</p>
+      <div className='component wrapper' style={style}>
+        <p className='section-title form-title'>{t('login.title')}</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'> 
           <div className='field'>
             <label>{t('username')}</label>
@@ -39,11 +39,9 @@ export class LoginFormComponent extends Component {
             {submitting ? <i/> : <i/>} {t('submit')}
           </button>
         </form>
-<<<<<<< HEAD:src/components/login.js
-        <Interpolate parent='p' i18nKey='login.goRegister' component={registerComponent} className='info-text' />
-=======
+        <div className='info-message'>
         {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
->>>>>>> 568f86ffb35292286f82729c64c6075f78dcbe30:src/components/auth/login.js
+        </div>
       </div>
     )
   }  
