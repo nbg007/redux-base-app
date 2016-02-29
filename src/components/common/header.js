@@ -9,12 +9,13 @@ export class Header extends Component {
     this.props.onLogout()
   }
   render() {
-    const {title, username, modalIsOpen, notifications, t} = this.props
+    const {title, username, modal, notifications, t, toggleModal} = this.props
     return (
       <header>
         <h1>{t('appName')}:{title}</h1>
         {' '}
-        <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+        <p>{t('content.welcome', {value: username})}</p>
+        {' '}
         <Link to="/">{t('home')}</Link>
         {' '}
         <Link to="/ingredients">{t('ingredients')}</Link>
@@ -23,7 +24,7 @@ export class Header extends Component {
         {' '}
         <Link to="/orders">{t('orders')}</Link>
         {' '}
-        <Notifications notifications={notifications}/>
+        <Notifications notifications={notifications} modal={modal} toggleModal={toggleModal}/>
         {' '}
         <a href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
       </header>
