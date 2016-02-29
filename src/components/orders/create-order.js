@@ -24,18 +24,18 @@ class CreateOrderForm extends Component {
   }
   render() {
     const {
-          fields: {id, dishes},
-          totalDishes,
-          pvp,
-          removeDishFromOrder,
-          selectedAutocompleteItem,
-          selectItemOnAutocomplete,
-          handleSubmit,
-          resetForm,
-          submitting,
-          error,
-          t
-          } = this.props
+      fields: {id, dishes},
+      totalDishes,
+      pvp,
+      removeDishFromOrder,
+      selectedAutocompleteItem,
+      selectItemOnAutocomplete,
+      handleSubmit,
+      resetForm,
+      submitting,
+      error,
+      t
+    } = this.props
     return (
       <div className='component' style={this.props.style}>
         <p>{t('createOrder.description')}</p>
@@ -43,23 +43,23 @@ class CreateOrderForm extends Component {
         <form onSubmit={handleSubmit}>
           <div>
             <label>{t('createOrder.dishes')}</label>
-            <Autocomplete 
+            <Autocomplete
               ref = "createOrderAutocomplete"
               initialValue={selectedAutocompleteItem ? selectedAutocompleteItem.name : ""}
-              items={totalDishes} 
+              items={totalDishes}
               shouldItemRender={ matchStateToTerm }
               sortItems={sortItems}
               onSelect={(value, item) => {
+                //console.log('Autocomplete selected', value, item)
                 selectItemOnAutocomplete({ref: "create-order", item})
               }}
-              getItemValue={(item) => item.name} 
+              getItemValue={(item) => item.name}
               renderItem={(item, isHighlighted) => (
                 <div
                   style={isHighlighted ? styles.highlightedItem : styles.item}
                   key={item.id}
                 >{item.name}</div>
-              )}
-            />
+              )} />
             <input ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
             <input type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
           </div>
@@ -80,15 +80,15 @@ class CreateOrderForm extends Component {
 }
 
 CreateOrderForm.propTypes = {
-    fields: PropTypes.object.isRequired,
-    dishes: PropTypes.array,
-    pvp: PropTypes.number,
-    handleSubmit: PropTypes.func.isRequired,
-    selectItemOnAutocomplete: PropTypes.func.isRequired,
-    error: PropTypes.string,
-    resetForm: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired
-  }
+  fields: PropTypes.object.isRequired,
+  dishes: PropTypes.array,
+  pvp: PropTypes.number,
+  handleSubmit: PropTypes.func.isRequired,
+  selectItemOnAutocomplete: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  resetForm: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
+}
 
 CreateOrderForm = reduxForm({
   form: 'create-order',
@@ -99,4 +99,4 @@ CreateOrderForm = reduxForm({
   ]
 })(CreateOrderForm)
 
-export default translate(['common'])(CreateOrderForm) 
+export default translate(['common'])(CreateOrderForm)

@@ -13,6 +13,15 @@ export function fetchDishes() {
   return fetch(URL, types, opts)
 }
 
+export function fetchDishesIfNeeded(){
+  return (dispatch, getState) => {
+    let dishesState = getState().dishes
+    if(dishesState.list.length === 0 && !dishesState.isFetching){
+      return dispatch(fetchDishes())
+    }
+  }
+}
+
 export const REQUEST_DISH_ATTEMPTED = MODULE_NAME.concat("REQUEST:DISH:ATTEMPTED")
 export const REQUEST_DISH_SUCCEEDED = MODULE_NAME.concat("RECEIVE:DISH:SUCCEEDED")
 export function fetchDish(id) {

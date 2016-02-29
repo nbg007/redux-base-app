@@ -1,8 +1,8 @@
-import {createValidator, required} from '../../utils/validation'
+import {createValidator, required} from '../utils/validation'
 import { Link } from 'react-router'
 import {reduxForm} from 'redux-form'
 import React, { PropTypes, Component } from 'react'
-import { translate } from 'react-i18next/lib'
+import { translate, Interpolate } from 'react-i18next/lib'
 
 
 const validate = createValidator({
@@ -10,7 +10,7 @@ const validate = createValidator({
   password: [required]
 })
 
-export class LoginFormComponent extends Component {
+class LoginForm extends Component {
   render() {
     const {
           fields: {username, password},
@@ -20,9 +20,10 @@ export class LoginFormComponent extends Component {
           style,
           t
         } = this.props
+    const registerComponent = <Link to='/register'>{t('login.registerActionCall')}</Link>
     return (
-      <div className='component wrapper' style={style}>
-        <p className='section-title form-title'>{t('login.title')}</p>
+      <div className='component login-wrapper' style={style}>
+        <p className='section-title'>{t('login.title')}</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'> 
           <div className='field'>
             <label>{t('username')}</label>
@@ -34,30 +35,28 @@ export class LoginFormComponent extends Component {
             <input type="password" placeholder="password" {...password}/>
             {password.touched && password.error && <div>{password.error}</div>}
           </div>
-          {error && <div>{error}</div>}
+          {error && <div className='error-msg'>{error}</div>}
           <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
             {submitting ? <i/> : <i/>} {t('submit')}
           </button>
         </form>
-        <div className='info-message'>
         {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
-        </div>
       </div>
     )
   }  
 }
 
-LoginFormComponent.propTypes = {
+LoginForm.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.string,
   submitting: PropTypes.bool.isRequired
 }
 
-const LoginForm = reduxForm({
+LoginForm = reduxForm({
   form: 'login',
   validate,
   fields: ['username', 'password']
-})(LoginFormComponent)
+})(LoginForm)
 
 export default translate(['common'])(LoginForm)
