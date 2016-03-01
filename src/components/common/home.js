@@ -4,7 +4,7 @@ import { translate } from 'react-i18next/lib'
 
 export function Home({t}) {
   return (
-    <div>
+    <div className='main-content'>
       <h3>{t('home.title')}</h3>
       <div className='button-wrap'>
         <p><Link className='button button-primary' to="/ingredients">{t('home.ingredientsLink')}</Link>

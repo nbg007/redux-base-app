@@ -8,9 +8,10 @@ html, body {
   box-sizing: border-box;
 }
 
-#root {
-	margin: 33px;
+p {
+  margin: 0;
 }
+
 .transition-wrapper {
 	position: relative;
 

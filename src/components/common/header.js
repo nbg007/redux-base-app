@@ -11,21 +11,27 @@ export class Header extends Component {
   render() {
     const {title, username, modalIsOpen, notifications, t} = this.props
     return (
-      <header>
-        <h1>{t('appName')}:{title}</h1>
-        {' '}
-        <Interpolate parent='p' i18nKey='content.welcome' value={username} />
-        <Link to="/">{t('home')}</Link>
-        {' '}
-        <Link to="/ingredients">{t('ingredients')}</Link>
-        {' '}
-        <Link to="/dishes">{t('dishes')}</Link>
-        {' '}
-        <Link to="/orders">{t('orders')}</Link>
-        {' '}
-        <Notifications notifications={notifications}/>
-        {' '}
-        <a href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
+      <header className='main-header'>
+        <div className='navigation-wrapper clearfix'>
+          <nav className='main-navigation'>
+            <Link className='nav-item' to="/">{t('home')}</Link>
+            {' '}
+            <Link className='nav-item' to="/ingredients">{t('ingredients')}</Link>
+            {' '}
+            <Link className='nav-item' to="/dishes">{t('dishes')}</Link>
+            {' '}
+            <Link className='nav-item' to="/orders">{t('orders')}</Link>
+            {' '}
+            <Notifications notifications={notifications}/>
+            {' '}
+            <a className='nav-item' href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
+          </nav>
+        </div>
+        <div className='header-intro'>
+          <h1 className='alpha'>{t('appName')}:{title}</h1>
+          {' '}
+          <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+        </div>
       </header>
     );
   }

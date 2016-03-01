@@ -18,7 +18,7 @@ export class RegisterFormComponent extends Component {
           style
         } = this.props
     return (
-      <div className='component wrapper' style={style}>
+      <div className='component wrapper main-content' style={style}>
         <p className='section-title form-title'>Introduce tus datos para registrarte en DAH</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'>
           <div className='field'>

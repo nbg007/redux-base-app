@@ -1,4 +1,6 @@
-/*HEADINGS*/
+/*------------------------------------------*\
+    $HEADINGS
+\*------------------------------------------*/
 
 .section-title {
   font-size: 24px;
@@ -7,4 +9,17 @@
 
 .section-title.form-title {
   max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.alpha {
+  font-size: 30px;
+}
+
+.beta {
+  font-size: 26px;
+}
+
+.gamma {
+  font-size: 22px;
 }

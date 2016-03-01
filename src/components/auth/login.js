@@ -21,7 +21,7 @@ export class LoginFormComponent extends Component {
           t
         } = this.props
     return (
-      <div className='component wrapper' style={style}>
+      <div className='component wrapper main-content' style={style}>
         <p className='section-title form-title'>{t('login.title')}</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'> 
           <div className='field'>

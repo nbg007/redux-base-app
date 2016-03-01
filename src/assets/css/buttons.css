@@ -1,4 +1,6 @@
-/*BUTTONS*/
+/*------------------------------------------*\
+    $BUTTONS
+\*------------------------------------------*/
 
 .button {
   display: inline-block;
@@ -14,12 +16,22 @@
 }
 
 .button-primary {
-  background: #489CC1;
+  background: #F78536;
   color: #fff;
 }
 
-.button-primary:hover {
+.button-secondary {
+  background: #2B4450;
+  color: #fff;
+}
+
+.button:hover {
   opacity: .8;
+}
+
+.button-sm {
+  padding: 10px 5px;
+  font-size: 14px;
 }
 
 
@@ -27,4 +39,11 @@
   display: inline-block;
   margin: 0px 5px 20px 0px;
   min-width: 200px;
+  width: 100%;
+}
+
+@media (min-width:600px)  {
+  .button-wrap .button {
+    width: auto;
+  }
 }

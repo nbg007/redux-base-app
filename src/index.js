@@ -1,4 +1,5 @@
 import './assets/css/main.css'
+import './assets/css/organism.css'
 import './assets/css/typo.css'
 import './assets/css/forms.css'
 import './assets/css/buttons.css'
