@@ -16,9 +16,9 @@ p {
 	position: relative;
 
 }
-.component{
-	position: absolute;
-}
+// .component{
+// 	position: absolute;
+// }
 
 .loading-message {
   position: absolute;
