@@ -51,29 +51,28 @@ input[type="radio"] {
   position: relative;
 }
 
-.basic-form {
-  .field {
-    margin-bottom: 20px;
-  }
+.basic-form .field {
+  margin-bottom: 20px;
 }
 
-.basic-form {
-  input {
-    border: 2px solid #f1f1f1;
-    background: #fff;
-    padding: 12px;
-    width: 100%;
-    display: block;
-    border-radius: 3px;
-    outline: none;
-  }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  button {
-    outline: none;
-    float: right;
-  }
+.basic-form input {
+  border: 2px solid #f1f1f1;
+  background: #fff;
+  padding: 12px;
+  width: 100%;
+  display: block;
+  border-radius: 3px;
+  outline: none;
+}
+  
+
+.basic-form button {
+  outline: none;
+  float: right;
+}
+
+.basic-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
