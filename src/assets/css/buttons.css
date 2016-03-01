@@ -21,3 +21,10 @@
 .button-primary:hover {
   opacity: .8;
 }
+
+
+.button-wrap .button {
+  display: inline-block;
+  margin: 0px 5px 20px 0px;
+  min-width: 200px;
+}
