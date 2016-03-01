@@ -1,0 +1,23 @@
+/*BUTTONS*/
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 12px 15px;
+}
+
+.button-primary {
+  background: #00ADB5;
+  color: #fff;
+}
+
+.button-primary:hover {
+  opacity: .8;
+}

@@ -22,21 +22,21 @@ class LoginForm extends Component {
         } = this.props
     const registerComponent = <Link to='/register'>{t('login.registerActionCall')}</Link>
     return (
-      <div className='component login-wrapper' style={style}>
-        <p className='section-title'>{t('login.title')}</p>
-        <form onSubmit={handleSubmit} className='basic-form clearfix'> 
-          <div className='field'>
+      <div className='component' style={style}>
+        <p>{t('login.title')}</p>
+        <form onSubmit={handleSubmit}> 
+          <div>
             <label>{t('username')}</label>
             <input type="text" placeholder="username" {...username}/>
             {username.touched && username.error && <div>{username.error}</div>}
           </div>
-          <div className='field'>
+          <div>
             <label>{t('password')}</label>
             <input type="password" placeholder="password" {...password}/>
             {password.touched && password.error && <div>{password.error}</div>}
           </div>
-          {error && <div className='error-msg'>{error}</div>}
-          <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+          {error && <div>{error}</div>}
+          <button disabled={submitting} type="submit" onClick={handleSubmit}>
             {submitting ? <i/> : <i/>} {t('submit')}
           </button>
         </form>
