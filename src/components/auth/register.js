@@ -19,7 +19,7 @@ export class RegisterFormComponent extends Component {
         } = this.props
     return (
       <div className='component main-content' style={style}>
-        <p className='section-title form-title'>Introduce tus datos para registrarte en DAH</p>
+        <p className='form-title beta'>Introduce tus datos para registrarte en DAH</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'>
           <div className='field'>
             <label>Username</label>

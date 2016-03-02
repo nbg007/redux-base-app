@@ -3,22 +3,26 @@
 \*------------------------------------------*/
 
 .section-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
-.section-title.form-title {
+.form-title.beta {
   max-width: 400px;
 }
 
 .alpha {
   font-size: 30px;
+  margin: 0;
+  font-weight: bold;
 }
 
 .beta {
   font-size: 26px;
+  font-weight: bold;
 }
 
 .gamma {
   font-size: 22px;
+  font-weight: bold;
 }

@@ -22,7 +22,7 @@ class CreateIngredientForm extends Component {
 
     return (
       <div className='component' style={this.props.style}>
-        <p>{t('createIngredient.description')}</p>
+        <p className='section-title'>{t('createIngredient.description')}</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'>
           <div className='field'>
             <label>{t('createIngredient.nameLabel')}</label>

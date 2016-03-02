@@ -12,7 +12,9 @@ export class Header extends Component {
     const {title, username, modalIsOpen, notifications, t} = this.props
     return (
       <header className='main-header'>
-        <div className='navigation-wrapper clearfix'>
+        <div className='header-wrapper clearfix'>
+          <h1 className='app-title'>{t('appName')}:{title}</h1>
+          {' '}
           <nav className='main-navigation'>
             <Link className='nav-item' to="/">{t('home')}</Link>
             {' '}
@@ -28,8 +30,6 @@ export class Header extends Component {
           </nav>
         </div>
         <div className='header-intro'>
-          <h1 className='alpha'>{t('appName')}:{title}</h1>
-          {' '}
           <Interpolate parent='p' i18nKey='content.welcome' value={username} />
         </div>
       </header>
