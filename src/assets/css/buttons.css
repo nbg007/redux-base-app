@@ -16,13 +16,14 @@
 }
 
 .button-primary {
-  background: #F78536;
+  background: #29CAAD;
   color: #fff;
 }
 
 .button-secondary {
-  background: #2B4450;
-  color: #fff;
+  background: transparent;
+  border: 1px solid #2772DB;
+  color: #2772DB;
 }
 
 .button:hover {

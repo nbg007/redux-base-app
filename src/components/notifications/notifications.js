@@ -48,7 +48,7 @@ class Notifications extends Component {
     )
     return (
       <div className="nav-item">
-        <button className='button button-secondary button-sm' onClick={this.openModal.bind(this)}>{t("notifications.title")}</button>
+        <button onClick={this.openModal.bind(this)}>{t("notifications.title")}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           style={customStyles} >
