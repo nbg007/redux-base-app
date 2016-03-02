@@ -21,7 +21,7 @@ export class LoginFormComponent extends Component {
           t
         } = this.props
     return (
-      <div className='component wrapper main-content' style={style}>
+      <div className='component main-content' style={style}>
         <p className='section-title form-title'>{t('login.title')}</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'> 
           <div className='field'>
@@ -35,9 +35,11 @@ export class LoginFormComponent extends Component {
             {password.touched && password.error && <div>{password.error}</div>}
           </div>
           {error && <div>{error}</div>}
-          <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
-            {submitting ? <i/> : <i/>} {t('submit')}
-          </button>
+          <div className='button-field'>
+            <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+              {submitting ? <i/> : <i/>} {t('submit')}
+            </button>
+          </div>
         </form>
         <div className='info-message'>
         {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>

@@ -18,7 +18,7 @@ export class RegisterFormComponent extends Component {
           style
         } = this.props
     return (
-      <div className='component wrapper main-content' style={style}>
+      <div className='component main-content' style={style}>
         <p className='section-title form-title'>Introduce tus datos para registrarte en DAH</p>
         <form onSubmit={handleSubmit} className='basic-form clearfix'>
           <div className='field'>
@@ -32,9 +32,11 @@ export class RegisterFormComponent extends Component {
             {password.touched && password.error && <div>{password.error}</div>}
           </div>
           {error && <div>{error}</div>}
-          <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
-            {submitting ? <i/> : <i/>} Submit
-          </button>
+          <div className='button-field'>
+            <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+              {submitting ? <i/> : <i/>} Submit
+            </button>
+          </div>
         </form>
         <div className='info-message'>
         Si ya estas registrado, <Link to='/Login'>haz login</Link>

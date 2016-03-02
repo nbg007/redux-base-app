@@ -5,7 +5,7 @@
 .button {
   display: inline-block;
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   text-transform: uppercase;
   line-height: 1;
@@ -13,17 +13,24 @@
   cursor: pointer;
   border: 2px solid transparent;
   padding: 12px 15px;
+  font-weight: 100;
 }
 
 .button-primary {
-  background: #29CAAD;
+  background: #2772DB;
   color: #fff;
 }
 
 .button-secondary {
   background: transparent;
-  border: 1px solid #2772DB;
+  border-color: #2772DB;
   color: #2772DB;
+}
+
+.button-error {
+  border-color: #DD4747;
+  background: #DD4747;
+  color: #fff;
 }
 
 .button:hover {
