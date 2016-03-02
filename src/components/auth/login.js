@@ -22,27 +22,29 @@ export class LoginFormComponent extends Component {
         } = this.props
     return (
       <div className='component main-content' style={style}>
-        <p className='form-title beta'>{t('login.title')}</p>
-        <form onSubmit={handleSubmit} className='basic-form clearfix'> 
-          <div className='field'>
-            <label>{t('username')}</label>
-            <input type="text" placeholder="username" {...username}/>
-            {username.touched && username.error && <div>{username.error}</div>}
+        <div className='wrapper'>
+          <p className='form-title beta'>{t('login.title')}</p>
+          <form onSubmit={handleSubmit} className='basic-form clearfix'> 
+            <div className='field'>
+              <label>{t('username')}</label>
+              <input type="text" placeholder="username" {...username}/>
+              {username.touched && username.error && <div>{username.error}</div>}
+            </div>
+            <div className='field'>
+              <label>{t('password')}</label>
+              <input type="password" placeholder="password" {...password}/>
+              {password.touched && password.error && <div>{password.error}</div>}
+            </div>
+            {error && <div>{error}</div>}
+            <div className='button-field'>
+              <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+                {submitting ? <i/> : <i/>} {t('submit')}
+              </button>
+            </div>
+          </form>
+          <div className='info-message'>
+          {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
           </div>
-          <div className='field'>
-            <label>{t('password')}</label>
-            <input type="password" placeholder="password" {...password}/>
-            {password.touched && password.error && <div>{password.error}</div>}
-          </div>
-          {error && <div>{error}</div>}
-          <div className='button-field'>
-            <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
-              {submitting ? <i/> : <i/>} {t('submit')}
-            </button>
-          </div>
-        </form>
-        <div className='info-message'>
-        {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
         </div>
       </div>
     )
