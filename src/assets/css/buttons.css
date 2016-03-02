@@ -22,9 +22,9 @@
 }
 
 .button-secondary {
-  background: transparent;
-  border-color: #2772DB;
-  color: #2772DB;
+  background: #21825C;
+  border-color: #21825C;
+  color: #fff;
 }
 
 .button-error {
@@ -34,7 +34,7 @@
 }
 
 .button:hover {
-  opacity: .8;
+  opacity: .9;
 }
 
 .button-sm {
@@ -44,10 +44,17 @@
 
 
 .button-wrap .button {
-  display: inline-block;
-  margin: 0px 5px 20px 0px;
-  min-width: 200px;
+  margin-bottom: 15px;
   width: 100%;
+  padding: 12px 5px;
+}
+
+.button-wrap .box .button:last-child {
+  margin-bottom: 0px;
+}
+
+.button-wrap .box {
+  margin-bottom: 20px;
 }
 
 @media (min-width:600px)  {

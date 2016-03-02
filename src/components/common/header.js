@@ -12,25 +12,29 @@ export class Header extends Component {
     const {title, username, modalIsOpen, notifications, t} = this.props
     return (
       <header className='main-header'>
-        <div className='header-wrapper clearfix'>
-          <h1 className='app-title'>{t('appName')}:{title}</h1>
-          {' '}
-          <nav className='main-navigation'>
-            <Link className='nav-item' to="/">{t('home')}</Link>
+        <div className='header-nav clearfix'>
+          <div className='wrapper'>
+            <h1 className='app-title'>{t('appName')}:{title}</h1>
             {' '}
-            <Link className='nav-item' to="/ingredients">{t('ingredients')}</Link>
-            {' '}
-            <Link className='nav-item' to="/dishes">{t('dishes')}</Link>
-            {' '}
-            <Link className='nav-item' to="/orders">{t('orders')}</Link>
-            {' '}
-            <Notifications notifications={notifications}/>
-            {' '}
-            <a className='nav-item' href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
-          </nav>
+            <nav className='main-navigation'>
+              <Link className='nav-item' to="/">{t('home')}</Link>
+              {' '}
+              <Link className='nav-item' to="/ingredients">{t('ingredients')}</Link>
+              {' '}
+              <Link className='nav-item' to="/dishes">{t('dishes')}</Link>
+              {' '}
+              <Link className='nav-item' to="/orders">{t('orders')}</Link>
+              {' '}
+              <Notifications notifications={notifications}/>
+              {' '}
+              <a className='nav-item' href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
+            </nav>
+          </div>
         </div>
         <div className='header-intro'>
-          <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+          <div className='wrapper'>
+            <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+          </div>
         </div>
       </header>
     );

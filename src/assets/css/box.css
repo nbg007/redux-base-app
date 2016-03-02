@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    $BOX
+\*------------------------------------*/
+
+.box {
+  border: 1px solid #E0E0E0;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  -ms-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  border-radius: 4px;
+}
+
+.box-title {
+  width: 100%;
+  background: #f1f1f1;
+  padding: 15px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 100;
+  text-align: center;
+  margin: 0px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.box-buttons {
+  padding: 15px;
+}
+
+.box .button {
+  width: 100%;
+}

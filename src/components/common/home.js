@@ -4,20 +4,39 @@ import { translate } from 'react-i18next/lib'
 
 export function Home({t}) {
   return (
-    <div className='main-content'>
+    <div className='main-content wrapper'>
       <h3>{t('home.title')}</h3>
-      <div className='button-wrap'>
-        <p><Link className='button button-primary' to="/ingredients">{t('home.ingredientsLink')}</Link>
-        {' '}
-        <Link className='button button-primary' to="/ingredients/create">{t('home.createIngredientLink')}</Link></p>
-
-        <p><Link className='button button-primary' to="/dishes">{t('home.dishesLink')}</Link>
-        {' '}
-        <Link className='button button-primary' to="/dishes/create">{t('home.createDishLink')}</Link></p>
-
-        <p><Link className='button button-primary' to="/orders">{t('home.ordersLink')}</Link>
-        {' '}
-        <Link className='button button-primary' to="/orders/create">{t('home.createOrderLink')}</Link></p>
+      <div className='button-wrap g'>
+        <div className='gi one-third gutter'>
+          <div className='box'>
+            <h1 className='box-title'>Ingredients</h1>
+            <div className='box-buttons'>
+              <Link className='button button-secondary' to="/ingredients">{t('home.ingredientsLink')}</Link>
+              {' '}
+              <Link className='button button-primary' to="/ingredients/create">{t('home.createIngredientLink')}</Link>
+            </div>
+          </div>
+        </div>
+        <div className='gi one-third gutter'>
+          <div className='box'>
+            <h1 className='box-title'>Dish</h1>
+            <div className='box-buttons'>
+              <Link className='button button-secondary' to="/dishes">{t('home.dishesLink')}</Link>
+              {' '}
+              <Link className='button button-primary' to="/dishes/create">{t('home.createDishLink')}</Link>
+            </div>
+          </div>
+        </div>
+        <div className='gi one-third'>
+          <div className='box'>
+            <h1 className='box-title'>Orders</h1>
+            <div className='box-buttons'>
+              <Link className='button button-secondary' to="/orders">{t('home.ordersLink')}</Link>
+              {' '}
+              <Link className='button button-primary' to="/orders/create">{t('home.createOrderLink')}</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
