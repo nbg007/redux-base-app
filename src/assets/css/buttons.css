@@ -7,23 +7,24 @@
   vertical-align: middle;
   font-size: 15px;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   line-height: 1;
   border-radius: 4px;
   cursor: pointer;
   border: 2px solid transparent;
   padding: 12px 15px;
   font-weight: 100;
+  outline: none;
 }
 
 .button-primary {
-  background: #2772DB;
+  background: #4ECE7A;
   color: #fff;
 }
 
 .button-secondary {
-  background: #21825C;
-  border-color: #21825C;
+  background: #354ABF;
+  border-color: #354ABF;
   color: #fff;
 }
 

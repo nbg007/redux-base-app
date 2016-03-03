@@ -6,7 +6,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <div style={{marginTop: '1.5em'}}>{this.props.children}</div>
+        <div>{this.props.children}</div>
         {devTools()}
       </div>
     )

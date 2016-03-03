@@ -51,22 +51,29 @@ ul li {
 
 .element-item .element-name {
   color: #000;
-  display: inline-block;
+  display: block;
   vertical-align: middle;
-  width: 40%;
+  width: 100%;
 }
 
 .element-item .button {
   text-transform: capitalize;
   margin-right: 5px;
   width: 25%;
+  margin-top: 10px;
+  min-width: 100px;
 }
 
-@media (min-width:660px) {
+@media (min-width:680px) {
   .element-item .element-name {
-    width: 69%;
+    width: 65%;
+    display: inline-block;
+    vertical-align: middle;
   }
   .element-item .button {
     width: 14%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0px;
   }
 }

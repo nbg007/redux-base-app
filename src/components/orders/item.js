@@ -15,14 +15,16 @@ class OrderItem extends Component {
   render(){
     const { order, orderText, dateText, editText, removeText } = this.props
     return (
-       <li>
+       <li className='element-item'>
+        <div className='element-name'>
           <Link to={`/orders/${order.id}/show`}>{orderText} {order.id} </Link>
           {dateText}
           {' '}
-          <Link to={`/orders/${order.id}/edit`}>{editText}</Link>
-          {' '}
-          <button onClick={this.handleRemoveClick}>{removeText}</button>
-        </li>
+        </div>
+        <Link className='button button-sm button-primary' to={`/orders/${order.id}/edit`}>{editText}</Link>
+        {' '}
+        <button className='button button-sm button-error' onClick={this.handleRemoveClick}>{removeText}</button>
+      </li>
     )
   }
 }
