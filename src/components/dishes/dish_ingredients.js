@@ -20,7 +20,7 @@ export default class DishIngredientList extends Component {
     return (
       <div>
         <h3>Ingredients</h3>
-        <ul>
+        <ul className='element-list'>
           { items }
         </ul>
       </div>

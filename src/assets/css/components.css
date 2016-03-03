@@ -1,6 +1,9 @@
 /*------------------------------------*\
-    $BOX
+    $COMPONETS
 \*------------------------------------*/
+
+/*------- BOX -------*/
+
 
 .box {
   border: 1px solid #E0E0E0;
@@ -29,4 +32,41 @@
 
 .box .button {
   width: 100%;
+}
+
+/*------- LITS -------*/
+
+ul {
+  padding-left: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+.element-item {
+  padding: 10px 0px 10px 5px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.element-item .element-name {
+  color: #000;
+  display: inline-block;
+  vertical-align: middle;
+  width: 40%;
+}
+
+.element-item .button {
+  text-transform: capitalize;
+  margin-right: 5px;
+  width: 25%;
+}
+
+@media (min-width:660px) {
+  .element-item .element-name {
+    width: 69%;
+  }
+  .element-item .button {
+    width: 14%;
+  }
 }

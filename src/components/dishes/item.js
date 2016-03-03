@@ -14,12 +14,12 @@ class DishItem extends Component {
     const { dish, editText, removeText } = this.props
 
     return (
-      <li>
-        <Link to={`/dishes/${dish.id}/show`}>{dish.name}</Link>
+      <li className='element-item'>
+        <Link className='element-name' to={`/dishes/${dish.id}/show`}>{dish.name}</Link>
         {' '}
-        <Link to={`/dishes/${dish.id}/edit`}>{ editText }</Link>
+        <Link className='button button-sm button-primary' to={`/dishes/${dish.id}/edit`}>{ editText }</Link>
         {' '}
-        <button onClick={ this.handleRemove }>{ removeText }</button>
+        <button className='button button-sm button-error' onClick={ this.handleRemove }>{ removeText }</button>
       </li>
     )
   }
