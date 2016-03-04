@@ -25,9 +25,9 @@ export class ListOrders extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1>{t('listOrders.title')}</h1>
+          <h1 className='beta'>{t('listOrders.title')}</h1>
         </span>
-        <ul>
+        <ul className='element-list brick'>
           {isFetching && <p>{t('listOrders.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listOrders.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((o) =>

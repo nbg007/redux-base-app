@@ -9,7 +9,7 @@ export function Home({t}) {
       <div className='button-wrap g'>
         <div className='gi one-third gutter'>
           <div className='box'>
-            <h1 className='box-title'>Ingredients</h1>
+            <h1 className='box-title'><span className='fa fa-shopping-basket'></span>Ingredients</h1>
             <div className='box-buttons'>
               <Link className='button button-secondary' to="/ingredients">{t('home.ingredientsLink')}</Link>
               {' '}
@@ -19,7 +19,7 @@ export function Home({t}) {
         </div>
         <div className='gi one-third gutter'>
           <div className='box'>
-            <h1 className='box-title'>Dish</h1>
+            <h1 className='box-title'><span className='fa fa-cutlery'></span>Dish</h1>
             <div className='box-buttons'>
               <Link className='button button-secondary' to="/dishes">{t('home.dishesLink')}</Link>
               {' '}
@@ -29,7 +29,7 @@ export function Home({t}) {
         </div>
         <div className='gi one-third'>
           <div className='box'>
-            <h1 className='box-title'>Orders</h1>
+            <h1 className='box-title'><span className='fa fa-shopping-cart'></span>Orders</h1>
             <div className='box-buttons'>
               <Link className='button button-secondary' to="/orders">{t('home.ordersLink')}</Link>
               {' '}

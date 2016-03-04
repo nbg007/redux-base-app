@@ -16,3 +16,34 @@
 .info-message {
   margin: 20px 0px;
 }
+
+/*------- Calendar -------*/
+
+.calendar {
+  border: 1px solid #E0E0E0;
+}
+
+.calendar thead .month {
+  font-size: 20px;
+  color: #848484;
+  font-weight: 100;
+}
+
+.calendar thead .button {
+  min-width: 68px;
+  max-width: 100px;
+  padding: 8px;
+}
+
+.calendar thead th {
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar thead .next {
+  text-align: right;
+}
+
+.calendar thead .prev {
+  text-align: left;
+}

@@ -21,9 +21,9 @@ class OrderItem extends Component {
           {dateText}
           {' '}
         </div>
-        <Link className='button button-sm button-primary' to={`/orders/${order.id}/edit`}>{editText}</Link>
+        <Link className='button button-sm button-primary' to={`/orders/${order.id}/edit`}><span className='fa fa-pencil'></span>{editText}</Link>
         {' '}
-        <button className='button button-sm button-error' onClick={this.handleRemoveClick}>{removeText}</button>
+        <button className='button button-sm button-error' onClick={this.handleRemoveClick}><span className='fa fa-trash'></span>{removeText}</button>
       </li>
     )
   }

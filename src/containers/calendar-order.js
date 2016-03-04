@@ -74,8 +74,8 @@ class CalendarOrder extends Component {
       : null;
     
     return (
-        <div>
-          <h1>{t('calendarOrders.title')}</h1> 
+        <div className='brick'>
+          <h1 className='beta'>{t('calendarOrders.title')}</h1> 
           {content}
           {this._showDayOrders()}
         </div>

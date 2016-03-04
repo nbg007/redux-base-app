@@ -26,6 +26,12 @@
   border-bottom: 1px solid #E0E0E0;
 }
 
+.box-title .fa {
+  font-size: 20px;
+  margin-right: 10px;
+  text-align: center;
+}
+
 .box-buttons {
   padding: 15px;
 }
@@ -76,4 +82,10 @@ ul li {
     vertical-align: middle;
     margin-top: 0px;
   }
+}
+
+/*------- BRICKS -------*/
+
+.brick {
+  padding-bottom: 40px;
 }

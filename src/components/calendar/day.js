@@ -52,7 +52,7 @@ Day.propTypes = {
 
 const styles = {
   td: {
-    padding: 5,
+    padding: 15,
     lineHeight: '1.42857143',
     verticalAlign: 'top',
     borderTop: '1px solid #ddd',

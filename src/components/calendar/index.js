@@ -12,7 +12,7 @@ class Calendar extends Component {
     const year = date.year();
 
     return (
-      <table style={styles.table}>
+      <table style={styles.table} className='calendar box'>
         <Header {...this.props} />
         <Days month={month} year={year} {...this.props} />
       </table>
@@ -34,8 +34,7 @@ Calendar.defaultProps = {
 
 const styles = {
   table: {
-    width:          '70%',
-    maxWidth:       '70%',
+    width:          '100%',
     marginBottom:   20,
     borderSpacing:  0,
     borderCollapse: 'collapse'
