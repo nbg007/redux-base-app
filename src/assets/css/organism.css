@@ -58,6 +58,7 @@
 .header-intro p {
   font-size: 16px;
   font-weight: 100;
+  color: #797979;
 }
 
 @media (min-width:740px) {

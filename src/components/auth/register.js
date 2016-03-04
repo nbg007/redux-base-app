@@ -21,7 +21,7 @@ export class RegisterFormComponent extends Component {
       <div className='component main-content' style={style}>
         <div className='wrapper'>
           <p className='form-title beta'>Introduce tus datos para registrarte en DAH</p>
-          <form onSubmit={handleSubmit} className='basic-form clearfix'>
+          <form onSubmit={handleSubmit} className='basic-form short clearfix'>
             <div className='field'>
               <label>Username</label>
               <input type="text" placeholder="username" {...username}/>

@@ -20,7 +20,7 @@ class Element extends Component {
   render() {
     const { name, subject, t, isDragging, connectDragPreview, connectDragSource } = this.props
     return connectDragPreview(
-      <div>
+      <div className='field'>
         <div ref="element" style={{ opacity: isDragging ? 0.5 : 1 }}>
           {connectDragSource(<p>{name}</p>, { dropEffect: 'copy' })}
           <input type="number" placeholder={t("elementsToAdd.amountPlaceholder")} ref="amount" defaultValue="1" />

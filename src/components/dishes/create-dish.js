@@ -39,30 +39,34 @@ class CreateDishForm extends Component {
           } = this.props
     return (
       <div className='component' style={this.props.style}>
-        <p>{t('createDish.description')}</p>
-        <form onSubmit={handleSubmit}>
-          <div>
+        <p className='section-title'>{t('createDish.description')}</p>
+        <form onSubmit={handleSubmit} className='basic-form g clearfix'>
+          <div className='field gi one-half gutter'>
             <label>{t('createDish.nameLabel')}</label>
             <input type="text" placeholder={t('createDish.namePlaceholder')} {...name}/>
             {name.touched && name.error && <div>{name.error}</div>}
           </div>
-          <div>
+          <div className='field gi one-half'>
             <label>{t('createDish.priceLabel')}</label>
             <input type="number" placeholder={t('createDish.pricePlaceholder')} {...price}/>
             {price.touched && price.error && <div>{price.error}</div>}
           </div>
-          <ElementsToAdd subject='ingredient' elements={totalIngredients} remove={this.removeIngredientFromDish.bind(this)}/>
-          <ElementsAdded subject='ingredient' elements= {ingredients} add={this.addIngredientToDish.bind(this)} totalElements={totalIngredients}/>
-          <div>
+          <div className='input-group half-width'>
+            <ElementsToAdd subject='ingredient' elements={totalIngredients} remove={this.removeIngredientFromDish.bind(this)}/>
+            <ElementsAdded subject='ingredient' elements= {ingredients} add={this.addIngredientToDish.bind(this)} totalElements={totalIngredients}/>
+          </div>
+          <div className='field'>
             <p>{t('createDish.escandallo')}: {escandallo || 0}</p>
           </div>
           {error && <div>{error}</div>}
-          <button disabled={submitting }type='submit' onClick={handleSubmit}>
-            {submitting ? <i/> : <i/>} {t('createDish.submitButton')}
-          </button>
-          <button disabled={submitting} onClick={resetForm}>
-            {t('createDish.clearForm')}
-          </button>
+          <div className='button-group g'>
+            <button className='button button-error gi one-quarter' disabled={submitting} onClick={resetForm}>
+              <span className='fa fa-trash'></span>{t('createDish.clearForm')}
+            </button>
+            <button className='button button-primary gi one-quarter' disabled={submitting }type='submit' onClick={handleSubmit}> <span className='fa fa-send'></span>
+              {submitting ? <i/> : <i/>} {t('createDish.submitButton')}
+            </button>
+          </div>
         </form>
       </div>
     )

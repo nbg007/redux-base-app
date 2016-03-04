@@ -24,7 +24,7 @@ export class LoginFormComponent extends Component {
       <div className='component main-content' style={style}>
         <div className='wrapper'>
           <p className='form-title beta'>{t('login.title')}</p>
-          <form onSubmit={handleSubmit} className='basic-form clearfix'> 
+          <form onSubmit={handleSubmit} className='basic-form short clearfix'> 
             <div className='field'>
               <label>{t('username')}</label>
               <input type="text" placeholder="username" {...username}/>

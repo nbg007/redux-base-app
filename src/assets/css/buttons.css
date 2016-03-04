@@ -13,8 +13,12 @@
   cursor: pointer;
   border: 2px solid transparent;
   padding: 12px 15px;
-  font-weight: 100;
+  font-weight: normal;
   outline: none;
+}
+
+.button .fa {
+  margin-right: 5px;
 }
 
 .button-primary {

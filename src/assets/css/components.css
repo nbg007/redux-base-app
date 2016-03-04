@@ -58,20 +58,20 @@ ul li {
 
 .element-item .button {
   text-transform: capitalize;
-  margin-right: 5px;
   width: 25%;
   margin-top: 10px;
   min-width: 100px;
+  padding: 8px 10px;
 }
 
 @media (min-width:680px) {
   .element-item .element-name {
-    width: 65%;
+    width: 66%;
     display: inline-block;
     vertical-align: middle;
   }
   .element-item .button {
-    width: 14%;
+    width: 16%;
     display: inline-block;
     vertical-align: middle;
     margin-top: 0px;

@@ -23,18 +23,18 @@ class CreateIngredientForm extends Component {
     return (
       <div className='component' style={this.props.style}>
         <p className='section-title'>{t('createIngredient.description')}</p>
-        <form onSubmit={handleSubmit} className='basic-form clearfix'>
-          <div className='field'>
+        <form onSubmit={handleSubmit} className='basic-form g clearfix'>
+          <div className='field gi one-third gutter'>
             <label>{t('createIngredient.nameLabel')}</label>
             <input type='text' placeholder={t('createIngredient.namePlaceholder')} {...name}/>
             {name.touched && name.error && <div>{name.error}</div>}
           </div>
-          <div className='field'>
+          <div className='field gi one-third gutter'>
             <label>{t('createIngredient.costLabel')}</label>
             <input type='text' placeholder={t('createIngredient.costPlaceholder')} {...cost}/>
             {cost.touched && cost.error && <div>{cost.error}</div>}
           </div>
-          <div className='field'>
+          <div className='field gi one-third'>
             <label>{t('createIngredient.stockLabel')}</label>
             <input type='number' placeholder={t('createIngredient.stockPlaceholder')} {...stock}/>
             {stock.touched && stock.error && <div>{stock.error}</div>}
@@ -42,9 +42,11 @@ class CreateIngredientForm extends Component {
           {error && <div>{error}</div>}
           <div className='button-field'>
             <button className='button button-error' disabled={submitting} onClick={resetForm}>
+              <span className='fa fa-trash'></span>
               {t('createIngredient.clearForm')}
             </button>
             <button className='button button-primary' disabled={submitting }type='submit' onClick={handleSubmit}>
+              <span className='fa fa-send'></span>
               {submitting ? <i/> : <i/>} {t('createIngredient.submitButton')}
             </button>
           </div>

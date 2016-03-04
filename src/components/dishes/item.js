@@ -17,9 +17,9 @@ class DishItem extends Component {
       <li className='element-item'>
         <Link className='element-name' to={`/dishes/${dish.id}/show`}>{dish.name}</Link>
         {' '}
-        <Link className='button button-sm button-primary' to={`/dishes/${dish.id}/edit`}>{ editText }</Link>
+        <Link className='button button-sm button-primary' to={`/dishes/${dish.id}/edit`}><span className='fa fa-pencil'></span>{ editText }</Link>
         {' '}
-        <button className='button button-sm button-error' onClick={ this.handleRemove }>{ removeText }</button>
+        <button className='button button-sm button-error' onClick={ this.handleRemove }><span className='fa fa-trash'></span>{ removeText }</button>
       </li>
     )
   }

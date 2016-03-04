@@ -41,16 +41,20 @@ input[type="radio"] {
 
 
 .basic-form {
-  padding: 25px;
+  padding: 20px;
   border: 1px solid #E0E0E0;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
   -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
   -ms-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
   border-radius: 4px;
-  width: 400px;
   position: relative;
   margin-top: 20px;
+  width: 100%;
+}
+
+.basic-form.short {
+  width: 400px;
 }
 
 .basic-form .field {
@@ -65,6 +69,24 @@ input[type="radio"] {
   display: block;
   border-radius: 4px;
   outline: none;
+  color: #797979;
+}
+
+.basic-form .input-group input {
+  margin-bottom: 20px;
+}
+
+.basic-form .input-group p {
+  margin-bottom: 10px;
+}
+
+.input-group.half-width .field {
+  width: 50%;
+  display: inline-block;
+}
+
+.input-group.half-width .field:nth-child(2n+1) {
+  padding-right: 10px;
 }
 
 ::-webkit-input-placeholder {
@@ -86,10 +108,24 @@ input[type="radio"] {
 }
 
 .basic-form button {
+  width: 49%;
+  margin-right: 1%;
+}
+
+.basic-form button:last-child {
+  margin-right: 0;
+}
+
+.basic-form.short button {
   outline: none;
   width: 49%;
 }
 
+.basic-form .button-group {
+  text-align: right;
+  border-top: 1px solid #E0E0E0;
+  padding-top: 20px;
+}
 
 .basic-form .button-field {
   text-align:right;
@@ -103,4 +139,22 @@ input[type="radio"] {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+
+@media screen and (min-width:600px)and (max-width:900px) {
+  .basic-form button {
+    width: 32.9%;
+    margin-right: 2px;
+  }
+}
+
+@media screen and (min-width:900px) {
+  .basic-form {
+    padding: 25px;
+  }
+  .basic-form button {
+    width: 16%;
+    margin-right: 2px;
+  }
 }
