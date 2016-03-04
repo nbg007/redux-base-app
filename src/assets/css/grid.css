@@ -32,6 +32,9 @@
   .one-fifth {
     width: 20%;
   }
+  .two-fifths {
+    width: 40%;
+  }
   .gutter {
     padding-right: 10px;
   }

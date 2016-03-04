@@ -38,41 +38,50 @@ class CreateOrderForm extends Component {
     } = this.props
     return (
       <div className='component' style={this.props.style}>
-        <p>{t('createOrder.description')}</p>
+        <p className='beta'>{t('createOrder.description')}</p>
         <p></p>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>{t('createOrder.dishes')}</label>
-            <Autocomplete
-              ref = "createOrderAutocomplete"
-              initialValue={selectedAutocompleteItem ? selectedAutocompleteItem.name : ""}
-              items={totalDishes}
-              shouldItemRender={ matchStateToTerm }
-              sortItems={sortItems}
-              onSelect={(value, item) => {
-                //console.log('Autocomplete selected', value, item)
-                selectItemOnAutocomplete({ref: "create-order", item})
-              }}
-              getItemValue={(item) => item.name}
-              renderItem={(item, isHighlighted) => (
-                <div
-                  style={isHighlighted ? styles.highlightedItem : styles.item}
-                  key={item.id}
-                >{item.name}</div>
-              )} />
-            <input ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
-            <input type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
+        <form onSubmit={handleSubmit} className="basic-form clearfix">
+          <div className='add g'>
+            <div className='field basic-input gi one-half gutter'>
+              <label>{t('createOrder.dishes')}</label>
+              <Autocomplete
+                ref = "createOrderAutocomplete"
+                initialValue={selectedAutocompleteItem ? selectedAutocompleteItem.name : ""}
+                items={totalDishes}
+                shouldItemRender={ matchStateToTerm }
+                sortItems={sortItems}
+                onSelect={(value, item) => {
+                  //console.log('Autocomplete selected', value, item)
+                  selectItemOnAutocomplete({ref: "create-order", item})
+                }}
+                getItemValue={(item) => item.name}
+                renderItem={(item, isHighlighted) => (
+                  <div
+                    style={isHighlighted ? styles.highlightedItem : styles.item}
+                    key={item.id}
+                  >{item.name}</div>
+                )} />
+            </div>
+            <div className='field gi one-half'>
+              <label>{t('createOrder.amountPlaceholder')}</label>
+              <input className='one-whole' ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
+            </div>
+            <div className='field button-field'>
+              <input className='button button-secondary' type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
+            </div>
           </div>
-          <div>
+          <div className='field'>
             <p>{t('createOrder.pvp')}: {pvp || 0}</p>
           </div>
           {error && <div>{error}</div>}
-          <button disabled={submitting} type='submit' onClick={handleSubmit}>
-            {submitting ? <i/> : <i/>} {t('createOrder.submitButton')}
-          </button>
-          <button disabled={submitting} onClick={resetForm}>
-            {t('createOrder.clearForm')}
-          </button>
+          <div className='button-group'>
+            <button className='button button-error' disabled={submitting} onClick={resetForm}><span className='fa fa-trash'></span>
+              {t('createOrder.clearForm')}
+            </button>
+            <button className='button button-primary' disabled={submitting} type='submit' onClick={handleSubmit}>
+              <span className='fa fa-send'></span>{submitting ? <i/> : <i/>} {t('createOrder.submitButton')}
+            </button>
+          </div>
         </form>
       </div>
     )

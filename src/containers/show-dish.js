@@ -23,7 +23,7 @@ export class ShowDish extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1>{t('showDish.title')}</h1>
+          <h1 className='beta'>{t('showDish.title')}</h1>
         </span>
         <ul>
           <li><p>Name: {dish.name}</p></li>

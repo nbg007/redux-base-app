@@ -25,7 +25,7 @@ class Header extends Component {
           <th className='month' style={styles.th} colSpan='5' >{ moment(currentDate).format('MMMM / YYYY') }</th>
           <th className='next' style={styles.th}><button className='button button-sm button-secondary' onClick={onNextMonthClick}>Next<span className='fa fa-chevron-right'></span></button></th>
         </tr>
-        <tr>
+        <tr className='week-day'>
           { this._renderWeekDayNames() }
         </tr>
       </thead>
@@ -42,7 +42,7 @@ Header.propTypes = {
 const styles = {
   th: {
     verticalAlign: 'bottom',
-    borderBottom: '2px solid #ddd',
+    borderBottom: '1px solid #ddd',
     lineHeight: '1.42857143',
     borderTop: '1px solid #ddd',
   }

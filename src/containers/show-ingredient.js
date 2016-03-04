@@ -17,16 +17,16 @@ export class ShowIngredient extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1>{t('showIngredient.title')}</h1>
+          <h1 className='beta'>{t('showIngredient.title')}</h1>
         </span>
-        <ul>
-          <li><p>{name}</p></li>
-          <li><p>{cost}</p></li>
-          <li><p>{stock}</p></li>
+        <ul className='element-list'>
+          <li className='element-item'><p>{name}</p></li>
+          <li className='element-item'><p>{cost}</p></li>
+          <li className='element-item'><p>{stock}</p></li>
         </ul>
-        <Link to={`/ingredients/${id}/edit/`}>{t('showIngredient.editButton')}</Link>
+        <Link className='button button-primary' to={`/ingredients/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showIngredient.editButton')}</Link>
         {' '}
-        <button onClick={removeIngredient.bind(ingredient)}>{t('showIngredient.removeButton')}</button>
+        <button className='button button-error' onClick={removeIngredient.bind(ingredient)}><span className='fa fa-trash'></span>{t('showIngredient.removeButton')}</button>
       </div>
     )
   }

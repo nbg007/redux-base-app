@@ -59,9 +59,9 @@ export class ListIngredients extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1>{t('listIngredients.title')}</h1>
+          <h1 className='beta'>{t('listIngredients.title')}</h1>
         </span>
-        <ul>
+        <ul className='element-list brick'>
           {isFetching && <p>{t('listIngredients.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listIngredients.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((i, index) =>

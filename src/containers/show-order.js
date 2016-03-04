@@ -18,21 +18,21 @@ export class ShowOrder extends Component {
     return (
       <div className='component' style={style}>
         <span>
-          <h1>{t('showOrder.title')}</h1>
+          <h1 className='beta'>{t('showOrder.title')}</h1>
         </span>
-        <ul>
+        <ul className='element-list'>
           {isFetching && <p>Loading...</p>}
           {!isFetching &&
             <div>
-              <li><p>Order {id}</p></li>
-              <li><p>{formatDate(createdAt)}</p></li>
-              <li><p>{totalPrice}</p></li>
+              <li className='element-item'><p>Order {id}</p></li>
+              <li className='element-item'><p>{formatDate(createdAt)}</p></li>
+              <li className='element-item'><p>{totalPrice}</p></li>
             </div>
           }
         </ul>
-        <Link to={`/orders/${id}/edit/`}>{t('showOrder.editButton')}</Link>
+        <Link className='button button-primary' to={`/orders/${id}/edit/`}>{t('showOrder.editButton')}</Link>
         {' '}
-        <button onClick={(order) => removeOrder(order)}>{t('showOrder.removeButton')}</button>
+        <button className='button button-error'onClick={(order) => removeOrder(order)}>{t('showOrder.removeButton')}</button>
         <hr />
         <OrderDishes dishes={ order.dishes || []} title={t('dishes.title')} />
       </div>

@@ -24,9 +24,9 @@ export class ListDishes extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1>{t('listDishes.title')}</h1>
+          <h1 className='beta'>{t('listDishes.title')}</h1>
         </span>
-        <ul>
+        <ul className='element-list brick'>
           {isFetching && <p>{t('listDishes.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listDishes.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((d, index) =>
