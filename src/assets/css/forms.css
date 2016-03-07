@@ -61,8 +61,13 @@ input[type="radio"] {
   margin-bottom: 20px;
 }
 
+.basic-form .field:last-child {
+  margin-bottom: 0;
+}
+
 .basic-form input[type='text'],
-.basic-form input[type='number'] {
+.basic-form input[type='number'],
+.basic-form input[type='password'] {
   border: 1px solid #E0E0E0;
   background: #fff;
   padding: 10px;
@@ -157,11 +162,6 @@ input[type="radio"] {
   .basic-form .add {
     position: relative;
     padding-right: 90px;
-  }
-  .basic-form .button-field {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;    
   }
 
 }

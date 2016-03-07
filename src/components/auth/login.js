@@ -21,7 +21,7 @@ export class LoginFormComponent extends Component {
           t
         } = this.props
     return (
-      <div className='component main-content' style={style}>
+      <div className='component main-content brick' style={style}>
         <div className='wrapper'>
           <p className='form-title beta'>{t('login.title')}</p>
           <form onSubmit={handleSubmit} className='basic-form short clearfix'> 
@@ -36,8 +36,8 @@ export class LoginFormComponent extends Component {
               {password.touched && password.error && <div>{password.error}</div>}
             </div>
             {error && <div>{error}</div>}
-            <div className='button-field'>
-              <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+            <div className='field'>
+              <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary f-right'>
                 {submitting ? <i/> : <i/>} {t('submit')}
               </button>
             </div>

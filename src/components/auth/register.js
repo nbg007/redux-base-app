@@ -18,7 +18,7 @@ export class RegisterFormComponent extends Component {
           style
         } = this.props
     return (
-      <div className='component main-content' style={style}>
+      <div className='component main-content brick' style={style}>
         <div className='wrapper'>
           <p className='form-title beta'>Introduce tus datos para registrarte en DAH</p>
           <form onSubmit={handleSubmit} className='basic-form short clearfix'>
@@ -33,8 +33,8 @@ export class RegisterFormComponent extends Component {
               {password.touched && password.error && <div>{password.error}</div>}
             </div>
             {error && <div>{error}</div>}
-            <div className='button-field'>
-              <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary'>
+            <div className='field'>
+              <button disabled={submitting} type="submit" onClick={handleSubmit} className='button button-primary f-right'>
                 {submitting ? <i/> : <i/>} Submit
               </button>
             </div>
