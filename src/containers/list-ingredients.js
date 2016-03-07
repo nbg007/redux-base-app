@@ -19,12 +19,12 @@ class IngredientItem extends Component {
           t = this.props.t
 
     return (
-      <li>
-        <Link to={`/ingredients/${i.id}/show`}>{i.name}</Link>
+      <li className="element-item">
+        <Link className='element-name' to={`/ingredients/${i.id}/show`}>{i.name}</Link>
         {' '}
-        <Link to={`/ingredients/${i.id}/edit`}>{t('listIngredients.editButton')}</Link>
+        <Link className='button button-primary button-sm' to={`/ingredients/${i.id}/edit`}><span className='fa fa-pencil'></span>{t('listIngredients.editButton')}</Link>
         {' '}
-        <button onClick={ this.handleRemoveClick }>{t('listIngredients.removeButton')}</button>
+        <button className='button button-error button-sm' onClick={ this.handleRemoveClick }><span className='fa fa-trash'></span>{t('listIngredients.removeButton')}</button>
       </li>
     )
   }
@@ -61,7 +61,7 @@ export class ListIngredients extends Component {
         <span>
           <h1 className='beta'>{t('listIngredients.title')}</h1>
         </span>
-        <ul className='element-list brick'>
+        <ul className='element-list'>
           {isFetching && <p>{t('listIngredients.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listIngredients.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((i, index) =>

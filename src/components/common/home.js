@@ -5,7 +5,7 @@ import { translate } from 'react-i18next/lib'
 export function Home({t}) {
   return (
     <div className='main-content wrapper'>
-      <h3>{t('home.title')}</h3>
+      <h3 className='beta'>{t('home.title')}</h3>
       <div className='button-wrap g'>
         <div className='gi one-third gutter'>
           <div className='box'>

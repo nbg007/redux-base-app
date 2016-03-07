@@ -23,3 +23,7 @@ a {
 a:hover {
   opacity: .8;
 }
+
+.item-list {
+  font-weight: bold;
+}

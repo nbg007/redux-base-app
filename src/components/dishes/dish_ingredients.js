@@ -18,8 +18,8 @@ export default class DishIngredientList extends Component {
     const { ingredients } = this.props
     const items = ingredients ? ingredients.map(ing => <DishIngredientItem key={ing.id} ingredient={ing} />) : []
     return (
-      <div>
-        <h3>Ingredients</h3>
+      <div className='brick'>
+        <h3 className='beta'>Ingredients</h3>
         <ul className='element-list'>
           { items }
         </ul>

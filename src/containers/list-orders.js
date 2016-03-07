@@ -27,7 +27,7 @@ export class ListOrders extends Component {
         <span>
           <h1 className='beta'>{t('listOrders.title')}</h1>
         </span>
-        <ul className='element-list brick'>
+        <ul className='element-list'>
           {isFetching && <p>{t('listOrders.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listOrders.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((o) =>

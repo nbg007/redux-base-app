@@ -24,16 +24,15 @@ export class ShowOrder extends Component {
           {isFetching && <p>Loading...</p>}
           {!isFetching &&
             <div>
-              <li className='element-item'><p>Order {id}</p></li>
-              <li className='element-item'><p>{formatDate(createdAt)}</p></li>
-              <li className='element-item'><p>{totalPrice}</p></li>
+              <li className='element-item'><p><span className='item-list'>Order: </span> Order {id}</p></li>
+              <li className='element-item'><p><span className='item-list'>Date:</span> {formatDate(createdAt)}</p></li>
+              <li className='element-item'><p><span className='item-list'>Total:</span> {totalPrice}</p></li>
             </div>
           }
         </ul>
-        <Link className='button button-primary' to={`/orders/${id}/edit/`}>{t('showOrder.editButton')}</Link>
+        <Link className='button button-primary' to={`/orders/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showOrder.editButton')}</Link>
         {' '}
-        <button className='button button-error'onClick={(order) => removeOrder(order)}>{t('showOrder.removeButton')}</button>
-        <hr />
+        <button className='button button-error' onClick={(order) => removeOrder(order)}><span className='fa fa-trash'></span>{t('showOrder.removeButton')}</button>
         <OrderDishes dishes={ order.dishes || []} title={t('dishes.title')} />
       </div>
     )

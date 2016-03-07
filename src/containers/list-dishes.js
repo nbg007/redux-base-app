@@ -22,11 +22,11 @@ export class ListDishes extends Component {
   render() {
     const { isFetching, list, removeDish, t } = this.props
     return (
-      <div className='component' style={this.props.style}>
+      <div className='component brick' style={this.props.style}>
         <span>
           <h1 className='beta'>{t('listDishes.title')}</h1>
         </span>
-        <ul className='element-list brick'>
+        <ul className='element-list'>
           {isFetching && <p>{t('listDishes.loading')}</p>}
           {!isFetching && list.length == 0 && <p>{t('listDishes.empty')}</p>}
           {!isFetching && list.length > 0 && list.map((d, index) =>

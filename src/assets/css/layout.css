@@ -5,3 +5,7 @@
 .brick {
   padding: 40px 0px;
 }
+
+.brick-bottom {
+  padding-bottom: 40px;
+}

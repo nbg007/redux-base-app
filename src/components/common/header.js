@@ -16,7 +16,10 @@ export class Header extends Component {
           <div className='wrapper'>
             <h1 className='app-title'>{t('appName')}:{title}</h1>
             {' '}
-            <nav className='main-navigation'>
+            <Interpolate parent='p' i18nKey='content.welcome' value={username} />
+          </div>
+          <nav className='main-navigation'>
+            <div className='wrapper'>
               <Link className='nav-item' to="/">{t('home')}</Link>
               {' '}
               <Link className='nav-item' to="/ingredients">{t('ingredients')}</Link>
@@ -28,13 +31,8 @@ export class Header extends Component {
               <Notifications notifications={notifications}/>
               {' '}
               <a className='nav-item' href onClick={this.handleClick.bind(this)}>{t('logout')}</a>
-            </nav>
-          </div>
-        </div>
-        <div className='header-intro'>
-          <div className='wrapper'>
-            <Interpolate parent='p' i18nKey='content.welcome' value={username} />
-          </div>
+            </div>
+          </nav>
         </div>
       </header>
     );

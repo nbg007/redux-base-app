@@ -23,14 +23,14 @@
 }
 
 .button-primary {
-  background: #55BF7A;
+  background: #354ABF;
   color: #fff;
 }
 
 .button-secondary {
-  background: #354ABF;
+  background: transparent;
   border-color: #354ABF;
-  color: #fff;
+  color: #354ABF;
 }
 
 .button-error {
