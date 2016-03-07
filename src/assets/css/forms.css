@@ -154,8 +154,9 @@ input[type="radio"] {
   width: 100%;
 }
 
-.basic-form .button-field input {
+.basic-form .button-add-field input {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width:600px) {
@@ -163,7 +164,14 @@ input[type="radio"] {
     position: relative;
     padding-right: 90px;
   }
-
+  .basic-form .button-add-field {
+    position: absolute;
+    bottom: 21px;
+    right: 0px;    
+  }
+  .basic-form .button-add-field input {
+    margin-bottom: 0px;
+  }
 }
 
 @media screen and (min-width:600px)and (max-width:900px) {

@@ -66,7 +66,7 @@ class CreateOrderForm extends Component {
               <label>{t('createOrder.amountPlaceholder')}</label>
               <input className='one-whole' ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
             </div>
-            <div className='field button-field'>
+            <div className='field button-add-field'>
               <input className='button button-secondary' type="button" value={t('createOrder.add')} onClick={this.addDishToOrder.bind(this)} />
             </div>
           </div>
