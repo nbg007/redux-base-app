@@ -53,9 +53,9 @@ class Notifications extends Component {
           isOpen={this.state.modalIsOpen}
           style={customStyles} >
 
-          <h3>{t('notifications.title')}</h3>
-          <div>{list}</div>
-          <button onClick={this.closeModal.bind(this)}>{t('notifications.closeButton')}</button>
+          <h3 className='modal-title'>{t('notifications.title')}</h3>
+          <div className='modal-content'>{list}</div>
+          <button className='button button-error button-sm f-right' onClick={this.closeModal.bind(this)}><span className='fa fa-close'></span>{t('notifications.closeButton')}</button>
         </Modal>
       </div>
     )

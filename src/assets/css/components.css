@@ -84,8 +84,15 @@ ul li {
   }
 }
 
-/*------- BRICKS -------*/
+/*------- MODALS -------*/
 
-.brick {
-  padding-bottom: 40px;
+.modal-title {
+  margin-bottom: 10px;
 }
+
+.modal-content {
+  margin-bottom: 10px;
+} 
+
+
+
