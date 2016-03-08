@@ -6,7 +6,7 @@ class OrderDishes extends Component {
     const dishes = this.props.dishes || []
     return (
       <div className='brick'>
-        <h3 className='beta'>{this.props.title}</h3>
+        <h3 className='gamma'>{this.props.title}</h3>
         <ul className='element-list'>
           { dishes.map(d => <li key={d.id}>{d.amount} x <Link to={`/dishes/${d.id}/show`}>{d.name}</Link> ({d.price})</li>) }
         </ul>

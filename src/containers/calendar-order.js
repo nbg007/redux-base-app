@@ -75,7 +75,7 @@ class CalendarOrder extends Component {
     
     return (
         <div className='brick'>
-          <h1 className='beta'>{t('calendarOrders.title')}</h1> 
+          <h1 className='gamma'>{t('calendarOrders.title')}</h1> 
           {content}
           {this._showDayOrders()}
         </div>
@@ -88,7 +88,7 @@ const styles = {
     backgroundColor: 'rgba(222, 129, 62, 0.63)'
   },
   selected: {
-    backgroundColor: 'rgba(34, 40, 224, 0.63)',
+    backgroundColor: '#E87622',
     color: 'white',
     fontWeight: 'bold'
   }

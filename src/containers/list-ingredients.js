@@ -57,9 +57,9 @@ export class ListIngredients extends Component {
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
-      <div className='component' style={this.props.style}>
+      <div className='component short-wrap' style={this.props.style}>
         <span>
-          <h1 className='beta'>{t('listIngredients.title')}</h1>
+          <h1 className='gamma'>{t('listIngredients.title')}</h1>
         </span>
         <ul className='element-list'>
           {isFetching && <p>{t('listIngredients.loading')}</p>}

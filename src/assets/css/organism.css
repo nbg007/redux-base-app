@@ -43,8 +43,7 @@
   color: #fff;
   text-align: center;
   position: relative;
-  padding: 5px 20px;
-  width: auto;
+  padding: 5px;
 }
 .nav-item button {
   background: transparent;
@@ -70,6 +69,18 @@
   font-size: 16px;
   font-weight: 100;
   color: #797979;
+}
+
+@media screen and (min-width:660px) {
+  .main-navigation {
+    padding: 0px;
+  }
+  .main-navigation .nav-item {
+    padding: 15px 20px;
+  }
+  .main-navigation .nav-item:hover {
+    background: #445A73;
+  }
 }
 
 

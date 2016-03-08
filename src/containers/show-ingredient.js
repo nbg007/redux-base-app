@@ -15,18 +15,22 @@ export class ShowIngredient extends Component {
 
     const { id, name, cost, stock } = ingredient
     return (
-      <div className='component' style={this.props.style}>
+      <div className='component short-wrap' style={this.props.style}>
         <span>
-          <h1 className='beta'>{t('showIngredient.title')}</h1>
+          <h1 className='gamma'>{t('showIngredient.title')}</h1>
         </span>
-        <ul className='element-list'>
-          <li className='element-item'><p>{name}</p></li>
-          <li className='element-item'><p>{cost}</p></li>
-          <li className='element-item'><p>{stock}</p></li>
-        </ul>
-        <Link className='button button-primary' to={`/ingredients/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showIngredient.editButton')}</Link>
-        {' '}
-        <button className='button button-error' onClick={removeIngredient.bind(ingredient)}><span className='fa fa-trash'></span>{t('showIngredient.removeButton')}</button>
+        <div className='element-list'>
+          <ul>
+            <li className='element-item'><p>{name}</p></li>
+            <li className='element-item'><p>{cost}</p></li>
+            <li className='element-item'><p>{stock}</p></li>
+          </ul>
+          <div className='action-group'>
+            <Link className='button button-primary' to={`/ingredients/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showIngredient.editButton')}</Link>
+            {' '}
+            <button className='button button-error' onClick={removeIngredient.bind(ingredient)}><span className='fa fa-trash'></span>{t('showIngredient.removeButton')}</button>
+          </div>
+        </div>
       </div>
     )
   }

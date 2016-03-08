@@ -41,12 +41,12 @@ input[type="radio"] {
 
 
 .basic-form {
+  background: #fff;
   padding: 20px;
-  border: 1px solid #E0E0E0;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
-  -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
-  -ms-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  -webkit-box-shadow: 1px 1px 1px #ccc;
+  -moz-box-shadow: 1px 1px 1px #ccc;
+  -ms-box-shadow: 1px 1px 1px #ccc;
+  box-shadow: 1px 1px 1px #ccc;
   border-radius: 4px;
   position: relative;
   margin-top: 20px;

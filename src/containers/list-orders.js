@@ -25,7 +25,7 @@ export class ListOrders extends Component {
     return (
       <div className='component' style={this.props.style}>
         <span>
-          <h1 className='beta'>{t('listOrders.title')}</h1>
+          <h1 className='gamma'>{t('listOrders.title')}</h1>
         </span>
         <ul className='element-list'>
           {isFetching && <p>{t('listOrders.loading')}</p>}

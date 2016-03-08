@@ -21,18 +21,22 @@ export class ShowDish extends Component {
       return acc + ingredient.cost
     }, 0)
     return (
-      <div className='component brick-bottom' style={this.props.style}>
+      <div className='component brick-bottom short-wrap' style={this.props.style}>
         <span>
-          <h1 className='beta'>{t('showDish.title')}</h1>
+          <h1 className='gamma'>{t('showDish.title')}</h1>
         </span>
-        <ul className='element-list'>
-          <li className='element-item'><p><span className='item-list'>Name:</span> {dish.name}</p></li>
-          <li className='element-item'><p><span className='item-list'>Price:</span> {dish.price}</p></li>
-          <li className='element-item'><p><span className='item-list'>Total cost:</span> {totalCost}</p></li>
-        </ul>
-        <Link className='button button-primary' to={`/dishes/${dish.id}/edit/`}><span className='fa fa-pencil'></span>{t('showDish.editButton')}</Link>
-        {' '}
-        <button className='button button-error' onClick={removeDish.bind(this, dish)}><span className='fa fa-trash'></span>{t('showDish.removeButton')}</button>
+        <div className='element-list'>
+          <ul>
+            <li className='element-item'><p><span className='item-list'>Name:</span> {dish.name}</p></li>
+            <li className='element-item'><p><span className='item-list'>Price:</span> {dish.price}</p></li>
+            <li className='element-item'><p><span className='item-list'>Total cost:</span> {totalCost}</p></li>
+          </ul>
+          <div className='action-group'>
+            <Link className='button button-primary' to={`/dishes/${dish.id}/edit/`}><span className='fa fa-pencil'></span>{t('showDish.editButton')}</Link>
+            {' '}
+            <button className='button button-error' onClick={removeDish.bind(this, dish)}><span className='fa fa-trash'></span>{t('showDish.removeButton')}</button>
+          </div>
+        </div>
         <DishIngredients ingredients={ dish.ingredients || [] } />
       </div>
     )

@@ -38,7 +38,7 @@ class CreateOrderForm extends Component {
     } = this.props
     return (
       <div className='component' style={this.props.style}>
-        <p className='beta'>{t('createOrder.description')}</p>
+        <p className='gamma'>{t('createOrder.description')}</p>
         <p></p>
         <form onSubmit={handleSubmit} className="basic-form clearfix">
           <div className='add g'>
@@ -62,7 +62,7 @@ class CreateOrderForm extends Component {
                   >{item.name}</div>
                 )} />
             </div>
-            <div className='field gi one-half'>
+            <div className='field gi one-half gutter'>
               <label>{t('createOrder.amountPlaceholder')}</label>
               <input className='one-whole' ref="amount" type="number" placeholder={t('createOrder.amountPlaceholder')} />
             </div>

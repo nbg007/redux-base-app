@@ -24,7 +24,7 @@ export class ListDishes extends Component {
     return (
       <div className='component brick' style={this.props.style}>
         <span>
-          <h1 className='beta'>{t('listDishes.title')}</h1>
+          <h1 className='gamma'>{t('listDishes.title')}</h1>
         </span>
         <ul className='element-list'>
           {isFetching && <p>{t('listDishes.loading')}</p>}

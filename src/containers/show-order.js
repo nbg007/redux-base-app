@@ -16,23 +16,27 @@ export class ShowOrder extends Component {
   render() {
     const { order, order: { id, createdAt}, isFetching, totalPrice, removeOrder, t, style } = this.props
     return (
-      <div className='component' style={style}>
+      <div className='component short-wrap' style={style}>
         <span>
-          <h1 className='beta'>{t('showOrder.title')}</h1>
+          <h1 className='gamma'>{t('showOrder.title')}</h1>
         </span>
-        <ul className='element-list'>
-          {isFetching && <p>Loading...</p>}
-          {!isFetching &&
-            <div>
-              <li className='element-item'><p><span className='item-list'>Order: </span> Order {id}</p></li>
-              <li className='element-item'><p><span className='item-list'>Date:</span> {formatDate(createdAt)}</p></li>
-              <li className='element-item'><p><span className='item-list'>Total:</span> {totalPrice}</p></li>
-            </div>
-          }
-        </ul>
-        <Link className='button button-primary' to={`/orders/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showOrder.editButton')}</Link>
-        {' '}
-        <button className='button button-error' onClick={(order) => removeOrder(order)}><span className='fa fa-trash'></span>{t('showOrder.removeButton')}</button>
+        <div className='element-list'>
+          <ul>
+            {isFetching && <p>Loading...</p>}
+            {!isFetching &&
+              <div>
+                <li className='element-item'><p><span className='item-list'>Order: </span> Order {id}</p></li>
+                <li className='element-item'><p><span className='item-list'>Date:</span> {formatDate(createdAt)}</p></li>
+                <li className='element-item'><p><span className='item-list'>Total:</span> {totalPrice}</p></li>
+              </div>
+            }
+          </ul>
+          <div className='action-group'>
+            <Link className='button button-primary' to={`/orders/${id}/edit/`}><span className='fa fa-pencil'></span>{t('showOrder.editButton')}</Link>
+            {' '}
+            <button className='button button-error' onClick={(order) => removeOrder(order)}><span className='fa fa-trash'></span>{t('showOrder.removeButton')}</button>
+          </div>
+        </div>
         <OrderDishes dishes={ order.dishes || []} title={t('dishes.title')} />
       </div>
     )
