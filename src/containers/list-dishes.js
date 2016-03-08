@@ -22,7 +22,7 @@ export class ListDishes extends Component {
   render() {
     const { isFetching, list, removeDish, t } = this.props
     return (
-      <div className='component brick' style={this.props.style}>
+      <div className='component short-wrap brick' style={this.props.style}>
         <span>
           <h1 className='gamma'>{t('listDishes.title')}</h1>
         </span>
