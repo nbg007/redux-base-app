@@ -21,9 +21,9 @@ class Header extends Component {
     return( 
       <thead>
         <tr>
-          <th className='prev' style={styles.th}><button className='button button-sm button-secondary' onClick={onPrevMonthClick}><span className='fa fa-chevron-left'></span>Prev</button></th>
+          <th className='prev' style={styles.th}><button className='button-link' onClick={onPrevMonthClick}><span className='fa fa-chevron-left'></span>Prev</button></th>
           <th className='month' style={styles.th} colSpan='5' >{ moment(currentDate).format('MMMM / YYYY') }</th>
-          <th className='next' style={styles.th}><button className='button button-sm button-secondary' onClick={onNextMonthClick}>Next<span className='fa fa-chevron-right'></span></button></th>
+          <th className='next' style={styles.th}><button className='button-link' onClick={onNextMonthClick}>Next<span className='fa fa-chevron-right'></span></button></th>
         </tr>
         <tr className='week-day'>
           { this._renderWeekDayNames() }

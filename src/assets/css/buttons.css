@@ -15,6 +15,28 @@
   padding: 12px 10px;
   font-weight: normal;
   outline: none;
+  min-width: 90px;
+}
+
+.button-link {
+  background: transparent;
+  color: #364F6B;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-size: 14px;
+  border: 1px solid #364F6B;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  background: #364F6B;
+  color: #fff;
+}
+
+.button-link .fa {
+  margin: 0 3px;
 }
 
 .button .fa {
@@ -23,19 +45,19 @@
 }
 
 .button-primary {
-  background: #354ABF;
+  background: #364F6B;
   color: #fff;
 }
 
 .button-secondary {
-  background: transparent;
-  border-color: #354ABF;
-  color: #354ABF;
+  background: #E87622;
+  border-color: #E87622;
+  color: #fff;
 }
 
 .button-error {
-  border-color: #DD4747;
-  background: #DD4747;
+  border-color: #E87622;
+  background: #E87622;
   color: #fff;
 }
 
