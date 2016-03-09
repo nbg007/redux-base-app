@@ -51,7 +51,7 @@ ul li {
 }
 
 .short-wrap {
-  max-width: 580px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -66,7 +66,7 @@ ul li {
 }
 
 .element-item {
-  padding: 10px 0px 10px 5px;
+  padding: 10px 0px 10px 0px;
   border-bottom: 1px solid #f1f1f1;
 }
 
@@ -110,7 +110,7 @@ ul li {
 
 @media (min-width:680px) {
   .element-item .element-name {
-    width: 61%;
+    width: 63%;
     display: inline-block;
     vertical-align: middle;
   }

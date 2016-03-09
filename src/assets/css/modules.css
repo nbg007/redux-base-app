@@ -49,5 +49,5 @@
 }
 
 .calendar thead .week-day {
-  background: #f1f1f1;
+  background: rgba(54, 79, 107, .15);
 }
