@@ -21,7 +21,7 @@ export class ShowDish extends Component {
       return acc + ingredient.cost
     }, 0)
     return (
-      <div className='component brick-bottom short-wrap' style={this.props.style}>
+      <div className='component brick-bottom' style={this.props.style}>
         <span>
           <h1 className='gamma'>{t('showDish.title')}</h1>
         </span>

@@ -57,7 +57,7 @@ export class ListIngredients extends Component {
   render() {
     const { isFetching, list, removeIngredient, t } = this.props
     return (
-      <div className='component short-wrap' style={this.props.style}>
+      <div className='component' style={this.props.style}>
         <span>
           <h1 className='gamma'>{t('listIngredients.title')}</h1>
         </span>

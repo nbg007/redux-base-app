@@ -15,7 +15,7 @@ export class ShowIngredient extends Component {
 
     const { id, name, cost, stock } = ingredient
     return (
-      <div className='component short-wrap' style={this.props.style}>
+      <div className='component' style={this.props.style}>
         <span>
           <h1 className='gamma'>{t('showIngredient.title')}</h1>
         </span>

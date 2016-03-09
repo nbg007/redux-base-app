@@ -23,7 +23,7 @@ export class ListOrders extends Component {
   render() {
     const { isFetching, list, removeOrder, t } = this.props
     return (
-      <div className='component short-wrap' style={this.props.style}>
+      <div className='component' style={this.props.style}>
         <span>
           <h1 className='gamma'>{t('listOrders.title')}</h1>
         </span>

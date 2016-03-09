@@ -38,7 +38,7 @@ class CreateDishForm extends Component {
           t
           } = this.props
     return (
-      <div className='component short-wrap' style={this.props.style}>
+      <div className='component' style={this.props.style}>
         <p className='section-title'>{t('createDish.description')}</p>
         <form onSubmit={handleSubmit} className='basic-form g clearfix'>
           <div className='field gi one-half gutter'>

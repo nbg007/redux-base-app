@@ -16,7 +16,7 @@ export class ShowOrder extends Component {
   render() {
     const { order, order: { id, createdAt}, isFetching, totalPrice, removeOrder, t, style } = this.props
     return (
-      <div className='component short-wrap' style={style}>
+      <div className='component' style={style}>
         <span>
           <h1 className='gamma'>{t('showOrder.title')}</h1>
         </span>

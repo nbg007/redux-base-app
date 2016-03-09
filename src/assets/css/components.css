@@ -50,11 +50,6 @@ ul li {
   list-style: none;
 }
 
-.short-wrap {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .element-list {
   background: #fff;
   padding: 15px;
@@ -110,7 +105,7 @@ ul li {
 
 @media (min-width:680px) {
   .element-item .element-name {
-    width: 63%;
+    width: 66%;
     display: inline-block;
     vertical-align: middle;
   }
