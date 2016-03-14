@@ -36,7 +36,7 @@
     "react-dom": "^0.14.7",
     "react-i18next": "^1.0.1",
     "react-redux": "^4.1.2",
-    "react-router": "^2.0.0-rc5",
+    "react-router": "^2.0.1",
     "react-router-redux": "^2.1.0i",
     "redux": "^3.1.6",
     "redux-form": "^4.1.6",

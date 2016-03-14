@@ -2,7 +2,7 @@ import { createValidator, required } from '../../utils/validation'
 import { Link } from 'react-router'
 import { reduxForm } from 'redux-form'
 import React, { PropTypes, Component } from 'react'
-import { translate } from 'react-i18next/lib'
+import { translate } from 'react-i18next'
 
 
 const validate = createValidator({
@@ -39,6 +39,8 @@ export class LoginFormComponent extends Component {
           </button>
         </form>
         {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
+        {' '}
+        {t('login.goAdmin')}<Link to='/admin'>{t('login.paneladmin')}</Link>
       </div>
     )
   }

@@ -6,6 +6,7 @@ const devTools = __DEV__ ? React.createFactory(require('../common/dev-tools').de
 
 class Landing extends Component {
   render() {
+    debugger
     return (
       <div>
         <div style={{marginTop: '1.5em'}}>{this.props.children}</div>
