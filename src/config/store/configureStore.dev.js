@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import configureReducers from '../configure-reducers'
-import api from '../middleware/api'
 import {browserHistory} from 'react-router'
 import {syncHistory} from 'react-router-redux'
-import DevTools from '../components/common/dev-tools'
+import configureReducers from '../configure-reducers'
+import api from '../../middleware/api'
+import DevTools from '../../components/common/dev-tools'
 
 const reduxRouter = syncHistory(browserHistory)
 

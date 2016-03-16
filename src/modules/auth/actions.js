@@ -1,9 +1,7 @@
-import { LOCALSTORAGE_TOKEN_KEY } from '../../config'
+import { LOCALSTORAGE_TOKEN_KEY } from '../../config/config'
 import AuthAPI from './api'
 import { push, replace } from 'react-router-redux'
 export * from './action_types'
-// TODO
-// Transform server API errors into valid redux-form errors
 
 //UTILS
 function clearToken(){

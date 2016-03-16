@@ -7,12 +7,10 @@ import { load } from '../modules/admin'
 
 class Admin extends Component {
   componentDidMount() {
-debugger
     this.props.load()  
   }
   render() {
     const { message, isFetching } = this.props
-debugger
     return (
       <div>
         <p>{message}</p> 
@@ -26,7 +24,7 @@ debugger
 Admin.propTypes = {
   message: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  load: PropTypes.string.isRequired
+  load: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

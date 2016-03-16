@@ -1,5 +1,5 @@
 //action types
-import { APP_NAME } from '../../config'
+import { APP_NAME } from '../../config/config'
 
 const MOD_PREFIX = APP_NAME + 'AUTH/'
 export const GET_SESSION_FAILED = MOD_PREFIX.concat("GET_SESSION_FAILED")

@@ -41,6 +41,8 @@ export class LoginFormComponent extends Component {
         {t('login.goRegister')}<Link to='/register'>{t('login.registerActionCall')}</Link>
         {' '}
         {t('login.goAdmin')}<Link to='/admin'>{t('login.paneladmin')}</Link>
+        {' '}
+        {t('login.goAsync')}<Link to='/async'>{t('login.async')}</Link>
       </div>
     )
   }

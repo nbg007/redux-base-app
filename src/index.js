@@ -7,10 +7,10 @@ import { Router, createRoutes, browserHistory } from 'react-router'
 import { I18nextProvider } from 'react-i18next' // as we build ourself via webpack
 import i18n from './utils/i18n'
 
-import configureRoutes from './routes'
-import configureStore from './store/configureStore'
+import configureRoutes from './config/configure-routes'
+import configureStore from './config/store/configureStore'
 import coreReducers from './modules/core'
-import ReducerRegistry from './reducer-registry'
+import ReducerRegistry from './config/reducer-registry'
 
 var reducerRegistry = new ReducerRegistry(coreReducers)
 

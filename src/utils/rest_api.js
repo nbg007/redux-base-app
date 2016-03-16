@@ -1,6 +1,6 @@
 //API utils
 import { CALL_API } from '../middleware/api'
-import { BASE_API_URL, LOCALSTORAGE_TOKEN_KEY } from '../config'
+import { BASE_API_URL, LOCALSTORAGE_TOKEN_KEY } from '../config/config'
 
 //Helpers
 function getToken(){
